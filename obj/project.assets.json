@@ -102,23 +102,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kpche\\.nuget\\packages\\": {},
+    "C:\\Users\\Kelton Chenworth\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Programming\\Galaga\\Galaga.csproj",
+      "projectUniqueName": "K:\\Programming\\C#\\Game Design\\Galaga\\Galaga.csproj",
       "projectName": "Galaga",
-      "projectPath": "C:\\Programming\\Galaga\\Galaga.csproj",
-      "packagesPath": "C:\\Users\\kpche\\.nuget\\packages\\",
-      "outputPath": "C:\\Programming\\Galaga\\obj\\",
+      "projectPath": "K:\\Programming\\C#\\Game Design\\Galaga\\Galaga.csproj",
+      "packagesPath": "C:\\Users\\Kelton Chenworth\\.nuget\\packages\\",
+      "outputPath": "K:\\Programming\\C#\\Game Design\\Galaga\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\kpche\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kelton Chenworth\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -4,7 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Programming/Galaga/Content/Font/ELNATH.spritefont</File>
+    <File>K:/Programming/C#/Game Design/Galaga/Content/Font/ELNATH.spritefont</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

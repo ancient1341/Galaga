@@ -30,6 +30,8 @@ namespace Galaga.Galaga
         SpriteFont ELNATH;
         Texture2D selector;
 
+        GameInfo gameInfo; // Variable to be passed to all sub classes so they can draw, and access other important info
+
 
         int menuOptions;
         public int mode; // 0-MainMenu 1-Game 2-HighScores 3-About 4-Pause
@@ -53,6 +55,8 @@ namespace Galaga.Galaga
 
             selector = new Texture2D(graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
+
+            gameInfo = new GameInfo(m_spriteBatch, graphicsDevice, WIDTH, HEIGHT, ELNATH);
         }
 
         public void update(GameTime gameTime)
