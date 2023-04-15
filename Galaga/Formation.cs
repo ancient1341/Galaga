@@ -1,4 +1,5 @@
 ﻿using Galaga.Galaga.Enemies;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,13 +35,13 @@ namespace Galaga.Galaga
             }
         }
 
-        public void update()
+        public void update(GameTime gameTime)
         {
             foreach (List<Enemy> enemies in formation)
             {
                 foreach (Enemy enemy in enemies)
                 {
-                    enemy.update();
+                    enemy.update(gameTime);
                 }
             }
         }

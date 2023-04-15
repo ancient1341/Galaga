@@ -10,37 +10,46 @@ namespace Galaga.Galaga.Enemies
 {
     abstract class Enemy
     {
-        int x, y;
-        int formationX, formationY;
-        int xSize, ySize;
-        int Scale;
-        double direction;
+        public int x, y;
+        public int formationX, formationY;
+        public int xSize, ySize;
+        public int Scale;
+        public int speed;
+        public double rotation;
+        public bool inFormation;
 
-        GameInfo gameInfo;
+        public GameInfo gameInfo;
 
-        int entrance;
+        protected int entrance;
 
-        Texture2D rectangle;
+        protected Texture2D rectangle;
+        protected TimeSpan time;
 
-
-        public Enemy(GameInfo gameInfo, int entrance)
+        public void formationPosition(int formationX, int formationY)
         {
-            this.gameInfo = gameInfo;
-            this.entrance = entrance;
-
-            rectangle = new Texture2D(gameInfo.graphicsDevice, 1, 1);
-            rectangle.SetData(new[] { Color.White });
+            this.formationX= formationX;
+            this.formationY = formationY;
         }
+        public abstract void draw();
+        public abstract void update(GameTime gameTime);
 
-        public void draw()
+
+        //Chat-GPT created
+        public static Tuple<double, double> getVector(double angle)
         {
-            gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), Color.Blue);
+            // Convert angle from degrees to radians
+            double radians = angle * Math.PI / 180.0;
+
+            // Calculate x and y components of vector
+            double x = Math.Cos(radians);
+            double y = Math.Sin(radians);
+
+            // Create vector with length of 1
+            double length = Math.Sqrt(x * x + y * y);
+            x /= length;
+            y /= length;
+
+            return Tuple.Create(x, y);
         }
-
-        public void update()
-        {
-
-        }
-
     }
 }
