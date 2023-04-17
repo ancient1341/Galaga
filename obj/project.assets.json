@@ -102,23 +102,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mb548\\.nuget\\packages\\": {},
+    "C:\\Users\\unay4\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Game Development\\Galaga\\Galaga.csproj",
+      "projectUniqueName": "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\Galaga.csproj",
       "projectName": "Galaga",
-      "projectPath": "C:\\Game Development\\Galaga\\Galaga.csproj",
-      "packagesPath": "C:\\Users\\mb548\\.nuget\\packages\\",
-      "outputPath": "C:\\Game Development\\Galaga\\obj\\",
+      "projectPath": "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\Galaga.csproj",
+      "packagesPath": "C:\\Users\\unay4\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\mb548\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\unay4\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -170,7 +170,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -12,6 +12,18 @@ namespace Galaga
         private GraphicsDeviceManager m_graphics;
         private SpriteBatch m_spriteBatch;
 
+        private Texture m_playerSprite;
+        private Galaga.AnimatedSprite m_greenAlienRenderer;
+        private Galaga.AnimatedSprite m_redAlienRenderer;
+        private Galaga.AnimatedSprite m_blueAlienRenderer;
+        private Galaga.AnimatedSprite m_beeAlienRenderer;
+
+        private Objects.EnemyModel m_greenEnemy;
+        private Objects.EnemyModel m_blueEnemy;
+        private Objects.EnemyModel m_redEnemy;
+        private Objects.EnemyModel m_beeEnemy;
+
+
         Galaga.Menu gameMenu;
 
         SpriteFont ELNATH;
@@ -36,6 +48,45 @@ namespace Galaga
             m_spriteBatch = new SpriteBatch(GraphicsDevice);
             ELNATH = Content.Load<SpriteFont>("Font/ELNATH");
             // TODO: use this.Content to load your game content here
+
+            m_greenEnemy = new Objects.EnemyModel(
+                new Vector2(75, 75),
+                new Vector2(200, 200),
+                50 / 1000,
+                0);
+            m_blueEnemy = new Objects.EnemyModel(
+                new Vector2(75, 75),
+                new Vector2(100, 200),
+                50 / 1000,
+                0);
+            m_redEnemy = new Objects.EnemyModel(
+                new Vector2(75, 75),
+                new Vector2(200, 100),
+                50 / 1000,
+                0);
+            m_beeEnemy = new Objects.EnemyModel(
+                new Vector2(75, 75),
+                new Vector2(100, 100),
+                50 / 1000,
+                0);
+
+            m_playerSprite = this.Content.Load<Texture2D>("player");
+            m_greenAlienRenderer = new Galaga.AnimatedSprite(
+                this.Content.Load<Texture2D>("green-alien"),
+                new int[] { 500, 500 }
+                );
+            m_redAlienRenderer = new Galaga.AnimatedSprite(
+                this.Content.Load<Texture2D>("red-alien"),
+                new int[] { 500, 500 }
+                );
+            m_blueAlienRenderer = new Galaga.AnimatedSprite(
+                this.Content.Load<Texture2D>("blue-alien"),
+                new int[] { 500, 500 }
+                );
+            m_beeAlienRenderer = new Galaga.AnimatedSprite(
+                this.Content.Load<Texture2D>("bee-alien"),
+                new int[] { 500, 500 }
+                );
         }
 
         protected override void Update(GameTime gameTime)
@@ -43,8 +94,13 @@ namespace Galaga
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape) && gameMenu.mode == 0)
                 Exit();
 
+            m_greenAlienRenderer.update(gameTime);
+            m_blueAlienRenderer.update(gameTime);
+            m_redAlienRenderer.update(gameTime);
+            m_beeAlienRenderer.update(gameTime);
             gameMenu.update(gameTime);
             base.Update(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -53,6 +109,12 @@ namespace Galaga
             m_spriteBatch.Begin();
             //m_spriteBatch.Draw(zappy, new Rectangle(0, 0, WIDTH, HEIGHT), Color.White); BACKGROUND IF DESIRED
             gameMenu.draw();
+
+            m_greenAlienRenderer.draw(m_spriteBatch, m_greenEnemy);
+            m_redAlienRenderer.draw(m_spriteBatch, m_redEnemy);
+            m_blueAlienRenderer.draw(m_spriteBatch, m_blueEnemy);
+            m_beeAlienRenderer.draw(m_spriteBatch, m_beeEnemy);
+
             m_spriteBatch.End();
 
             base.Draw(gameTime);
