@@ -2,9 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Galaga.Galaga.Enemies
 {
@@ -21,13 +23,27 @@ namespace Galaga.Galaga.Enemies
             this.formationX= 0;
             this.formationY= 0;
 
+            this.xSize = 90;
+            this.ySize = 90;
+
+            this.x = gameInfo.WIDTH/2;
+            this.y = gameInfo.HEIGHT/2;
+
+            this.speed = 10;
+
             this.time = new TimeSpan(0);
+
+            position = new Vector2(x, y);
+            origin = new Vector2(0.5f, 0.5f);
+
+
         }
 
         public override void draw()
         {
-            gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), Color.Yellow);
-            //gameInfo.m_spriteBatch.Draw(rectangle, new Vector2(), Nullable, Color, Single, Vector2, Single, SpriteEffects, Single)
+ 
+            //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), Color.Yellow);
+            gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), null, Color.Yellow, -(float)((Math.PI / 180) * rotation), origin, SpriteEffects.None, 0f);
         }
 
         public override void update(GameTime gameTime)
@@ -42,6 +58,8 @@ namespace Galaga.Galaga.Enemies
             {
                 enter();
             }
+            position = new Vector2(x, y);
+            //origin = new Vector2(xSize/2, ySize/2);
         }
 
 
@@ -54,11 +72,17 @@ namespace Galaga.Galaga.Enemies
             {
                 if(time.TotalMilliseconds < 200)
                 {
-                    this.rotation = 250;
+                    this.rotation = 290;
+                }
+                else
+                {
+                    this.rotation += 5;
                 }
             }
 
             dir = getVector(this.rotation);
+            //Debug.WriteLine(rotation);
+            //Debug.WriteLine("X: " + dir.Item1 + "  Y: " + dir.Item2);
             this.x += (int)(dir.Item1*speed);
             this.y -= (int)(dir.Item2*speed);
 

@@ -6,16 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Galaga.Galaga.Enemies
 {
     abstract class Enemy
     {
+        public Vector2 position;
+        public Vector2 origin;
+
         public int x, y;
         public int formationX, formationY;
         public int xSize, ySize;
         public int Scale;
         public int speed;
-        public double rotation;
+        public float rotation;
         public bool inFormation;
 
         public GameInfo gameInfo;

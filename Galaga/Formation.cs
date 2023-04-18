@@ -20,8 +20,14 @@ namespace Galaga.Galaga
 
         public Formation(GameInfo gameInfo, int wave) 
         {
+            this.x = 0;
+            this.y = 0;
             this.gameInfo = gameInfo;
             this.wave = wave;
+
+            this.formation = new List<List<Enemy>>();
+            formation.Add(new List<Enemy>());
+            formation[0].Add(new Bee(gameInfo, 0));
         }
 
         public void draw()

@@ -33,6 +33,8 @@ namespace Galaga.Galaga
         GameInfo gameInfo; // Variable to be passed to all sub classes so they can draw, and access other important info
 
 
+        Galaga game;
+
         int menuOptions;
         public int mode; // 0-MainMenu 1-Game 2-HighScores 3-About 4-Pause
 
@@ -57,6 +59,8 @@ namespace Galaga.Galaga
             selector.SetData(new[] { Color.White });
 
             gameInfo = new GameInfo(m_spriteBatch, graphicsDevice, WIDTH, HEIGHT, ELNATH);
+
+            this.game = new Galaga(gameInfo);
         }
 
         public void update(GameTime gameTime)
@@ -68,7 +72,7 @@ namespace Galaga.Galaga
 
             if (mode == 1) // If game is running
             {
-                //breakout.update(gameTime);
+                game.update(gameTime);
             }
         }
 
@@ -76,8 +80,7 @@ namespace Galaga.Galaga
         {
             if(mode == 1 || mode == 4) //Game is running or Pause Menu is up
             {
-                //breakout.draw();
-                mode = 0; // TODO:: draw the game when the game exists
+                game.draw();
             } 
             if(mode == 2)
             {
@@ -200,7 +203,7 @@ namespace Galaga.Galaga
                 if (menuOptions == 1)
                 {
                     mode = 1;
-                    //breakout.initialize();
+                    game.initialize();
                 }
                 if (menuOptions == 2)
                 {
