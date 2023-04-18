@@ -20,8 +20,8 @@ namespace Galaga.Galaga
 
         public Formation(GameInfo gameInfo, int wave) 
         {
-            this.x = 0;
-            this.y = 0;
+            this.x = gameInfo.WIDTH/3;
+            this.y = gameInfo.WIDTH / 4; ;
             this.gameInfo = gameInfo;
             this.wave = wave;
 
@@ -33,7 +33,7 @@ namespace Galaga.Galaga
                 for (int j = 0; j < 8; j++)
                 {
                     formation[i].Add(new Bee(gameInfo, 0, i*8+j));
-                    formation[i][j].formationPosition(j*(gameInfo.playerScale+2), i*(gameInfo.playerScale+2));
+                    formation[i][j].formationPosition(j*(gameInfo.playerScale+2)+x, i*(gameInfo.playerScale+2)+y);
                 }
             }
             

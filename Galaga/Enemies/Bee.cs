@@ -70,38 +70,13 @@ namespace Galaga.Galaga.Enemies
 
         public override void update(GameTime gameTime)
         {
+            Tuple<double, double> dir;
             this.time += gameTime.ElapsedGameTime;
 
             //if inFormation it will simply gravitate towards its alotted position
             if (inFormation)
             {
-                if(Math.Abs(this.formationX-this.x) < speed)
-                {
-                    this.x = this.formationX;
-                }
-
-                if (Math.Abs(this.formationY - this.y) < speed)
-                {
-                    this.y = this.formationY;
-                }
-                
-                if(this.x > formationX)
-                {
-                    this.x -= speed / 2;
-                } else
-                {
-                    this.x += speed / 2;
-                }
-
-                if (this.y > formationY)
-                {
-                    this.y -= speed / 2;
-                }
-                else
-                {
-                    this.y += speed / 2;
-                }
-
+                gravitate();
             }
             else
             {
