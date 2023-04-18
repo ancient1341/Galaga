@@ -10,14 +10,30 @@ namespace Galaga.Galaga
 {
     class Player
     {
+        GameInfo gameinfo;
+
         int x, y;
         int xSize, ySize;
         int scale;
 
-        public Player()
+        public Player(GameInfo gameinfo)
         {
-            
+            this.gameinfo = gameinfo;
+
+
         }
+        
+
+        public void update()
+        {
+
+        }
+
+        public void draw()
+        {
+
+        }
+
         public void movement() 
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) 

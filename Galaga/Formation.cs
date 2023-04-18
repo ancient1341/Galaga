@@ -26,8 +26,17 @@ namespace Galaga.Galaga
             this.wave = wave;
 
             this.formation = new List<List<Enemy>>();
-            formation.Add(new List<Enemy>());
-            formation[0].Add(new Bee(gameInfo, 0));
+
+            for (int i = 0;i < 3; i++) 
+            {
+                formation.Add(new List<Enemy>());
+                for (int j = 0; j < 8; j++)
+                {
+                    formation[i].Add(new Bee(gameInfo, 0, i*8+j));
+                    formation[i][j].formationPosition(j*(gameInfo.playerScale+2), i*(gameInfo.playerScale+2));
+                }
+            }
+            
         }
 
         public void draw()

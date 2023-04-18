@@ -39,15 +39,15 @@ namespace Galaga.Galaga
         public int mode; // 0-MainMenu 1-Game 2-HighScores 3-About 4-Pause
 
 
-        public Menu(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH)
+        public Menu(GameInfo gameinfo)
         {
-            this.m_spriteBatch = m_spriteBatch;
-            this.graphicsDevice = graphicsDevice;
+            this.m_spriteBatch = gameinfo.m_spriteBatch;
+            this.graphicsDevice = gameinfo.graphicsDevice;
 
-            this.ELNATH = ELNATH;
+            this.ELNATH = gameinfo.ELNATH;
 
-            this.WIDTH = WIDTH;
-            this.HEIGHT = HEIGHT;
+            this.WIDTH = gameinfo.WIDTH;
+            this.HEIGHT = gameinfo.HEIGHT;
 
             menuOptions = -1;
             mode = 0;
@@ -58,7 +58,7 @@ namespace Galaga.Galaga
             selector = new Texture2D(graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
 
-            gameInfo = new GameInfo(m_spriteBatch, graphicsDevice, WIDTH, HEIGHT, ELNATH);
+            this.gameInfo = gameinfo;
 
             this.game = new Galaga(gameInfo);
         }

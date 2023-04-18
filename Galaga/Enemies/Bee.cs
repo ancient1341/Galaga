@@ -12,31 +12,52 @@ namespace Galaga.Galaga.Enemies
 {
     class Bee : Enemy
     {
+        Objects.EnemyModel m_beeEnemy;
         public Bee(GameInfo gameInfo, int entrance)
         {
             this.gameInfo = gameInfo;
             this.entrance = entrance;
 
+            this.time = new TimeSpan(0);
+
+            initialize();
+        }
+
+        public Bee(GameInfo gameInfo, int entrance, int delay)
+        {
+            this.gameInfo = gameInfo;
+            this.entrance = entrance;
+
+            this.time = TimeSpan.FromMilliseconds(delay*-100);
+
+            initialize();
+        }
+
+        private void initialize()
+        {
             rectangle = new Texture2D(gameInfo.graphicsDevice, 1, 1);
             rectangle.SetData(new[] { Color.White });
 
-            this.formationX= 0;
-            this.formationY= 0;
+            this.formationX = 0;
+            this.formationY = 0;
 
-            this.xSize = 90;
-            this.ySize = 90;
+            this.xSize = gameInfo.playerScale;
+            this.ySize = gameInfo.playerScale;
 
-            this.x = gameInfo.WIDTH/2;
-            this.y = gameInfo.HEIGHT/2;
+            this.x = gameInfo.WIDTH / 2;
+            this.y = -gameInfo.playerScale;
 
-            this.speed = 10;
+            this.speed = 15;
 
-            this.time = new TimeSpan(0);
 
             position = new Vector2(x, y);
             origin = new Vector2(0.5f, 0.5f);
 
-
+            m_beeEnemy = new Objects.EnemyModel(
+            new Vector2(75, 75),
+            new Vector2(100, 100),
+            50 / 1000,
+            0);
         }
 
         public override void draw()
@@ -44,15 +65,43 @@ namespace Galaga.Galaga.Enemies
  
             //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), Color.Yellow);
             gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), null, Color.Yellow, -(float)((Math.PI / 180) * rotation), origin, SpriteEffects.None, 0f);
+            //gameInfo.bee.draw(gameInfo.m_spriteBatch, m_beeEnemy, );
         }
 
         public override void update(GameTime gameTime)
         {
             this.time += gameTime.ElapsedGameTime;
+
+            //if inFormation it will simply gravitate towards its alotted position
             if (inFormation)
             {
-                this.x = this.formationX;
-                this.y = this.formationY;
+                if(Math.Abs(this.formationX-this.x) < speed)
+                {
+                    this.x = this.formationX;
+                }
+
+                if (Math.Abs(this.formationY - this.y) < speed)
+                {
+                    this.y = this.formationY;
+                }
+                
+                if(this.x > formationX)
+                {
+                    this.x -= speed / 2;
+                } else
+                {
+                    this.x += speed / 2;
+                }
+
+                if (this.y > formationY)
+                {
+                    this.y -= speed / 2;
+                }
+                else
+                {
+                    this.y += speed / 2;
+                }
+
             }
             else
             {
@@ -70,23 +119,33 @@ namespace Galaga.Galaga.Enemies
 
             if(entrance == 0)
             {
-                if(time.TotalMilliseconds < 200)
+                if(time.TotalMilliseconds < 500)
                 {
-                    this.rotation = 290;
+                    this.rotation = 270;
+                }
+                else if(time.TotalMilliseconds < 700)
+                {
+                    this.rotation += 7;
+                }
+                else if (time.TotalMilliseconds < 1000)
+                {
+                    //this.rotation += 5;
                 }
                 else
                 {
-                    this.rotation += 5;
+                    inFormation= true;
+                    rotation= 0;
                 }
             }
 
             dir = getVector(this.rotation);
             //Debug.WriteLine(rotation);
             //Debug.WriteLine("X: " + dir.Item1 + "  Y: " + dir.Item2);
-            this.x += (int)(dir.Item1*speed);
-            this.y -= (int)(dir.Item2*speed);
-
+            if(time.TotalMilliseconds > 0)
+            {
+                this.x += (int)(dir.Item1 * speed);
+                this.y -= (int)(dir.Item2 * speed);
+            }
         }
-
     }
 }

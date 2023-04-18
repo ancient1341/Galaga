@@ -23,7 +23,7 @@ namespace Galaga.Galaga
 
         public void initialize()
         {
-            this.player= new Player();
+            this.player= new Player(gameInfo);
             this.formation = new Formation(gameInfo, 0);
         }
 
