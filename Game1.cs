@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Galaga.Galaga;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -23,6 +24,7 @@ namespace Galaga
         private Objects.EnemyModel m_redEnemy;
         private Objects.EnemyModel m_beeEnemy;
 
+        GameInfo gameInfo;
 
         Galaga.Menu gameMenu;
 
@@ -40,7 +42,8 @@ namespace Galaga
         protected override void Initialize()
         {
             base.Initialize();
-            gameMenu = new Galaga.Menu(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH);
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer);
+            gameMenu = new Galaga.Menu(gameInfo);
         }
 
         protected override void LoadContent()
