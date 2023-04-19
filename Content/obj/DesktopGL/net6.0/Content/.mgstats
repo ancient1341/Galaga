@@ -1,7 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Game Development/Galaga/Content/bee-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/bee-alien.xnb","TextureProcessor","Texture2DContent",513,5085,0.3041048
-"C:/Game Development/Galaga/Content/blue-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/blue-alien.xnb","TextureProcessor","Texture2DContent",549,5085,0.006201
-"C:/Game Development/Galaga/Content/Font/ELNATH.spritefont","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/Font/ELNATH.xnb","FontDescriptionProcessor","SpriteFontContent",2069,136223,0.2472742
-"C:/Game Development/Galaga/Content/green-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/green-alien.xnb","TextureProcessor","Texture2DContent",548,5085,0.0071206
-"C:/Game Development/Galaga/Content/player.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/player.xnb","TextureProcessor","Texture2DContent",498,2585,0.0062888
-"C:/Game Development/Galaga/Content/red-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/red-alien.xnb","TextureProcessor","Texture2DContent",513,5085,0.007337
+"C:/Game Development/Galaga/Content/bee-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/bee-alien.xnb","TextureProcessor","Texture2DContent",513,5085,1.3518573
+"C:/Game Development/Galaga/Content/blue-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/blue-alien.xnb","TextureProcessor","Texture2DContent",549,5085,0.0234085
+"C:/Game Development/Galaga/Content/Font/ELNATH.spritefont","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/Font/ELNATH.xnb","FontDescriptionProcessor","SpriteFontContent",2069,136223,0.4957641
+"C:/Game Development/Galaga/Content/green-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/green-alien.xnb","TextureProcessor","Texture2DContent",548,5085,0.0266823
+"C:/Game Development/Galaga/Content/player.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/player.xnb","TextureProcessor","Texture2DContent",498,2585,0.0157051
+"C:/Game Development/Galaga/Content/red-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/red-alien.xnb","TextureProcessor","Texture2DContent",513,5085,0.0147503

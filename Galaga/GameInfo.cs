@@ -37,7 +37,7 @@ namespace Galaga.Galaga
             this.butterfly = butterfly;
             this.bee = bee;
 
-            this.playerScale = HEIGHT / 20;
+            this.playerScale = HEIGHT / 10;
 
             this.gameTime = new TimeSpan(0);
         }
