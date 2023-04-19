@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Galaga.Galaga
     class Player
     {
         GameInfo gameinfo;
+        Texture2D selector;
 
         int x, y;
         int xSize, ySize;
@@ -19,30 +21,34 @@ namespace Galaga.Galaga
         public Player(GameInfo gameinfo)
         {
             this.gameinfo = gameinfo;
-
-
+            selector = new Texture2D(gameinfo.graphicsDevice, 1, 1);
+            selector.SetData(new[] { Color.White });
+            x = gameinfo.WIDTH/2;
+            y = gameinfo.HEIGHT*4/5;
+            xSize = 50;
+            ySize = 50;
         }
         
 
-        public void update()
+        public void update(GameTime gametime)
         {
-
+            movement(gametime);
         }
 
         public void draw()
         {
-
+            gameinfo.m_spriteBatch.Draw(selector, new Rectangle(x, y, xSize, ySize), Color.White);
         }
 
-        public void movement() 
+        public void movement(GameTime gametime) 
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) 
             {
-                x -= 1;
+                x -= (int)(0.5 * gametime.ElapsedGameTime.TotalMilliseconds);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Right)) 
             {
-                x += 1;
+                x += (int)(0.5 * gametime.ElapsedGameTime.TotalMilliseconds);
             }
         }
     }

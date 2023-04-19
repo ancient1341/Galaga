@@ -30,11 +30,13 @@ namespace Galaga.Galaga
         public void draw()
         {
             formation.draw();
+            player.draw();
         }
 
         public void update(GameTime gameTime) 
         {
             formation.update(gameTime);
+            player.update(gameTime);
         }
 
     }
