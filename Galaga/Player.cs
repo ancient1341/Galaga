@@ -37,7 +37,7 @@ namespace Galaga.Galaga
 
         public void draw()
         {
-            gameinfo.m_spriteBatch.Draw(selector, new Rectangle(x, y, xSize, ySize), Color.White);
+            gameinfo.m_spriteBatch.Draw(gameinfo.player, new Rectangle(x, y, xSize, ySize), Color.White);
         }
 
         public void movement(GameTime gametime) 

@@ -18,11 +18,12 @@ namespace Galaga.Galaga
         public SpriteFont ELNATH;
 
         public TimeSpan gameTime;
+        public Texture2D player;
         public AnimatedSprite bossFull, butterfly, bossDamaged, bee;
 
         public int playerScale;
 
-        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, AnimatedSprite bossFull, AnimatedSprite butterfly, AnimatedSprite bossDamaged, AnimatedSprite bee) 
+        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, Texture2D player, AnimatedSprite bossFull, AnimatedSprite butterfly, AnimatedSprite bossDamaged, AnimatedSprite bee) 
         {
             this.m_spriteBatch = m_spriteBatch;
             this.graphicsDevice = graphicsDevice;
@@ -32,6 +33,7 @@ namespace Galaga.Galaga
             this.WIDTH = WIDTH;
             this.HEIGHT = HEIGHT;
 
+            this.player = player;
             this.bossFull = bossFull;
             this.bossDamaged = bossDamaged;
             this.butterfly = butterfly;

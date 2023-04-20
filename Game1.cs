@@ -13,7 +13,7 @@ namespace Galaga
         private GraphicsDeviceManager m_graphics;
         private SpriteBatch m_spriteBatch;
 
-        private Texture m_playerSprite;
+        private Texture2D m_playerSprite;
         private Galaga.AnimatedSprite m_greenAlienRenderer;
         private Galaga.AnimatedSprite m_redAlienRenderer;
         private Galaga.AnimatedSprite m_blueAlienRenderer;
@@ -42,7 +42,7 @@ namespace Galaga
         protected override void Initialize()
         {
             base.Initialize();
-            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer);
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_playerSprite, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer);
             gameMenu = new Galaga.Menu(gameInfo);
         }
 
