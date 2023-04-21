@@ -6,12 +6,14 @@
   <SourceFiles>
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/bee-alien.png</File>
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/blue-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/bullet.png</File>
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/Font/ELNATH.spritefont</File>
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/green-alien.png</File>
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/player.png</File>
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
