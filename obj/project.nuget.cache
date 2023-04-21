@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "IkkYpdkJcWnNSNEXIlPERuDMUXYDcvRXCh/RkRhOeLVgVT9sSRSliODN2xvFqYeTv0JpuZw2+FRCaK6OzKp8Iw==",
+  "dgSpecHash": "iC3UahwPq5yxc3huCHVDyBHEESxVw7OBhLCQCoIlLzOVoZauy/8pA6vALRww4YAyIdUW9SbJK6bFDXJvBTnnLw==",
   "success": true,
-  "projectFilePath": "C:\\Game Development\\Galaga\\Galaga.csproj",
+  "projectFilePath": "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\Galaga.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mb548\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\mb548\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\unay4\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\unay4\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
   "logs": []
 }

@@ -26,6 +26,8 @@ namespace Galaga
 
         GameInfo gameInfo;
 
+        private KeyboardInput m_keyboardInput;
+
         Galaga.Menu gameMenu;
 
         SpriteFont ELNATH;
@@ -42,8 +44,11 @@ namespace Galaga
         protected override void Initialize()
         {
             base.Initialize();
-            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer);
+            m_keyboardInput = new KeyboardInput();
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer, m_keyboardInput);
             gameMenu = new Galaga.Menu(gameInfo);
+
+            
         }
 
         protected override void LoadContent()
@@ -101,6 +106,8 @@ namespace Galaga
             m_blueAlienRenderer.update(gameTime);
             m_redAlienRenderer.update(gameTime);
             m_beeAlienRenderer.update(gameTime);
+
+            m_keyboardInput.Update(gameTime);
             gameMenu.update(gameTime);
             base.Update(gameTime);
 
@@ -122,5 +129,7 @@ namespace Galaga
 
             base.Draw(gameTime);
         }
+
+
     }
 }
