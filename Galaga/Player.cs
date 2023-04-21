@@ -53,7 +53,7 @@ namespace Galaga.Galaga
 
         public void draw()
         {
-            gameinfo.m_spriteBatch.Draw(selector, new Rectangle(x, y, xSize, ySize), Color.White);
+            gameinfo.m_spriteBatch.Draw(gameinfo.player, new Rectangle(x, y, xSize, ySize), Color.White);
             foreach (Rectangle bullet in projectiles)
             {
                 gameinfo.m_spriteBatch.Draw(selector, bullet, Color.White);

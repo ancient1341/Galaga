@@ -45,7 +45,7 @@ namespace Galaga
         {
             base.Initialize();
             m_keyboardInput = new KeyboardInput();
-            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer, m_keyboardInput);
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer, m_playerSprite, m_keyboardInput);
             gameMenu = new Galaga.Menu(gameInfo);
 
             
