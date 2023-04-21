@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Galaga
 {
@@ -14,6 +15,7 @@ namespace Galaga
         private SpriteBatch m_spriteBatch;
 
         private Texture2D m_playerSprite;
+        private Texture2D m_bulletSprite;
         private Galaga.AnimatedSprite m_greenAlienRenderer;
         private Galaga.AnimatedSprite m_redAlienRenderer;
         private Galaga.AnimatedSprite m_blueAlienRenderer;
@@ -27,6 +29,7 @@ namespace Galaga
         GameInfo gameInfo;
 
         private KeyboardInput m_keyboardInput;
+        private Dictionary<string, Texture2D> spriteDict;
 
         Galaga.Menu gameMenu;
 
@@ -45,7 +48,7 @@ namespace Galaga
         {
             base.Initialize();
             m_keyboardInput = new KeyboardInput();
-            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer, m_playerSprite, m_keyboardInput);
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer, spriteDict, m_keyboardInput);
             gameMenu = new Galaga.Menu(gameInfo);
 
             
@@ -79,6 +82,12 @@ namespace Galaga
                 0);
 
             m_playerSprite = this.Content.Load<Texture2D>("player");
+            m_bulletSprite = this.Content.Load<Texture2D>("bullet");
+
+            spriteDict = new Dictionary<string, Texture2D>();
+            spriteDict.Add("player", m_playerSprite);
+            spriteDict.Add("bullet", m_bulletSprite);
+
             m_greenAlienRenderer = new Galaga.AnimatedSprite(
                 this.Content.Load<Texture2D>("green-alien"),
                 new int[] { 500, 500 }

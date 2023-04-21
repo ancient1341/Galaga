@@ -25,8 +25,8 @@ namespace Galaga.Galaga
             this.gameinfo = gameinfo;
             selector = new Texture2D(gameinfo.graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
-            x = gameinfo.WIDTH/2;
-            y = gameinfo.HEIGHT*4/5;
+            x = gameinfo.WIDTH / 2;
+            y = gameinfo.HEIGHT * 4 / 5;
             xSize = 50;
             ySize = 50;
 
@@ -36,13 +36,13 @@ namespace Galaga.Galaga
             gameinfo.keyboardInput.registerCommand(Keys.Right, false, new InputDeviceHelper.CommandDelegate(OnRightKey));
             gameinfo.keyboardInput.registerCommand(Keys.Space, true, new InputDeviceHelper.CommandDelegate(Shoot));
         }
-        
+
 
         public void update(GameTime gametime)
         {
             gameinfo.keyboardInput.Update(gametime);
             List<Rectangle> tempList = new List<Rectangle>();
-            foreach(Rectangle bullet in projectiles)
+            foreach (Rectangle bullet in projectiles)
             {
                 var newBullet = bullet;
                 newBullet.Y -= (int)(0.5 * gametime.ElapsedGameTime.TotalMilliseconds);
@@ -53,10 +53,10 @@ namespace Galaga.Galaga
 
         public void draw()
         {
-            gameinfo.m_spriteBatch.Draw(gameinfo.player, new Rectangle(x, y, xSize, ySize), Color.White);
+            gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["player"], new Rectangle(x, y, xSize, ySize), Color.White);
             foreach (Rectangle bullet in projectiles)
             {
-                gameinfo.m_spriteBatch.Draw(selector, bullet, Color.White);
+                gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["bullet"], bullet, Color.White);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Galaga.Galaga
         }
         public void Shoot(GameTime gameTime, float value)
         {
-            projectiles.Add(new Rectangle(x, y, 10, 10));
+            projectiles.Add(new Rectangle(x + (xSize / 2) - ((3 * 3) / 2), y, 3 * 3, 8 * 3));
         }
     }
 }

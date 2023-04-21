@@ -91,3 +91,4 @@ C:\Users\unay4\Documents\CS5410\Galaga\obj\Debug\net6.0\refint\Galaga.dll
 C:\Users\unay4\Documents\CS5410\Galaga\obj\Debug\net6.0\Galaga.pdb
 C:\Users\unay4\Documents\CS5410\Galaga\obj\Debug\net6.0\Galaga.genruntimeconfig.cache
 C:\Users\unay4\Documents\CS5410\Galaga\obj\Debug\net6.0\ref\Galaga.dll
+C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\bullet.xnb
