@@ -21,9 +21,11 @@ namespace Galaga.Galaga
         public Texture2D player;
         public AnimatedSprite bossFull, butterfly, bossDamaged, bee;
 
+        public KeyboardInput keyboardInput;
+
         public int playerScale;
 
-        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, Texture2D player, AnimatedSprite bossFull, AnimatedSprite butterfly, AnimatedSprite bossDamaged, AnimatedSprite bee) 
+        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, AnimatedSprite bossFull, AnimatedSprite butterfly, AnimatedSprite bossDamaged, AnimatedSprite bee, KeyboardInput keyboardInput) 
         {
             this.m_spriteBatch = m_spriteBatch;
             this.graphicsDevice = graphicsDevice;
@@ -38,6 +40,8 @@ namespace Galaga.Galaga
             this.bossDamaged = bossDamaged;
             this.butterfly = butterfly;
             this.bee = bee;
+
+            this.keyboardInput = keyboardInput;
 
             this.playerScale = HEIGHT / 10;
 
