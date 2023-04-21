@@ -13,7 +13,7 @@ namespace Galaga
         private GraphicsDeviceManager m_graphics;
         private SpriteBatch m_spriteBatch;
 
-        private Texture m_playerSprite;
+        private Texture2D m_playerSprite;
         private Galaga.AnimatedSprite m_greenAlienRenderer;
         private Galaga.AnimatedSprite m_redAlienRenderer;
         private Galaga.AnimatedSprite m_blueAlienRenderer;

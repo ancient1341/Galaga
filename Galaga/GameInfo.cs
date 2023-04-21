@@ -18,6 +18,7 @@ namespace Galaga.Galaga
         public SpriteFont ELNATH;
 
         public TimeSpan gameTime;
+        public Texture2D player;
         public AnimatedSprite bossFull, butterfly, bossDamaged, bee;
 
         public KeyboardInput keyboardInput;
@@ -34,6 +35,7 @@ namespace Galaga.Galaga
             this.WIDTH = WIDTH;
             this.HEIGHT = HEIGHT;
 
+            this.player = player;
             this.bossFull = bossFull;
             this.bossDamaged = bossDamaged;
             this.butterfly = butterfly;
