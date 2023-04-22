@@ -126,13 +126,7 @@ namespace Galaga
         {
             GraphicsDevice.Clear(Color.Black);
             m_spriteBatch.Begin();
-            //m_spriteBatch.Draw(zappy, new Rectangle(0, 0, WIDTH, HEIGHT), Color.White); BACKGROUND IF DESIRED
             gameMenu.draw();
-
-            //m_greenAlienRenderer.draw(m_spriteBatch, m_greenEnemy);
-            //m_redAlienRenderer.draw(m_spriteBatch, m_redEnemy);
-            //m_blueAlienRenderer.draw(m_spriteBatch, m_blueEnemy);
-            //m_beeAlienRenderer.draw(m_spriteBatch, m_beeEnemy);
 
             m_spriteBatch.End();
 

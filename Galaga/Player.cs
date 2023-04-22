@@ -12,9 +12,8 @@ namespace Galaga.Galaga
     class Player
     {
         GameInfo gameinfo;
-        Texture2D selector;
-
         List<Rectangle> projectiles;
+        Texture2D selector;
 
         int x, y;
         int xSize, ySize;
@@ -23,6 +22,7 @@ namespace Galaga.Galaga
         public Player(GameInfo gameinfo)
         {
             this.gameinfo = gameinfo;
+            this.projectiles = projectiles;
             selector = new Texture2D(gameinfo.graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
             x = gameinfo.WIDTH / 2;
@@ -30,34 +30,20 @@ namespace Galaga.Galaga
             xSize = 50;
             ySize = 50;
 
-            projectiles = new List<Rectangle>();
-
             gameinfo.keyboardInput.registerCommand(Keys.Left, false, new InputDeviceHelper.CommandDelegate(OnLeftKey));
             gameinfo.keyboardInput.registerCommand(Keys.Right, false, new InputDeviceHelper.CommandDelegate(OnRightKey));
-            gameinfo.keyboardInput.registerCommand(Keys.Space, true, new InputDeviceHelper.CommandDelegate(Shoot));
+            
         }
 
 
         public void update(GameTime gametime)
         {
             gameinfo.keyboardInput.Update(gametime);
-            List<Rectangle> tempList = new List<Rectangle>();
-            foreach (Rectangle bullet in projectiles)
-            {
-                var newBullet = bullet;
-                newBullet.Y -= (int)(0.5 * gametime.ElapsedGameTime.TotalMilliseconds);
-                tempList.Add(newBullet);
-            }
-            projectiles = tempList;
         }
 
         public void draw()
         {
             gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["player"], new Rectangle(x, y, xSize, ySize), Color.White);
-            foreach (Rectangle bullet in projectiles)
-            {
-                gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["bullet"], bullet, Color.White);
-            }
         }
 
         /*public void movement(GameTime gametime) 
@@ -82,9 +68,21 @@ namespace Galaga.Galaga
         {
             x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
         }
-        public void Shoot(GameTime gameTime, float value)
+        
+
+        public int getX()
         {
-            projectiles.Add(new Rectangle(x + (xSize / 2) - ((3 * 3) / 2), y, 3 * 3, 8 * 3));
+            return this.x;
+        }
+
+        public int getY()
+        {
+            return this.y;
+        }
+
+        public int getSize()
+        {
+            return this.xSize;
         }
     }
 }

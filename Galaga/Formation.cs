@@ -50,15 +50,35 @@ namespace Galaga.Galaga
             }
         }
 
-        public void update(GameTime gameTime)
+        public void update(GameTime gameTime, List<Rectangle> projectiles)
         {
-            foreach (List<Enemy> enemies in formation)
+            for (int rowIndex = formation.Count - 1; rowIndex >= 0; rowIndex--)
             {
-                foreach (Enemy enemy in enemies)
+                for (int enemyIndex = formation[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
                 {
+                    Enemy enemy = formation[rowIndex][enemyIndex];
+                    for (int bulletIndex = projectiles.Count - 1; bulletIndex >= 0; bulletIndex--)
+                    {
+                        Rectangle bullet = projectiles[bulletIndex];
+                        if (enemy.x < bullet.Left + bullet.Width &&
+                            enemy.x + enemy.xSize > bullet.Left &&
+                            enemy.y < bullet.Top + bullet.Height &&
+                            enemy.y + enemy.ySize > bullet.Top)
+                        {
+                            explode(enemy.x, enemy.y);
+                            formation[rowIndex].RemoveAt(enemyIndex);
+
+                            projectiles.RemoveAt(bulletIndex);
+                        }
+                    }
                     enemy.update(gameTime);
                 }
             }
+        }
+
+        private void explode(int x, int y)
+        {
+
         }
 
     }
