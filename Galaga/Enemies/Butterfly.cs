@@ -12,7 +12,6 @@ namespace Galaga.Galaga.Enemies
 {
     class Butterfly : Enemy
     {
-        Objects.EnemyModel m_butterflyEnemy;
         public Butterfly(GameInfo gameInfo, int entrance)
         {
             this.gameInfo = gameInfo;
@@ -41,23 +40,17 @@ namespace Galaga.Galaga.Enemies
             this.formationX = 0;
             this.formationY = 0;
 
-            this.xSize = gameInfo.playerScale;
-            this.ySize = gameInfo.playerScale;
+            this.xSize = gameInfo.enemyScale;
+            this.ySize = gameInfo.enemyScale;
 
             this.x = gameInfo.WIDTH / 2;
-            this.y = -gameInfo.playerScale;
+            this.y = -gameInfo.enemyScale;
 
             this.speed = 15;
 
 
             position = new Vector2(x, y);
             origin = new Vector2(0.5f, 0.5f);
-
-            m_butterflyEnemy = new Objects.EnemyModel(
-            new Vector2(75, 75),
-            new Vector2(100, 100),
-            50 / 1000,
-            0);
         }
 
         public override void draw()

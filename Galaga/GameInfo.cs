@@ -25,6 +25,7 @@ namespace Galaga.Galaga
         public KeyboardInput keyboardInput;
 
         public int playerScale;
+        public int enemyScale;
 
         public int score;
 
@@ -46,7 +47,8 @@ namespace Galaga.Galaga
 
             this.keyboardInput = keyboardInput;
 
-            this.playerScale = HEIGHT / 10;
+            this.playerScale = HEIGHT / 20;
+            this.enemyScale = playerScale * 13 / 17; 
 
             this.gameTime = new TimeSpan(0);
             

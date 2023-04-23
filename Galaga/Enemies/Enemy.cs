@@ -29,6 +29,8 @@ namespace Galaga.Galaga.Enemies
         protected Texture2D rectangle;
         protected TimeSpan time;
 
+        public bool damaged = true; //For boss
+
         public void formationPosition(float formationX, float formationY)
         {
             this.formationX= formationX;

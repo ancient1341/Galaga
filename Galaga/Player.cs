@@ -26,7 +26,7 @@ namespace Galaga.Galaga
             selector = new Texture2D(gameinfo.graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
             x = gameinfo.WIDTH / 2;
-            y = gameinfo.HEIGHT * 4 / 5;
+            y = gameinfo.HEIGHT * 9 / 10;
             xSize = 50;
             ySize = 50;
 

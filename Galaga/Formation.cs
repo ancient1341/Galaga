@@ -20,27 +20,51 @@ namespace Galaga.Galaga
 
         float spacing;
 
+        int formationWidth;
+
+        int[] waveOne = { 4, 8, 2 };
+        int enemyWidthCount = 10;
+
         public Formation(GameInfo gameInfo, int wave) 
         {
-            this.x = gameInfo.WIDTH/3;
-            this.y = gameInfo.WIDTH / 4; ;
             this.gameInfo = gameInfo;
             this.wave = wave;
 
-            this.formation = new List<List<Enemy>>();
 
-            spacing = gameInfo.playerScale;
+            this.spacing = gameInfo.enemyScale;
+            this.formationWidth = (gameInfo.enemyScale + (int)spacing - gameInfo.enemyScale) * enemyWidthCount;
+            this.x = gameInfo.WIDTH/2-formationWidth/2;
+            this.y = gameInfo.WIDTH / 4; ;
+
+            this.formation = new List<List<Enemy>>();
 
             for (int i = 0;i < 3; i++) 
             {
                 formation.Add(new List<Enemy>());
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < enemyWidthCount; j++)
                 {
                     formation[i].Add(new Bee(gameInfo, 0, i*10+j));
                     formation[i][j].formationPosition(j*(spacing)+x, i*(spacing)+y);
                 }
             }
             
+        }
+
+
+        public void generateFirstWave()
+        {
+            for(int row = 0; row < 5; row++)
+            {
+                formation.Add(new List<Enemy>());
+                if (row == 0)
+                {
+                    for(int i = 0; i < waveOne[0]; i++)
+                    {
+                        formation[row].Add(new Boss(gameInfo, 0, 4000+200*i)); //4000 4 seconds for entry + 200*Entry Order
+                        formation[row][i].formationPosition(x + formationWidth/2 - waveOne[0]/2*gameInfo.enemyScale + gameInfo.enemyScale*i, i * (spacing) + y);
+                    }
+                }
+            }
         }
 
         public void draw()
