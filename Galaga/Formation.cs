@@ -18,6 +18,8 @@ namespace Galaga.Galaga
 
         int wave;
 
+        float spacing;
+
         public Formation(GameInfo gameInfo, int wave) 
         {
             this.x = gameInfo.WIDTH/3;
@@ -27,13 +29,15 @@ namespace Galaga.Galaga
 
             this.formation = new List<List<Enemy>>();
 
+            spacing = gameInfo.playerScale;
+
             for (int i = 0;i < 3; i++) 
             {
                 formation.Add(new List<Enemy>());
-                for (int j = 0; j < 8; j++)
+                for (int j = 0; j < 10; j++)
                 {
-                    formation[i].Add(new Bee(gameInfo, 0, i*8+j));
-                    formation[i][j].formationPosition(j*(gameInfo.playerScale+2)+x, i*(gameInfo.playerScale+2)+y);
+                    formation[i].Add(new Bee(gameInfo, 0, i*10+j));
+                    formation[i][j].formationPosition(j*(spacing)+x, i*(spacing)+y);
                 }
             }
             
@@ -65,7 +69,7 @@ namespace Galaga.Galaga
                             enemy.y < bullet.Top + bullet.Height &&
                             enemy.y + enemy.ySize > bullet.Top)
                         {
-                            explode(enemy.x, enemy.y);
+                            explode((int)enemy.x, (int)enemy.y);
                             formation[rowIndex].RemoveAt(enemyIndex);
 
                             projectiles.RemoveAt(bulletIndex);

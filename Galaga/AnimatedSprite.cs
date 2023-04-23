@@ -37,16 +37,16 @@ namespace Galaga.Galaga
             }
         }
 
-        public void draw(SpriteBatch spriteBatch, Objects.AnimatedSprite model, float rotation, Rectangle rect, Vector2 origin)
+        public void draw(SpriteBatch spriteBatch, float rotation, Rectangle rect)
         {
             spriteBatch.Draw(
                 m_spriteSheet,
                 rect, // Destination rectangle
                 new Rectangle(m_subImageIndex * m_subImageWidth, 0, m_subImageWidth, m_spriteSheet.Height), // Source sub-texture
                 Color.White,
-                rotation, // Angular rotation
-                origin, // Center point of rotation
-                SpriteEffects.None, 0);
+                rotation + (float)(Math.PI / 2), // Angular rotation
+                new Vector2(m_subImageWidth/2, m_spriteSheet.Height/2),  // Center point of rotation
+                SpriteEffects.None, 0) ;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Diagnostics;
 
 namespace Galaga.Galaga.Enemies
 {
@@ -14,8 +14,8 @@ namespace Galaga.Galaga.Enemies
         public Vector2 position;
         public Vector2 origin;
 
-        public int x, y;
-        public int formationX, formationY;
+        public float x, y;
+        public float formationX, formationY;
         public int xSize, ySize;
         public int Scale;
         public int speed;
@@ -29,7 +29,7 @@ namespace Galaga.Galaga.Enemies
         protected Texture2D rectangle;
         protected TimeSpan time;
 
-        public void formationPosition(int formationX, int formationY)
+        public void formationPosition(float formationX, float formationY)
         {
             this.formationX= formationX;
             this.formationY = formationY;
@@ -39,25 +39,33 @@ namespace Galaga.Galaga.Enemies
         {
             Tuple<double, double> dir;
 
-            if (Math.Abs(this.formationX - this.x) < speed)
+            if (Math.Abs(this.formationX - this.x) <= speed)
             {
                 this.x = this.formationX;
             }
 
-            if (Math.Abs(this.formationY - this.y) < speed)
+            if (Math.Abs(this.formationY - this.y) <= speed)
             {
                 this.y = this.formationY;
             }
 
+            if (y == formationY && x == formationX)
+            {
+                this.rotation = 90;
+                return;
+            }
+
             dir = GetSlope(x, y, formationX, formationY);
+            rotation = GetAngle(-dir.Item1, dir.Item2);
+            //Debug.WriteLine()
 
             if (this.x != formationX)
             {
-                this.x -= (int)(dir.Item1 * speed);
+                this.x += (int)(dir.Item1 * speed);
             }
             if (this.y != formationY)
             {
-                this.y -= (int)(dir.Item2 * speed);
+                this.y += (int)(dir.Item2 * speed);
             }
         }
 
@@ -93,7 +101,7 @@ namespace Galaga.Galaga.Enemies
         //Given 2 points generate A slope from one point to the other where |x|+|y| = 1
         public static Tuple<double, double> GetSlope(double x1, double y1, double x2, double y2)
         {
-            if (x2 - x1 == 0)
+            if (x2 == x1)
             {
                 // handle vertical slope (undefined)
                 return Tuple.Create(1.0, 0.0);
@@ -103,13 +111,24 @@ namespace Galaga.Galaga.Enemies
                 // calculate slope using the formula (y2 - y1) / (x2 - x1)
                 double slope = (y2 - y1) / (x2 - x1);
 
-                // calculate x and y components of the slope
-                double x = 1.0 / Math.Sqrt(1 + slope * slope);
-                double y = slope * x;
+                // calculate the angle of the slope in radians
+                double angle = Math.Atan2(y2 - y1, x2 - x1);
+
+                // calculate the x and y components of the slope
+                double x = Math.Cos(angle);
+                double y = Math.Sin(angle);
 
                 // return tuple with x and y components
                 return Tuple.Create(x, y);
             }
+        }
+
+
+        public static float GetAngle(double x, double y)
+        {
+            double angleRadians = Math.Atan2(y, x);
+            float angleDegrees = (float)(angleRadians * (180 / Math.PI));
+            return angleDegrees-180;
         }
     }
 }
