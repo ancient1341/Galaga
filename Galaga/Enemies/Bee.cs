@@ -45,7 +45,7 @@ namespace Galaga.Galaga.Enemies
             this.ySize = gameInfo.playerScale;
 
             this.x = gameInfo.WIDTH/2;
-            this.x = 0;
+            //this.x = 0;
             this.y = -gameInfo.playerScale;
 
             this.speed = 15;

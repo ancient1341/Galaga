@@ -39,15 +39,14 @@ namespace Galaga.Galaga.Enemies
         {
             Tuple<double, double> dir;
 
-            if (Math.Abs(this.formationX - this.x) <= speed)
+            if (Math.Abs(this.formationX - this.x) < speed || Math.Abs(this.formationY - this.y) < speed)
             {
                 this.x = this.formationX;
-            }
-
-            if (Math.Abs(this.formationY - this.y) <= speed)
-            {
                 this.y = this.formationY;
             }
+
+            //y = formationY;
+            //x = formationX;
 
             if (y == formationY && x == formationX)
             {
