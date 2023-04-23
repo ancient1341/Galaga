@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Sources;
 
 namespace Galaga.Galaga
 {
@@ -24,6 +25,8 @@ namespace Galaga.Galaga
         public KeyboardInput keyboardInput;
 
         public int playerScale;
+
+        public int score;
 
         public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, AnimatedSprite bossFull, AnimatedSprite butterfly, AnimatedSprite bossDamaged, AnimatedSprite bee, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput) 
         {
@@ -46,11 +49,15 @@ namespace Galaga.Galaga
             this.playerScale = HEIGHT / 10;
 
             this.gameTime = new TimeSpan(0);
+            
+            this.score = 0;
+
         }
         public void update(TimeSpan elapsed)
         {
             gameTime += elapsed;
         }
+
 
     }
 }

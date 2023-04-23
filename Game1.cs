@@ -50,8 +50,9 @@ namespace Galaga
             m_keyboardInput = new KeyboardInput();
             gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer, spriteDict, m_keyboardInput);
             gameMenu = new Galaga.Menu(gameInfo);
+            GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
 
-            
+
         }
 
         protected override void LoadContent()

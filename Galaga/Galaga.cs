@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,16 @@ namespace Galaga.Galaga
         Player player;
         Formation formation;
 
+        Texture2D rectangle;
+
         List<Rectangle> projectiles;
 
         public Galaga(GameInfo gameInfo) 
         {
             this.gameInfo= gameInfo;
+
+            rectangle = new Texture2D(gameInfo.graphicsDevice, 1, 1);
+            rectangle.SetData(new[] { Color.White });
 
             initialize();
         }
@@ -40,6 +46,9 @@ namespace Galaga.Galaga
                 gameInfo.m_spriteBatch.Draw(gameInfo.spriteDict["bullet"], bullet, Color.White);
             }
             player.draw();
+
+            gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(0, 0, gameInfo.HEIGHT*4/9, gameInfo.HEIGHT), Color.White);
+            gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(gameInfo.WIDTH-gameInfo.HEIGHT*4/9, 0, gameInfo.HEIGHT * 4 /9, gameInfo.HEIGHT), Color.White);
         }
 
         public void update(GameTime gameTime) 
