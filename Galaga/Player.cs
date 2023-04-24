@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Galaga.Galaga.Enemies;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -14,7 +15,7 @@ namespace Galaga.Galaga
         GameInfo gameinfo;
         List<Rectangle> projectiles;
         Texture2D selector;
-
+        List<Particle> particles;
         public int x, y;
         int xSize { get; set; }
         int ySize { get; set; }
@@ -24,6 +25,7 @@ namespace Galaga.Galaga
 
         public Player(GameInfo gameinfo)
         {
+            this.particles = new List<Particle>();
             this.gameinfo = gameinfo;
             selector = new Texture2D(gameinfo.graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
@@ -39,11 +41,24 @@ namespace Galaga.Galaga
         public void update(GameTime gametime)
         {
             gameinfo.keyboardInput.Update(gametime);
+            for (int i = 0; i < particles.Count; i++)
+            {
+                particles[i].update(gametime);
+                if (particles[i].dead)
+                {
+                    particles.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         public void draw()
         {
             gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["player"], new Rectangle(x, y, xSize, ySize), Color.White);
+            foreach (Particle particle in particles)
+            {
+                particle.draw();
+            }
         }
 
         /*public void movement(GameTime gametime) 
@@ -80,7 +95,11 @@ namespace Galaga.Galaga
 
         public void Destroy()
         {
-
+            Random rand = new Random();
+            for (int i = 0; i < 150; i++)
+            {
+                particles.Add(new Particle(gameinfo, x, y, rand.Next(200, 350)));
+            }
         }
 
     }
