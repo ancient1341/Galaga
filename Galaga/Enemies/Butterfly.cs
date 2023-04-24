@@ -58,7 +58,7 @@ namespace Galaga.Galaga.Enemies
 
             //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), Color.Yellow);
             //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), null, Color.Yellow, -(float)((Math.PI / 180) * rotation), origin, SpriteEffects.None, 0f);
-            gameInfo.butterfly.draw(gameInfo.m_spriteBatch, -(float)((Math.PI / 180) * rotation), new Rectangle((int)x + xSize / 2, (int)y + ySize / 2, xSize, ySize));
+            gameInfo.spriteRenderers["butterfly"].draw(gameInfo.m_spriteBatch, -(float)((Math.PI / 180) * rotation), new Rectangle((int)x + xSize / 2, (int)y + ySize / 2, xSize, ySize));
             //gameInfo.bee.draw(gameInfo.m_spriteBatch, m_beeEnemy, );
         }
 

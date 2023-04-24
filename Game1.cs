@@ -20,11 +20,14 @@ namespace Galaga
         private Galaga.AnimatedSprite m_redAlienRenderer;
         private Galaga.AnimatedSprite m_blueAlienRenderer;
         private Galaga.AnimatedSprite m_beeAlienRenderer;
+        private Galaga.AnimatedSprite m_playerExplosionRenderer;
 
         private Objects.EnemyModel m_greenEnemy;
         private Objects.EnemyModel m_blueEnemy;
         private Objects.EnemyModel m_redEnemy;
         private Objects.EnemyModel m_beeEnemy;
+
+        private Dictionary<string, AnimatedSprite> spriteRenderers;
 
         GameInfo gameInfo;
 
@@ -48,7 +51,7 @@ namespace Galaga
         {
             base.Initialize();
             m_keyboardInput = new KeyboardInput();
-            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, m_greenAlienRenderer, m_redAlienRenderer, m_blueAlienRenderer, m_beeAlienRenderer, spriteDict, m_keyboardInput);
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, spriteRenderers, spriteDict, m_keyboardInput);
             gameMenu = new Galaga.Menu(gameInfo);
             GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
 
@@ -85,9 +88,13 @@ namespace Galaga
             m_playerSprite = this.Content.Load<Texture2D>("player");
             m_bulletSprite = this.Content.Load<Texture2D>("bullet");
 
-            spriteDict = new Dictionary<string, Texture2D>();
-            spriteDict.Add("player", m_playerSprite);
-            spriteDict.Add("bullet", m_bulletSprite);
+            spriteDict = new Dictionary<string, Texture2D>
+            {
+                { "player", m_playerSprite },
+                { "bullet", m_bulletSprite }
+            };
+
+            spriteRenderers = new Dictionary<string, AnimatedSprite>();
 
             m_greenAlienRenderer = new Galaga.AnimatedSprite(
                 this.Content.Load<Texture2D>("green-alien"),
@@ -105,6 +112,17 @@ namespace Galaga
                 this.Content.Load<Texture2D>("bee-alien"),
                 new int[] { 500, 500 }
                 );
+
+            m_playerExplosionRenderer = new Galaga.AnimatedSprite(
+                this.Content.Load<Texture2D>("ship-explosion"),
+                new int[] { 500, 500, 500, 500 }
+                );
+
+            spriteRenderers.Add("green",  m_greenAlienRenderer);
+            spriteRenderers.Add("butterfly", m_redAlienRenderer);
+            spriteRenderers.Add("blue", m_blueAlienRenderer);
+            spriteRenderers.Add("bee", m_beeAlienRenderer);
+            spriteRenderers.Add("playerExplosion", m_playerExplosionRenderer);
         }
 
         protected override void Update(GameTime gameTime)
@@ -116,6 +134,7 @@ namespace Galaga
             m_blueAlienRenderer.update(gameTime);
             m_redAlienRenderer.update(gameTime);
             m_beeAlienRenderer.update(gameTime);
+            m_playerExplosionRenderer.update(gameTime);
 
             m_keyboardInput.Update(gameTime);
             gameMenu.update(gameTime);

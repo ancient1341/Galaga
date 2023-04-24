@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/unay4/Documents/CS5410/Galaga/Content/bee-alien.png</SourceFile>
-  <SourceTime>2023-04-17T16:33:35.7518983-06:00</SourceTime>
+  <SourceTime>2023-04-23T17:07:02.073983-06:00</SourceTime>
   <DestFile>C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/bee-alien.xnb</DestFile>
-  <DestTime>2023-04-21T13:39:27.1194031-06:00</DestTime>
+  <DestTime>2023-04-24T13:06:39.5316009-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T05:44:56-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -5,3 +5,4 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/unay4/Documents/CS5410/Galaga/Content/green-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/green-alien.xnb","TextureProcessor","Texture2DContent",548,5085,0.0042262
 "C:/Users/unay4/Documents/CS5410/Galaga/Content/player.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/player.xnb","TextureProcessor","Texture2DContent",292,1241,0.0059738
 "C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/red-alien.xnb","TextureProcessor","Texture2DContent",270,1437,0.0025375
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/ship-explosion.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/ship-explosion.xnb","TextureProcessor","Texture2DContent",861,21785,0.159211
