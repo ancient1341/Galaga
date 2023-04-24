@@ -25,6 +25,7 @@ namespace Galaga.Galaga
         int[] waveOne = { 4, 8, 2 };
         int enemyWidthCount = 10;
 
+        Random rand;
         List<Particle> particles;
 
         public Formation(GameInfo gameInfo, int wave)
@@ -50,6 +51,7 @@ namespace Galaga.Galaga
                 }
             }
 
+            rand = new Random();
             particles = new List<Particle>();
         }
 
@@ -131,9 +133,10 @@ namespace Galaga.Galaga
 
         private void explode(int x, int y)
         {
+
             for(int i = 0; i < 150; i++)
             {
-                particles.Add(new Particle(gameInfo, x, y, 300));
+                particles.Add(new Particle(gameInfo, x, y, rand.Next(200, 350)));
             }
         }
 
