@@ -119,5 +119,20 @@ namespace Galaga.Galaga
 
         }
 
+        public Tuple<float, float> GetRandomEnemyLocation()
+        {
+            List<Enemy> tempList = new List<Enemy>();
+            foreach(List<Enemy> row in formation)
+            {
+                foreach(Enemy enemy in row)
+                {
+                    tempList.Add(enemy);
+                }
+            }
+
+            Random random = new Random();
+            int index = random.Next(tempList.Count);
+            return Tuple.Create(tempList[index].x, tempList[index].y);
+        }
     }
 }

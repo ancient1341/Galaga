@@ -38,7 +38,7 @@ namespace Galaga.Objects
 
         public override void draw()
         {
-            m_spriteBatch.Draw(bulletTexture, new Rectangle(x, y, 9, 24), Color.White);
+            m_spriteBatch.Draw(bulletTexture, new Vector2(x, y), null, Color.White, MathHelper.ToRadians(180), new Vector2(0, 0), new Vector2(3, 3), SpriteEffects.None, 0);
         }
     }
 
@@ -60,7 +60,7 @@ namespace Galaga.Objects
 
         public override void draw()
         {
-            m_spriteBatch.Draw(bulletTexture, new Rectangle(x, y, 9, 24), Color.White);
+            m_spriteBatch.Draw(bulletTexture, new Vector2(x, y), null, Color.White, MathHelper.ToRadians(0), new Vector2(0, 0), new Vector2(3, 3), SpriteEffects.None, 0);
         }
     }
 }
