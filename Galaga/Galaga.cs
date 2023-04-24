@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Galaga.Objects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -18,7 +19,7 @@ namespace Galaga.Galaga
 
         Texture2D rectangle;
 
-        List<Rectangle> projectiles;
+        List<Bullet> projectiles;
 
         public Galaga(GameInfo gameInfo) 
         {
@@ -32,7 +33,7 @@ namespace Galaga.Galaga
 
         public void initialize()
         {
-            projectiles = new List<Rectangle>();
+            projectiles = new List<Bullet>();
             this.player= new Player(gameInfo);
             this.formation = new Formation(gameInfo, 0);
             gameInfo.keyboardInput.registerCommand(Keys.Space, true, new InputDeviceHelper.CommandDelegate(Shoot));
@@ -41,13 +42,13 @@ namespace Galaga.Galaga
         public void draw()
         {
             formation.draw();
-            foreach (Rectangle bullet in projectiles)
+            foreach (Bullet bullet in projectiles)
             {
-                gameInfo.m_spriteBatch.Draw(gameInfo.spriteDict["bullet"], bullet, Color.White);
+                bullet.draw();
             }
             player.draw();
 
-            gameInfo.m_spriteBatch.DrawString(gameInfo.ELNATH, "Helno", new Vector2(5, 5), Color.White);
+            gameInfo.m_spriteBatch.DrawString(gameInfo.ELNATH, gameInfo.score.ToString(), new Vector2(5, 5), Color.White);
             //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(0, 0, gameInfo.HEIGHT*4/9, gameInfo.HEIGHT), Color.White);
             //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(gameInfo.WIDTH-gameInfo.HEIGHT*4/9, 0, gameInfo.HEIGHT * 4 /9, gameInfo.HEIGHT), Color.White);
         }
@@ -55,20 +56,17 @@ namespace Galaga.Galaga
         public void update(GameTime gameTime) 
         {
             List<Rectangle> tempList = new List<Rectangle>();
-            foreach (Rectangle bullet in projectiles)
+            foreach (Bullet bullet in projectiles)
             {
-                var newBullet = bullet;
-                newBullet.Y -= (int)(0.5 * gameTime.ElapsedGameTime.TotalMilliseconds);
-                tempList.Add(newBullet);
+                bullet.update(gameTime);
             }
-            projectiles = tempList;
             formation.update(gameTime, projectiles);
             player.update(gameTime);
         }
 
         public void Shoot(GameTime gameTime, float value)
         {
-            projectiles.Add(new Rectangle(player.getX() + (player.getSize() / 2) - ((3 * 3) / 2), player.getY(), 3 * 3, 8 * 3));
+            projectiles.Add(new PlayerBullet(player.getX() + (player.getSize() / 2) - ((3 * 3) / 2), player.getY(), gameInfo.m_spriteBatch, gameInfo.spriteDict["bullet"]));
         }
     }
 }

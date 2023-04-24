@@ -22,7 +22,6 @@ namespace Galaga.Galaga
         public Player(GameInfo gameinfo)
         {
             this.gameinfo = gameinfo;
-            this.projectiles = projectiles;
             selector = new Texture2D(gameinfo.graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
             x = gameinfo.WIDTH / 2;

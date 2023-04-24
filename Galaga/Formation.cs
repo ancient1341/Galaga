@@ -1,7 +1,9 @@
 ﻿using Galaga.Galaga.Enemies;
+using Galaga.Objects;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -78,7 +80,7 @@ namespace Galaga.Galaga
             }
         }
 
-        public void update(GameTime gameTime, List<Rectangle> projectiles)
+        public void update(GameTime gameTime, List<Bullet> projectiles)
         {
             for (int rowIndex = formation.Count - 1; rowIndex >= 0; rowIndex--)
             {
@@ -87,12 +89,20 @@ namespace Galaga.Galaga
                     Enemy enemy = formation[rowIndex][enemyIndex];
                     for (int bulletIndex = projectiles.Count - 1; bulletIndex >= 0; bulletIndex--)
                     {
-                        Rectangle bullet = projectiles[bulletIndex];
-                        if (enemy.x < bullet.Left + bullet.Width &&
-                            enemy.x + enemy.xSize > bullet.Left &&
-                            enemy.y < bullet.Top + bullet.Height &&
-                            enemy.y + enemy.ySize > bullet.Top)
+                        Bullet bullet = projectiles[bulletIndex];
+                        if (enemy.x < bullet.x + 9 &&
+                            enemy.x + enemy.xSize > bullet.x &&
+                            enemy.y < bullet.y + 24 &&
+                            enemy.y + enemy.ySize > bullet.y)
                         {
+                            if (enemy is Bee)
+                            {
+                                gameInfo.score += 50;
+                            }
+                            if (enemy is Butterfly)
+                            {
+                                gameInfo.score += 80;
+                            }
                             explode((int)enemy.x, (int)enemy.y);
                             formation[rowIndex].RemoveAt(enemyIndex);
 
