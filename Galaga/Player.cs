@@ -15,23 +15,23 @@ namespace Galaga.Galaga
         List<Rectangle> projectiles;
         Texture2D selector;
 
-        int x, y;
-        int xSize, ySize;
+        public int x, y;
+        int xSize { get; set; }
+        int ySize { get; set; }
         int scale;
+
+        public bool isActive;
 
         public Player(GameInfo gameinfo)
         {
             this.gameinfo = gameinfo;
-            this.projectiles = projectiles;
             selector = new Texture2D(gameinfo.graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
             x = gameinfo.WIDTH / 2;
             y = gameinfo.HEIGHT * 9 / 10;
             xSize = 50;
             ySize = 50;
-
-            gameinfo.keyboardInput.registerCommand(Keys.Left, false, new InputDeviceHelper.CommandDelegate(OnLeftKey));
-            gameinfo.keyboardInput.registerCommand(Keys.Right, false, new InputDeviceHelper.CommandDelegate(OnRightKey));
+            this.isActive = false;
             
         }
 
@@ -60,14 +60,7 @@ namespace Galaga.Galaga
             }
         }*/
 
-        public void OnLeftKey(GameTime gameTime, float value)
-        {
-            x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
-        }
-        public void OnRightKey(GameTime gameTime, float value)
-        {
-            x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
-        }
+        
         
 
         public int getX()
@@ -84,5 +77,11 @@ namespace Galaga.Galaga
         {
             return this.xSize;
         }
+
+        public void Destroy()
+        {
+
+        }
+
     }
 }

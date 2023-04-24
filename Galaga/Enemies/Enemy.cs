@@ -131,5 +131,10 @@ namespace Galaga.Galaga.Enemies
             float angleDegrees = (float)(angleRadians * (180 / Math.PI));
             return angleDegrees-180;
         }
+
+        public void Shoot()
+        {
+
+        }
     }
 }

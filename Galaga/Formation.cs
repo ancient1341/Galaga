@@ -1,7 +1,9 @@
 ﻿using Galaga.Galaga.Enemies;
+using Galaga.Objects;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -88,7 +90,7 @@ namespace Galaga.Galaga
             }
         }
 
-        public void update(GameTime gameTime, List<Rectangle> projectiles)
+        public void update(GameTime gameTime, List<Bullet> projectiles)
         {
             for(int i = 0; i < particles.Count; i++)
             {
@@ -107,12 +109,20 @@ namespace Galaga.Galaga
                     Enemy enemy = formation[rowIndex][enemyIndex];
                     for (int bulletIndex = projectiles.Count - 1; bulletIndex >= 0; bulletIndex--)
                     {
-                        Rectangle bullet = projectiles[bulletIndex];
-                        if (enemy.x < bullet.Left + bullet.Width &&
-                            enemy.x + enemy.xSize > bullet.Left &&
-                            enemy.y < bullet.Top + bullet.Height &&
-                            enemy.y + enemy.ySize > bullet.Top)
+                        Bullet bullet = projectiles[bulletIndex];
+                        if (enemy.x < bullet.x + 9 &&
+                            enemy.x + enemy.xSize > bullet.x &&
+                            enemy.y < bullet.y + 24 &&
+                            enemy.y + enemy.ySize > bullet.y)
                         {
+                            if (enemy is Bee)
+                            {
+                                gameInfo.score += 50;
+                            }
+                            if (enemy is Butterfly)
+                            {
+                                gameInfo.score += 80;
+                            }
                             if (formation[rowIndex][enemyIndex].damaged)
                             {
                                 explode((int)bullet.Left + bullet.Width/2, (int)bullet.Top);
@@ -140,5 +150,20 @@ namespace Galaga.Galaga
             }
         }
 
+        public Tuple<float, float> GetRandomEnemyLocation()
+        {
+            List<Enemy> tempList = new List<Enemy>();
+            foreach(List<Enemy> row in formation)
+            {
+                foreach(Enemy enemy in row)
+                {
+                    tempList.Add(enemy);
+                }
+            }
+
+            Random random = new Random();
+            int index = random.Next(tempList.Count);
+            return Tuple.Create(tempList[index].x, tempList[index].y);
+        }
     }
 }
