@@ -13,7 +13,7 @@ namespace Galaga.Galaga.Enemies
     class EmptyEnemy : Enemy
     {
         Objects.EnemyModel m_beeEnemy;
-        public EmptyEnemy(GameInfo gameInfo, int entrance)
+        public EmptyEnemy(GameInfo gameInfo)
         {
             this.gameInfo = gameInfo;
         }

@@ -35,9 +35,6 @@ namespace Galaga.Galaga.Enemies
 
         private void initialize()
         {
-            rectangle = new Texture2D(gameInfo.graphicsDevice, 1, 1);
-            rectangle.SetData(new[] { Color.White });
-
             this.formationX = 0;
             this.formationY = 0;
 

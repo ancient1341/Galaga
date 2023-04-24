@@ -25,7 +25,9 @@ namespace Galaga.Galaga
         int[] waveOne = { 4, 8, 2 };
         int enemyWidthCount = 10;
 
-        public Formation(GameInfo gameInfo, int wave) 
+        List<Particle> particles;
+
+        public Formation(GameInfo gameInfo, int wave)
         {
             this.gameInfo = gameInfo;
             this.wave = wave;
@@ -33,21 +35,22 @@ namespace Galaga.Galaga
 
             this.spacing = gameInfo.enemyScale;
             this.formationWidth = (gameInfo.enemyScale + (int)spacing - gameInfo.enemyScale) * enemyWidthCount;
-            this.x = gameInfo.WIDTH/2-formationWidth/2;
+            this.x = gameInfo.WIDTH / 2 - formationWidth / 2;
             this.y = gameInfo.WIDTH / 4; ;
 
             this.formation = new List<List<Enemy>>();
 
-            for (int i = 0;i < 3; i++) 
+            for (int i = 0; i < 3; i++)
             {
                 formation.Add(new List<Enemy>());
                 for (int j = 0; j < enemyWidthCount; j++)
                 {
-                    formation[i].Add(new Bee(gameInfo, 0, i*10+j));
-                    formation[i][j].formationPosition(j*(spacing)+x, i*(spacing)+y);
+                    formation[i].Add(new Bee(gameInfo, 0, i * 10 + j));
+                    formation[i][j].formationPosition(j * (spacing) + x, i * (spacing) + y);
                 }
             }
-            
+
+            particles = new List<Particle>();
         }
 
 
@@ -76,10 +79,25 @@ namespace Galaga.Galaga
                     enemy.draw();
                 }
             }
+
+            foreach (Particle particle in particles)
+            {
+                particle.draw();
+            }
         }
 
         public void update(GameTime gameTime, List<Rectangle> projectiles)
         {
+            for(int i = 0; i < particles.Count; i++)
+            {
+                particles[i].update(gameTime);
+                if (particles[i].dead)
+                {
+                    particles.RemoveAt(i);
+                    i--;
+                }
+            }
+
             for (int rowIndex = formation.Count - 1; rowIndex >= 0; rowIndex--)
             {
                 for (int enemyIndex = formation[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
@@ -93,20 +111,30 @@ namespace Galaga.Galaga
                             enemy.y < bullet.Top + bullet.Height &&
                             enemy.y + enemy.ySize > bullet.Top)
                         {
-                            explode((int)enemy.x, (int)enemy.y);
-                            formation[rowIndex].RemoveAt(enemyIndex);
-
+                            if (formation[rowIndex][enemyIndex].damaged)
+                            {
+                                explode((int)bullet.Left + bullet.Width/2, (int)bullet.Top);
+                                formation[rowIndex][enemyIndex] = new EmptyEnemy(gameInfo);
+                            }
+                            else
+                            {
+                                formation[rowIndex][enemyIndex].damaged= true;
+                            }
                             projectiles.RemoveAt(bulletIndex);
                         }
                     }
                     enemy.update(gameTime);
                 }
             }
+
         }
 
         private void explode(int x, int y)
         {
-
+            for(int i = 0; i < 150; i++)
+            {
+                particles.Add(new Particle(gameInfo, x, y, 300));
+            }
         }
 
     }

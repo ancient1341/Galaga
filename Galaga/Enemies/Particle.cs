@@ -15,8 +15,8 @@ namespace Galaga.Galaga.Enemies
     {
         GameInfo gameInfo;
 
-        int x, y;
-        int speed;
+        double x, y;
+        double speed;
         int size;
         
         int dir; //degrees
@@ -31,9 +31,9 @@ namespace Galaga.Galaga.Enemies
 
         TimeSpan time;
         int life;
-        bool expired;
+        public bool dead;
 
-        Particle(GameInfo gameInfo, int x, int y, int life)
+        public Particle(GameInfo gameInfo, int x, int y, int life)
         {
             this.gameInfo = gameInfo;
             this.x = x;
@@ -42,9 +42,10 @@ namespace Galaga.Galaga.Enemies
 
              
             rand = new Random();
+            speed = rand.NextDouble() * 3 + 2;
             dir = rand.Next(0, 360);
             velocity = getVector(dir);
-            size = gameInfo.WIDTH / 100;
+            size = gameInfo.WIDTH / 400;
 
             dir = rand.Next(4);
 
@@ -65,6 +66,7 @@ namespace Galaga.Galaga.Enemies
                 color = Color.White;
             }
 
+
             time = new TimeSpan(0);
             rectangle = new Texture2D(gameInfo.graphicsDevice, 1, 1);
             rectangle.SetData(new[] { Color.White });
@@ -72,19 +74,19 @@ namespace Galaga.Galaga.Enemies
 
         public void update(GameTime gameTime)
         {
-            x += (int)velocity.Item1;
-            y += (int)velocity.Item2;
+            x += velocity.Item1*speed;
+            y += velocity.Item2*speed;
 
             time += gameTime.ElapsedGameTime;
             if(time.TotalMilliseconds > life)
             {
-                expired = true;
+                dead = true;
             }
         }
 
         public void draw() 
         {
-            gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, size, size), color);
+            gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle((int)x, (int)y, size, size), color);
         }
 
         public static Tuple<double, double> getVector(double angle)
