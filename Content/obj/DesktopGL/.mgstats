@@ -1,7 +1,9 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/bee-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/bee-alien.xnb","TextureProcessor","Texture2DContent",513,5085,0.1597977
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/blue-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/blue-alien.xnb","TextureProcessor","Texture2DContent",549,5085,0.0028414
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/Font/ELNATH.spritefont","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Font/ELNATH.xnb","FontDescriptionProcessor","SpriteFontContent",2069,136223,0.1405351
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/green-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/green-alien.xnb","TextureProcessor","Texture2DContent",548,5085,0.0046872
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/player.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/player.xnb","TextureProcessor","Texture2DContent",498,2585,0.0038416
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/red-alien.xnb","TextureProcessor","Texture2DContent",513,5085,0.0031275
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/bee-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/bee-alien.xnb","TextureProcessor","Texture2DContent",294,1437,0.1918759
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/blue-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/blue-alien.xnb","TextureProcessor","Texture2DContent",549,5085,0.0050222
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/bullet.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/bullet.xnb","TextureProcessor","Texture2DContent",124,181,0.0069097
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/Font/ELNATH.spritefont","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Font/ELNATH.xnb","FontDescriptionProcessor","SpriteFontContent",2069,136223,0.1353569
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/green-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/green-alien.xnb","TextureProcessor","Texture2DContent",548,5085,0.0031799
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/player.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/player.xnb","TextureProcessor","Texture2DContent",292,1241,0.0039579
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/red-alien.xnb","TextureProcessor","Texture2DContent",270,1437,0.0031202
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/ship-explosion.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/ship-explosion.xnb","TextureProcessor","Texture2DContent",861,21785,0.0061776

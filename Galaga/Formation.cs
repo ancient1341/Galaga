@@ -117,11 +117,25 @@ namespace Galaga.Galaga
                         {
                             if (enemy is Bee)
                             {
-                                gameInfo.score += 50;
+                                if (enemy.inFormation)
+                                {
+                                    gameInfo.score += 50;
+                                }
+                                else
+                                {
+                                    gameInfo.score += 100;
+                                }
                             }
                             if (enemy is Butterfly)
                             {
-                                gameInfo.score += 80;
+                                if (enemy.inFormation)
+                                {
+                                    gameInfo.score += 80;
+                                }
+                                else
+                                {
+                                    gameInfo.score += 160;
+                                }
                             }
                             if (formation[rowIndex][enemyIndex].damaged)
                             {

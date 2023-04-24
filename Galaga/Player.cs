@@ -13,7 +13,6 @@ namespace Galaga.Galaga
     class Player
     {
         GameInfo gameinfo;
-        List<Rectangle> projectiles;
         Texture2D selector;
         List<Particle> particles;
         public int x, y;
@@ -22,6 +21,8 @@ namespace Galaga.Galaga
         int scale;
 
         public bool isActive;
+        private bool isExploding;
+        Texture2D playerTexture;
 
         public Player(GameInfo gameinfo)
         {
@@ -54,11 +55,15 @@ namespace Galaga.Galaga
 
         public void draw()
         {
-            gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["player"], new Rectangle(x, y, xSize, ySize), Color.White);
-            foreach (Particle particle in particles)
+            if (isExploding)
             {
-                particle.draw();
+                gameinfo.spriteRenderers["playerExplosion"].draw(gameinfo.m_spriteBatch, 0, new Rectangle(x, y, xSize, ySize));
             }
+            else
+            {
+                gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["player"], new Rectangle(x, y, xSize, ySize), Color.White);
+            }
+            
         }
 
         /*public void movement(GameTime gametime) 
@@ -95,6 +100,8 @@ namespace Galaga.Galaga
 
         public void Destroy()
         {
+            isActive = false;
+            isExploding = true;
             Random rand = new Random();
             for (int i = 0; i < 150; i++)
             {

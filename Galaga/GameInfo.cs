@@ -20,6 +20,7 @@ namespace Galaga.Galaga
 
         public TimeSpan gameTime;
         public Dictionary<string, Texture2D> spriteDict;
+        public Dictionary<string, AnimatedSprite> spriteRenderers;
         public AnimatedSprite bossFull, butterfly, bossDamaged, bee;
 
         public KeyboardInput keyboardInput;
@@ -29,7 +30,7 @@ namespace Galaga.Galaga
 
         public int score;
 
-        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, AnimatedSprite bossFull, AnimatedSprite butterfly, AnimatedSprite bossDamaged, AnimatedSprite bee, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput) 
+        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, Dictionary<string, AnimatedSprite> spriteRenderers, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput) 
         {
             this.m_spriteBatch = m_spriteBatch;
             this.graphicsDevice = graphicsDevice;
@@ -40,10 +41,7 @@ namespace Galaga.Galaga
             this.HEIGHT = HEIGHT;
 
             this.spriteDict = spriteDict;
-            this.bossFull = bossFull;
-            this.bossDamaged = bossDamaged;
-            this.butterfly = butterfly;
-            this.bee = bee;
+            this.spriteRenderers = spriteRenderers;
 
             this.keyboardInput = keyboardInput;
 
