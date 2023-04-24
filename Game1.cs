@@ -127,7 +127,7 @@ namespace Galaga
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape) && gameMenu.mode == 0)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape) && gameInfo.mode == 0)
                 Exit();
 
             m_greenAlienRenderer.update(gameTime);

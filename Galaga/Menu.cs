@@ -4,10 +4,12 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Galaga.Galaga
 {
@@ -36,7 +38,7 @@ namespace Galaga.Galaga
         Galaga game;
 
         int menuOptions;
-        public int mode; // 0-MainMenu 1-Game 2-HighScores 3-About 4-Pause
+        // 0-MainMenu 1-Game 2-HighScores 3-About 4-Pause 5-GameOver
 
 
         public Menu(GameInfo gameinfo)
@@ -50,7 +52,6 @@ namespace Galaga.Galaga
             this.HEIGHT = gameinfo.HEIGHT;
 
             menuOptions = -1;
-            mode = 0;
 
             mouseDown = false;
             escape= false;
@@ -70,7 +71,7 @@ namespace Galaga.Galaga
             menuOptions = checkMouseMenu();
             HandleMouseInput();
 
-            if (mode == 1) // If game is running
+            if (gameInfo.mode == 1) // If game is running
             {
                 game.update(gameTime);
             }
@@ -78,30 +79,34 @@ namespace Galaga.Galaga
 
         public void draw()
         {
-            if(mode == 1 || mode == 4) //Game is running or Pause Menu is up
+            if(gameInfo.mode == 1 || gameInfo.mode == 4) //Game is running or Pause Menu is up
             {
                 game.draw();
             } 
-            if(mode == 2)
+            if(gameInfo.mode == 2)
             {
                 showHighScores();
             } 
-            if(mode == 3)
+            if(gameInfo.mode == 3)
             {
                 showAboutMenu();
             }
-            if (mode == 4)
+            if (gameInfo.mode == 4)
             {
                 showPauseMenu();
             } 
-            if (mode == 0)
+            if (gameInfo.mode == 0)
             {
                 showMainMenu();
+            }
+            if (gameInfo.mode == 5)
+            {
+                showGameOver();
             }
         }
         private int checkMouseMenu()
         {
-            if (mode == 0)
+            if (gameInfo.mode == 0)
             {
                 //Within X bounds for Main Menu
                 if (cursor.X > WIDTH / 4 - FONT_SIZE && cursor.X < WIDTH / 4 - FONT_SIZE + SELECTOR_LENGTH)
@@ -120,7 +125,7 @@ namespace Galaga.Galaga
                     }
                 }
             }
-            if (mode == 4)
+            if (gameInfo.mode == 4)
             {
                 if (cursor.Y > (HEIGHT * 4) / 8 - HEIGHT / 30 && cursor.Y < (HEIGHT * 4) / 8 - HEIGHT / 30 + SELECTOR_HEIGHT)
                 {
@@ -168,10 +173,30 @@ namespace Galaga.Galaga
 
         void showHighScores()
         {
+            List<int> highScores = new List<int>();
+            try
+            {
+                using (StreamReader sr = new StreamReader("./HighScores.txt"))
+                {
+                    string line;
+                    Debug.WriteLine("Reading from file");
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        highScores.Add(Int32.Parse(line));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
             m_spriteBatch.DrawString(ELNATH, "-HIGH SCORES-", new Vector2(WIDTH / 10, HEIGHT / 10), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "This isnt implemented", new Vector2(WIDTH / 8, HEIGHT * 2 / 8), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "pointz", new Vector2(WIDTH / 8, HEIGHT * 3 / 8), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "sCoreee", new Vector2(WIDTH / 8, HEIGHT * 4 / 8), Color.White);
+            List<int> scores = highScores.OrderByDescending(x => x).ToList();
+            for (int i = 0; i < scores.Count; i++)
+            {
+                m_spriteBatch.DrawString(ELNATH, scores[i].ToString(), new Vector2(WIDTH / 8, HEIGHT * (2 + i) / 8), Color.White);
+            }
+            
             m_spriteBatch.DrawString(ELNATH, "Click to return", new Vector2(WIDTH / 20, HEIGHT * 7 / 8), Color.White);
         }
 
@@ -196,30 +221,30 @@ namespace Galaga.Galaga
         {
             if (cursor.LeftButton == ButtonState.Pressed && !mouseDown)
             {
-                if (mode == 2 || mode == 3)
+                if (gameInfo.mode == 2 || gameInfo.mode == 3)
                 {
-                    mode = 0;
+                    gameInfo.mode = 0;
                 }
                 if (menuOptions == 1)
                 {
-                    mode = 1;
+                    gameInfo.mode = 1;
                     game.initialize();
                 }
                 if (menuOptions == 2)
                 {
-                    mode = 2;
+                    gameInfo.mode = 2;
                 }
                 if (menuOptions == 3)
                 {
-                    mode = 3;
+                    gameInfo.mode = 3;
                 }
                 if (menuOptions == 4)
                 {
-                    mode = 1;
+                    gameInfo.mode = 1;
                 }
                 if (menuOptions == 5)
                 {
-                    mode = 0;
+                    gameInfo.mode = 0;
                 }
                 mouseDown = true;
             }
@@ -243,17 +268,17 @@ namespace Galaga.Galaga
 
             if (state.IsKeyDown(Keys.Escape) && !escape)
             {
-                if (mode == 1)
+                if (gameInfo.mode == 1)
                 {
-                    mode = 4;
+                    gameInfo.mode = 4;
                 }
-                else if (mode == 4)
+                else if (gameInfo.mode == 4)
                 {
-                    mode = 1;
+                    gameInfo.mode = 1;
                 }
-                if (mode == 2 || mode == 3)
+                if (gameInfo.mode == 2 || gameInfo.mode == 3)
                 {
-                    mode = 0;
+                    gameInfo.mode = 0;
                 }
                 escape = true;
             }
@@ -267,6 +292,19 @@ namespace Galaga.Galaga
             if (state.IsKeyUp(Keys.Escape))
             {
                 escape= false;
+            }
+        }
+
+        void showGameOver()
+        {
+            KeyboardState state = Keyboard.GetState();
+
+            m_spriteBatch.DrawString(ELNATH, "Game Over", new Vector2(WIDTH / 4, HEIGHT / 4), Color.White);
+            m_spriteBatch.DrawString(ELNATH, "Press Space to return to menu", new Vector2(WIDTH / 4, HEIGHT * 3 / 4), Color.White);
+
+            if (state.IsKeyDown(Keys.Space))
+            {
+                gameInfo.mode = 0;
             }
         }
 
