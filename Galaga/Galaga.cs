@@ -100,6 +100,12 @@ namespace Galaga.Galaga
                         extraLives.RemoveAt(0);
                         this.player.isActive = true;
                     }
+                    else
+                    {
+                        this.gameInfo.mode = 5;
+                        this.gameInfo.writeScoreToFile(this.gameInfo.score);
+                        this.gameInfo.score = 0;
+                    }
                     destructTriggered = false;
                 }
             }
@@ -150,14 +156,14 @@ namespace Galaga.Galaga
 
         public void OnLeftKey(GameTime gameTime, float value)
         {
-            if (this.player.isActive)
+            if (this.player.isActive && this.player.x > 0)
             {
                 this.player.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
         }
         public void OnRightKey(GameTime gameTime, float value)
         {
-            if (this.player.isActive)
+            if (this.player.isActive && this.player.x + this.player.getSize() < this.gameInfo.WIDTH)
             {
                 this.player.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
             }    

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Sources;
+using System.IO;
+using System.Diagnostics;
 
 namespace Galaga.Galaga
 {
@@ -29,6 +31,7 @@ namespace Galaga.Galaga
         public int enemyScale;
 
         public int score;
+        public int mode;
 
         public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, Dictionary<string, AnimatedSprite> spriteRenderers, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput) 
         {
@@ -51,11 +54,51 @@ namespace Galaga.Galaga
             this.gameTime = new TimeSpan(0);
             
             this.score = 0;
+            this.mode = 0;
 
         }
         public void update(TimeSpan elapsed)
         {
             gameTime += elapsed;
+        }
+
+        public void writeScoreToFile(int score)
+        {
+            List<int> scores = new List<int>();
+            try
+            {
+                using (StreamReader sr = new StreamReader("./HighScores.txt"))
+                {
+                    string line;
+                    Debug.WriteLine("Reading from file");
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        scores.Add(Int32.Parse(line));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                using (StreamWriter sw = new StreamWriter("./HighScores.txt"))
+                {
+                    sw.WriteLine(score.ToString());
+                }
+            }
+            scores.Add(score);
+            if (scores.Count > 5)
+            {
+                scores.Sort();
+                scores.RemoveAt(0);
+            }
+            using (StreamWriter sw = new StreamWriter("./HighScores.txt"))
+            {
+                foreach (int i in scores)
+                {
+                    sw.WriteLine(i.ToString());
+                }
+            }
+            
         }
 
 
