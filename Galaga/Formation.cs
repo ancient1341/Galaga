@@ -125,7 +125,7 @@ namespace Galaga.Galaga
                             }
                             if (formation[rowIndex][enemyIndex].damaged)
                             {
-                                explode((int)bullet.Left + bullet.Width/2, (int)bullet.Top);
+                                explode((int)bullet.x + 9/2, (int)bullet.y);
                                 formation[rowIndex][enemyIndex] = new EmptyEnemy(gameInfo);
                             }
                             else
