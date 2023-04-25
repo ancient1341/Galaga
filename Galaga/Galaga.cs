@@ -41,8 +41,6 @@ namespace Galaga.Galaga
 
             timeSinceFire = new TimeSpan(0);
 
-            initialize();
-
         }
 
         public void initialize()
