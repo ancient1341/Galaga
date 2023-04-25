@@ -8,8 +8,8 @@ namespace Galaga
 {
     public class Game1 : Game
     {
-        const int WIDTH = 1280;
-        const int HEIGHT = 720;
+        const int WIDTH = 960;
+        const int HEIGHT = 1280;
 
         private GraphicsDeviceManager m_graphics;
         private SpriteBatch m_spriteBatch;

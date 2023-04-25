@@ -27,7 +27,7 @@ namespace Galaga.Galaga.Enemies
             this.gameInfo = gameInfo;
             this.entrance = entrance;
 
-            this.time = TimeSpan.FromMilliseconds(delay * -100);
+            this.time = TimeSpan.FromMilliseconds(delay * -1);
 
             initialize();
         }

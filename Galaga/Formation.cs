@@ -24,7 +24,7 @@ namespace Galaga.Galaga
 
         int formationWidth;
 
-        int[] waveOne = { 4, 8, 2 };
+        int[] waveOne = { 4, 8, 10 };
         int enemyWidthCount = 10;
 
         Random rand;
@@ -42,7 +42,7 @@ namespace Galaga.Galaga
             this.y = gameInfo.WIDTH / 4; ;
 
             this.formation = new List<List<Enemy>>();
-
+            /*
             for (int i = 0; i < 3; i++)
             {
                 formation.Add(new List<Enemy>());
@@ -52,6 +52,8 @@ namespace Galaga.Galaga
                     formation[i][j].formationPosition(j * (spacing) + x, i * (spacing) + y);
                 }
             }
+            */
+            generateFirstWave();
 
             rand = new Random();
             particles = new List<Particle>();
@@ -60,19 +62,49 @@ namespace Galaga.Galaga
 
         public void generateFirstWave()
         {
-            for(int row = 0; row < 5; row++)
+            for (int row = 0; row < 5; row++)
             {
                 formation.Add(new List<Enemy>());
                 if (row == 0)
                 {
-                    for(int i = 0; i < waveOne[0]; i++)
+                    for (int col = 0; col < waveOne[2]; col++)
                     {
-                        formation[row].Add(new Boss(gameInfo, 0, 4000+200*i)); //4000 4 seconds for entry + 200*Entry Order
-                        formation[row][i].formationPosition(x + formationWidth/2 - waveOne[0]/2*gameInfo.enemyScale + gameInfo.enemyScale*i, i * (spacing) + y);
+                        if (col < waveOne[2] / 2 - waveOne[0] / 2 || col >= waveOne[2] / 2 + waveOne[0] / 2)
+                        {
+                            formation[row].Add(new EmptyEnemy(gameInfo)); //4000 4 seconds for entry + 200*Entry Order
+                        } else
+                        {
+                            formation[row].Add(new Boss(gameInfo, 0, 4000 + 200 * col));
+                        }
+                        formation[row][col].formationPosition(col * (spacing) + x, row * (spacing) + y);
+                    }
+                }
+                else if (row == 1 || row == 2)
+                {
+                    for (int col = 0; col < waveOne[2]; col++)
+                    {
+                        if (col < waveOne[2] / 2 - waveOne[0] / 2 || col >= waveOne[2] / 2 + waveOne[0] / 2)
+                        {
+                            formation[row].Add(new EmptyEnemy(gameInfo)); //4000 4 seconds for entry + 200*Entry Order
+                        }
+                        else
+                        {
+                            formation[row].Add(new Butterfly(gameInfo, 0, 2000 + 200 * col));
+                        }
+                        formation[row][col].formationPosition(col * (spacing) + x, row * (spacing) + y);
+                    }
+                }
+                else
+                {
+                    for (int col = 0; col < waveOne[2]; col++)
+                    {
+                        formation[row].Add(new Bee(gameInfo, 0, col * 200)); //4000 4 seconds for entry + 200*Entry Order
+                        formation[row][col].formationPosition(col * (spacing) + x, row * (spacing) + y);
                     }
                 }
             }
         }
+
 
         public void draw()
         {
