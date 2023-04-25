@@ -126,3 +126,4 @@ K:\Programming\C#\Game Design\Galaga\obj\Debug\net6.0\refint\Galaga.dll
 K:\Programming\C#\Game Design\Galaga\obj\Debug\net6.0\Galaga.pdb
 K:\Programming\C#\Game Design\Galaga\obj\Debug\net6.0\Galaga.genruntimeconfig.cache
 K:\Programming\C#\Game Design\Galaga\obj\Debug\net6.0\ref\Galaga.dll
+C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\ELNATH-smaller.xnb

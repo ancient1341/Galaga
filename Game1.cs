@@ -2,14 +2,18 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 
 namespace Galaga
 {
     public class Game1 : Game
     {
         const int WIDTH = 960;
-        const int HEIGHT = 1280;
+        const int HEIGHT = 960;
 
         private GraphicsDeviceManager m_graphics;
         private SpriteBatch m_spriteBatch;
@@ -37,6 +41,7 @@ namespace Galaga
         Galaga.Menu gameMenu;
 
         SpriteFont ELNATH;
+        SpriteFont smallEl;
 
         public Game1()
         {
@@ -51,9 +56,11 @@ namespace Galaga
         {
             base.Initialize();
             m_keyboardInput = new KeyboardInput();
-            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, spriteRenderers, spriteDict, m_keyboardInput);
+
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, smallEl, spriteRenderers, spriteDict, m_keyboardInput);
             gameMenu = new Galaga.Menu(gameInfo);
             GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
+
 
 
         }
@@ -62,6 +69,7 @@ namespace Galaga
         {
             m_spriteBatch = new SpriteBatch(GraphicsDevice);
             ELNATH = Content.Load<SpriteFont>("Font/ELNATH");
+            smallEl = Content.Load<SpriteFont>("ELNATH-smaller");
             // TODO: use this.Content to load your game content here
 
             m_greenEnemy = new Objects.EnemyModel(
@@ -127,7 +135,7 @@ namespace Galaga
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape) && gameInfo.mode == 0)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape) && gameInfo.mode == -1)
                 Exit();
 
             m_greenAlienRenderer.update(gameTime);
