@@ -62,9 +62,9 @@ namespace Galaga.Galaga
             this.player= new Player(gameInfo);
             this.player.isActive = true;
             this.formation = new Formation(gameInfo, 0);
-            gameInfo.keyboardInput.registerCommand(Keys.Space, true, new InputDeviceHelper.CommandDelegate(Shoot));
-            gameInfo.keyboardInput.registerCommand(Keys.Left, false, new InputDeviceHelper.CommandDelegate(OnLeftKey));
-            gameInfo.keyboardInput.registerCommand(Keys.Right, false, new InputDeviceHelper.CommandDelegate(OnRightKey));
+            gameInfo.keyboardInput.registerCommand(gameInfo.keys["shoot"], true, new InputDeviceHelper.CommandDelegate(Shoot));
+            gameInfo.keyboardInput.registerCommand(gameInfo.keys["left"], false, new InputDeviceHelper.CommandDelegate(OnLeftKey));
+            gameInfo.keyboardInput.registerCommand(gameInfo.keys["right"], false, new InputDeviceHelper.CommandDelegate(OnRightKey));
         }
 
         public void draw()
