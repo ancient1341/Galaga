@@ -49,6 +49,13 @@
 /processorParam:TextureFormat=Color
 /build:bullet.png
 
+#begin ELNATH-smaller.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:ELNATH-smaller.spritefont
+
 #begin Font/ELNATH.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

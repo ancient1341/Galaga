@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -24,12 +25,18 @@ namespace Galaga.Galaga
 
         int WIDTH;
         int HEIGHT;
+        int controlSelected;
         bool mouseDown;
         bool escape;
+        TimeSpan controlTimer;
+
+        Color selectorColor;
+        bool isChangingControl;
 
         MouseState cursor;
 
         SpriteFont ELNATH;
+        SpriteFont smallEl;
         Texture2D selector;
 
         GameInfo gameInfo; // Variable to be passed to all sub classes so they can draw, and access other important info
@@ -38,7 +45,7 @@ namespace Galaga.Galaga
         Galaga game;
 
         int menuOptions;
-        // 0-MainMenu 1-Game 2-HighScores 3-About 4-Pause 5-GameOver
+        // 0-MainMenu 1-Game 2-HighScores 3-Credits 4-Pause 5-GameOver 6-Controls
 
 
         public Menu(GameInfo gameinfo)
@@ -46,12 +53,16 @@ namespace Galaga.Galaga
             this.m_spriteBatch = gameinfo.m_spriteBatch;
             this.graphicsDevice = gameinfo.graphicsDevice;
 
+            this.smallEl = gameinfo.smallEl;
             this.ELNATH = gameinfo.ELNATH;
 
             this.WIDTH = gameinfo.WIDTH;
             this.HEIGHT = gameinfo.HEIGHT;
-
+            controlSelected = 0;
+            isChangingControl = false;
+            selectorColor = Color.Blue;
             menuOptions = -1;
+
 
             mouseDown = false;
             escape= false;
@@ -60,13 +71,18 @@ namespace Galaga.Galaga
             selector.SetData(new[] { Color.White });
 
             this.gameInfo = gameinfo;
+            controlTimer = new TimeSpan(0);
 
             this.game = new Galaga(gameInfo);
+            gameInfo.keyboardInput.registerCommand(Keys.Escape, true, new InputDeviceHelper.CommandDelegate(OnEscape));
+            gameInfo.keyboardInput.registerCommand(Keys.Down, true, new InputDeviceHelper.CommandDelegate(OnDownKey));
+            gameInfo.keyboardInput.registerCommand(Keys.Up, true, new InputDeviceHelper.CommandDelegate(OnUpKey));
+            gameInfo.keyboardInput.registerCommand(gameInfo.keys["shoot"], true, new InputDeviceHelper.CommandDelegate(OnSelectControl));
+
         }
 
         public void update(GameTime gameTime)
         {
-            HandleKeyBoardInput();
             cursor = Mouse.GetState();
             menuOptions = checkMouseMenu();
             HandleMouseInput();
@@ -75,6 +91,8 @@ namespace Galaga.Galaga
             {
                 game.update(gameTime);
             }
+
+            controlTimer += gameTime.ElapsedGameTime;
         }
 
         public void draw()
@@ -103,6 +121,10 @@ namespace Galaga.Galaga
             {
                 showGameOver();
             }
+            if (gameInfo.mode == 6)
+            {
+                showControlsMenu();
+            }
         }
         private int checkMouseMenu()
         {
@@ -120,6 +142,10 @@ namespace Galaga.Galaga
                         return 2;
                     }
                     if (cursor.Y > (HEIGHT * 4) / 8 - HEIGHT / 30 && cursor.Y < (HEIGHT * 6) / 8 - HEIGHT / 30 + SELECTOR_HEIGHT)
+                    {
+                        return 6;
+                    }
+                    if (cursor.Y > (HEIGHT * 4) / 8 - HEIGHT / 30 && cursor.Y < (HEIGHT * 7) / 8 - HEIGHT / 30 + SELECTOR_HEIGHT)
                     {
                         return 3;
                     }
@@ -149,15 +175,21 @@ namespace Galaga.Galaga
             {
                 m_spriteBatch.Draw(selector, new Rectangle(WIDTH / 4 - FONT_SIZE, (HEIGHT * 5) / 8 - HEIGHT / 30, SELECTOR_LENGTH, SELECTOR_HEIGHT), Color.Blue);
             }
-            if (menuOptions == 3)
+            if (menuOptions == 6)
             {
                 m_spriteBatch.Draw(selector, new Rectangle(WIDTH / 4 - FONT_SIZE, (HEIGHT * 6) / 8 - HEIGHT / 30, SELECTOR_LENGTH, SELECTOR_HEIGHT), Color.Blue);
             }
+            if (menuOptions == 3)
+            {
+                m_spriteBatch.Draw(selector, new Rectangle(WIDTH / 4 - FONT_SIZE, (HEIGHT * 7) / 8 - HEIGHT / 30, SELECTOR_LENGTH, SELECTOR_HEIGHT), Color.Blue);
+            }
 
             m_spriteBatch.DrawString(ELNATH, "GALAGA", new Vector2(WIDTH / 5, HEIGHT / 4), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "Play", new Vector2(WIDTH / 4, HEIGHT * 4 / 8), Color.White);
+            m_spriteBatch.DrawString(ELNATH, "New Game", new Vector2(WIDTH / 4, HEIGHT * 4 / 8), Color.White);
             m_spriteBatch.DrawString(ELNATH, "High Scores", new Vector2(WIDTH / 4, HEIGHT * 5 / 8), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "About", new Vector2(WIDTH / 4, HEIGHT * 6 / 8), Color.White);
+            m_spriteBatch.DrawString(ELNATH, "Controls", new Vector2(WIDTH / 4, HEIGHT * 6 / 8), Color.White);
+            m_spriteBatch.DrawString(ELNATH, "About", new Vector2(WIDTH / 4, HEIGHT * 7 / 8), Color.White);
+
 
             m_spriteBatch.Draw(selector, new Rectangle(cursor.X, cursor.Y, 10, 10), Color.Blue);
         }
@@ -246,6 +278,10 @@ namespace Galaga.Galaga
                 {
                     gameInfo.mode = 0;
                 }
+                if (menuOptions == 6)
+                {
+                    gameInfo.mode = 6;
+                }
                 mouseDown = true;
             }
             if (cursor.LeftButton == ButtonState.Released)
@@ -253,46 +289,6 @@ namespace Galaga.Galaga
                 mouseDown= false;
             }
 
-        }
-        void HandleKeyBoardInput()
-        {
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.Left))
-            {
-                //breakout.paddle.updateDirection(-1);
-            }
-            if (state.IsKeyDown(Keys.Right))
-            {
-                //breakout.paddle.updateDirection(1);
-            }
-
-            if (state.IsKeyDown(Keys.Escape) && !escape)
-            {
-                if (gameInfo.mode == 1)
-                {
-                    gameInfo.mode = 4;
-                }
-                else if (gameInfo.mode == 4)
-                {
-                    gameInfo.mode = 1;
-                }
-                if (gameInfo.mode == 2 || gameInfo.mode == 3)
-                {
-                    gameInfo.mode = 0;
-                }
-                escape = true;
-            }
-
-
-            if (state.IsKeyUp(Keys.Left) && state.IsKeyUp(Keys.Right))
-            {
-                //breakout.paddle.updateDirection(0);
-            }
-
-            if (state.IsKeyUp(Keys.Escape))
-            {
-                escape= false;
-            }
         }
 
         void showGameOver()
@@ -305,6 +301,111 @@ namespace Galaga.Galaga
             if (state.IsKeyDown(Keys.Space))
             {
                 gameInfo.mode = 0;
+            }
+        }
+
+        private void showControlsMenu()
+        {
+
+            m_spriteBatch.Draw(selector, new Rectangle(WIDTH * 3 / 5, HEIGHT * (2 + (controlSelected)) / 12, 30, 30), Color.Blue);
+
+            m_spriteBatch.DrawString(smallEl, gameInfo.keys["left"].ToString(), new Vector2(WIDTH * 3 / 5, HEIGHT * 2 / 12), Color.White);
+            m_spriteBatch.DrawString(smallEl, gameInfo.keys["right"].ToString(), new Vector2(WIDTH * 3 / 5, HEIGHT * 3 / 12), Color.White);
+            m_spriteBatch.DrawString(smallEl, gameInfo.keys["shoot"].ToString(), new Vector2(WIDTH * 3 / 5, HEIGHT * 4 / 12), Color.White);
+
+            m_spriteBatch.DrawString(ELNATH, "-Controls-", new Vector2(WIDTH / 10, HEIGHT / 10), Color.White);
+            m_spriteBatch.DrawString(smallEl, "Move Left: ", new Vector2(WIDTH / 8, HEIGHT * 2 / 12), Color.White);
+            m_spriteBatch.DrawString(smallEl, "Move Right: ", new Vector2(WIDTH / 8, HEIGHT * 3 / 12), Color.White);
+            m_spriteBatch.DrawString(smallEl, "Shoot", new Vector2(WIDTH / 8, HEIGHT * 4 / 12), Color.White);
+            m_spriteBatch.DrawString(smallEl, "Press escape to return", new Vector2(WIDTH / 20, HEIGHT * 8 / 12), Color.White);
+
+            if (isChangingControl)
+            {
+                m_spriteBatch.Draw(selector, new Rectangle(WIDTH * 1 / 4, HEIGHT * 1 / 2, WIDTH * 1 / 2, HEIGHT * 1 / 10), Color.Gray);
+                m_spriteBatch.DrawString(smallEl, "Press the new key for this control", new Vector2(WIDTH * 1 / 4, HEIGHT * 1 / 2), Color.White);
+                if (Keyboard.GetState().GetPressedKeys().Length > 0 && controlTimer > new TimeSpan(0, 0, 1))
+                {
+                    Keys newKey = Keyboard.GetState().GetPressedKeys()[0];
+                    Dictionary<string, Keys> keys = new Dictionary<string, Keys>();
+                    TypeConverter converter = TypeDescriptor.GetConverter(typeof(Keys));
+                    using (StreamReader sr = new StreamReader("Keys.txt"))
+                    {
+                        keys.Add("left", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                        keys.Add("right", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                        keys.Add("shoot", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                    }
+                    if (controlSelected == 0)
+                    {
+                        keys["left"] = newKey;
+                    }
+                    else if (controlSelected == 1)
+                    {
+                        keys["right"] = newKey;
+                    }
+                    else
+                    {
+                        keys["shoot"] = newKey;
+                    }
+                    using (StreamWriter sw = new StreamWriter("Keys.txt"))
+                    {
+                        sw.WriteLine((string)converter.ConvertToString(keys["left"]));
+                        sw.WriteLine((string)converter.ConvertToString(keys["right"]));
+                        sw.WriteLine((string)converter.ConvertToString(keys["shoot"]));
+                    }
+                    gameInfo.keys = gameInfo.ReadKeys();
+                    isChangingControl = !isChangingControl;
+                }
+            }
+        }
+
+        private void OnEscape(GameTime gameTime, float value)
+        {
+            if (gameInfo.mode == 6)
+            {
+                gameInfo.mode = 0;
+            }
+            else if (gameInfo.mode == 1)
+            {
+                gameInfo.mode = 4;
+            }
+            else if (gameInfo.mode == 4)
+            {
+                gameInfo.mode = 1;
+            }
+            else if (gameInfo.mode == 2 || gameInfo.mode == 3)
+            {
+                gameInfo.mode = 0;
+            }
+            else if (gameInfo.mode == 0)
+            {
+                gameInfo.mode = -1;
+            }
+        }
+
+        private void OnUpKey(GameTime gameTime, float value)
+        {
+            if (gameInfo.mode == 6 && controlSelected != 0)
+            {
+                controlSelected--;
+            }
+        }
+
+        private void OnDownKey(GameTime gameTime, float value)
+        {
+            if (gameInfo.mode == 6 && controlSelected < 2)
+            {
+                controlSelected++;
+            }
+        }
+
+        private void OnSelectControl(GameTime gameTime, float value)
+        {
+            KeyboardState state = Keyboard.GetState();
+            if (gameInfo.mode == 6 && !isChangingControl)
+            {
+                selectorColor = Color.White;
+                isChangingControl = true;
+                controlTimer = new TimeSpan(0);
             }
         }
 

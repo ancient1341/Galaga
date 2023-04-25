@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Sources;
 using System.IO;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
+using System.ComponentModel;
 
 namespace Galaga.Galaga
 {
@@ -19,6 +21,7 @@ namespace Galaga.Galaga
         public int HEIGHT;
 
         public SpriteFont ELNATH;
+        public SpriteFont smallEl;
 
         public TimeSpan gameTime;
         public Dictionary<string, Texture2D> spriteDict;
@@ -27,18 +30,21 @@ namespace Galaga.Galaga
 
         public KeyboardInput keyboardInput;
 
+        public Dictionary<string, Keys> keys;
+
         public int playerScale;
         public int enemyScale;
 
         public int score;
         public int mode;
 
-        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, Dictionary<string, AnimatedSprite> spriteRenderers, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput) 
+        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, SpriteFont smallEl, Dictionary<string, AnimatedSprite> spriteRenderers, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput) 
         {
             this.m_spriteBatch = m_spriteBatch;
             this.graphicsDevice = graphicsDevice;
 
             this.ELNATH = ELNATH;
+            this.smallEl = smallEl;
 
             this.WIDTH = WIDTH;
             this.HEIGHT = HEIGHT;
@@ -47,6 +53,8 @@ namespace Galaga.Galaga
             this.spriteRenderers = spriteRenderers;
 
             this.keyboardInput = keyboardInput;
+
+            this.keys = ReadKeys();
 
             this.playerScale = HEIGHT / 20;
             this.enemyScale = playerScale * 13 / 17; 
@@ -99,6 +107,33 @@ namespace Galaga.Galaga
                 }
             }
             
+        }
+
+        public Dictionary<string, Keys> ReadKeys()
+        {
+            Dictionary<string, Keys> keys = new Dictionary<string, Keys>();
+            TypeConverter converter = TypeDescriptor.GetConverter(typeof(Keys));
+            try
+            {
+                using (StreamReader sr = new StreamReader("Keys.txt"))
+                {
+                    keys.Add("left", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                    keys.Add("right", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                    keys.Add("shoot", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Creating File");
+                using (StreamWriter sw = new StreamWriter("Keys.txt"))
+                {
+                    sw.WriteLine((string)converter.ConvertToString(Keys.Left));
+                    sw.WriteLine((string)converter.ConvertToString(Keys.Right));
+                    sw.WriteLine((string)converter.ConvertToString(Keys.Space));
+                }
+            }
+
+            return keys;
         }
 
 
