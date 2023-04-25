@@ -29,7 +29,7 @@ namespace Galaga.Galaga.Enemies
         protected TimeSpan time;
 
         public bool damaged = true; //only matters for boss
-        protected bool dead = false;
+        public bool dead = false;
 
         public void formationPosition(float formationX, float formationY)
         {
@@ -166,7 +166,7 @@ namespace Galaga.Galaga.Enemies
 
 
 
-            this.speed = 15;
+            this.speed = gameInfo.HEIGHT/80;
 
 
             position = new Vector2((float)x, (float)y);
@@ -183,7 +183,7 @@ namespace Galaga.Galaga.Enemies
                 {
                     this.rotation = 240;
                 }
-                else if (time.TotalMilliseconds < 1400)
+                else if (time.TotalMilliseconds < 1500)
                 {
                     this.rotation += 7;
                 }

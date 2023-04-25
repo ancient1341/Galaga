@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -152,7 +153,11 @@ namespace Galaga.Galaga
                         destroyTimer = new TimeSpan(0);
                     }
                 }
-                formation.update(gameTime, projectiles);
+                if (formation.defeated)
+                {
+                    nextWave();
+                }
+                    formation.update(gameTime, projectiles);
                 player.update(gameTime);
             }
         }
@@ -179,6 +184,19 @@ namespace Galaga.Galaga
             {
                 this.player.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
             }    
+        }
+
+        private void nextWave()
+        {
+            if (wave < 2)
+            {
+                wave++;
+            }
+            else 
+            { 
+                wave = 0; 
+            }
+            formation = new Formation(gameInfo, wave);
         }
     }
 }

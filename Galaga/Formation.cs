@@ -44,7 +44,7 @@ namespace Galaga.Galaga
             this.formationWidth = (gameInfo.enemyScale + (int)spacing - gameInfo.enemyScale) * enemyWidthCount;
             this.x = gameInfo.WIDTH / 2 - formationWidth / 2;
             this.y = gameInfo.HEIGHT / 8;
-            this.speed = 0.2f;
+            this.speed = (float)gameInfo.WIDTH/8000;
 
             this.formation = new List<List<Enemy>>();
             timer = new TimeSpan(0);
@@ -70,6 +70,7 @@ namespace Galaga.Galaga
         public void update(GameTime gameTime, List<Bullet> projectiles)
         {
             timer += gameTime.ElapsedGameTime;
+
 
             if (timer.TotalMilliseconds > START_TIME)
             {
@@ -195,17 +196,30 @@ namespace Galaga.Galaga
                     enemy.update(gameTime);
                 }
             }
+
+            //check if wave Cleared Write no code after this.
+            foreach(List<Enemy> enemyList in formation)
+            {
+                foreach(Enemy enemy in enemyList)
+                {
+                    if (!enemy.dead)
+                    {
+                        return;
+                    }
+                }
+            }
+            defeated = true;
         }
 
         void updateFormation()
         {
-            if (timer.TotalSeconds < 10)
+            if (timer.TotalSeconds < 10000)
             {
                 if (growing)
                 {
                     spacing += speed;
                     x -= speed * enemyWidthCount / 2;
-                    if (spacing > 40 + gameInfo.enemyScale)
+                    if (spacing > gameInfo.WIDTH/30 + gameInfo.enemyScale)
                     {
                         growing = false;
                     }
@@ -214,7 +228,7 @@ namespace Galaga.Galaga
                 {
                     spacing -= speed;
                     x += speed * enemyWidthCount / 2;
-                    if (spacing < 1 + gameInfo.enemyScale)
+                    if (spacing <= 1 + gameInfo.enemyScale)
                     {
                         growing = true;
                     }
