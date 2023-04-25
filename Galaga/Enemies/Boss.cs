@@ -30,34 +30,11 @@ namespace Galaga.Galaga.Enemies
             this.time = TimeSpan.FromMilliseconds(delay * -1);
 
             initialize();
-        }
-
-        private void initialize()
-        {
-            damaged= false;
-
-            this.formationX = 0;
-            this.formationY = 0;
-
-            this.xSize = gameInfo.enemyScale;
-            this.ySize = gameInfo.enemyScale;
-
-            this.x = gameInfo.WIDTH / 2;
-            this.y = -gameInfo.enemyScale;
-
-            this.speed = 15;
-
-
-            position = new Vector2(x, y);
-            origin = new Vector2(0.5f, 0.5f);
-
+            damaged = false;
         }
 
         public override void draw()
         {
-
-            //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), Color.Yellow);
-            //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(x, y, xSize, ySize), null, Color.Yellow, -(float)((Math.PI / 180) * rotation), origin, SpriteEffects.None, 0f);
             if (!damaged)
             {
                 gameInfo.spriteRenderers["green"].draw(gameInfo.m_spriteBatch, -(float)((Math.PI / 180) * rotation), new Rectangle((int)x + xSize / 2, (int)y + ySize / 2, xSize, ySize));
@@ -66,7 +43,6 @@ namespace Galaga.Galaga.Enemies
             {
                 gameInfo.spriteRenderers["blue"].draw(gameInfo.m_spriteBatch, -(float)((Math.PI / 180) * rotation), new Rectangle((int)x + xSize / 2, (int)y + ySize / 2, xSize, ySize));
             }
-            //gameInfo.bee.draw(gameInfo.m_spriteBatch, m_beeEnemy, );
         }
 
         public override void update(GameTime gameTime)
@@ -84,44 +60,8 @@ namespace Galaga.Galaga.Enemies
                 enter();
             }
             position = new Vector2(x, y);
-            //origin = new Vector2(xSize/2, ySize/2);
         }
 
 
-        //Function to be run when enemies first enter in order to path.
-        private void enter()
-        {
-            Tuple<double, double> dir;
-
-            if (entrance == 0)
-            {
-                if (time.TotalMilliseconds < 500)
-                {
-                    this.rotation = 270;
-                }
-                else if (time.TotalMilliseconds < 700)
-                {
-                    this.rotation += 7;
-                }
-                else if (time.TotalMilliseconds < 1000)
-                {
-                    //this.rotation += 5;
-                }
-                else
-                {
-                    inFormation = true;
-                    rotation = 0;
-                }
-            }
-
-            dir = getVector(this.rotation);
-            //Debug.WriteLine(rotation);
-            //Debug.WriteLine("X: " + dir.Item1 + "  Y: " + dir.Item2);
-            if (time.TotalMilliseconds > 0)
-            {
-                this.x += (int)(dir.Item1 * speed);
-                this.y -= (int)(dir.Item2 * speed);
-            }
-        }
     }
 }

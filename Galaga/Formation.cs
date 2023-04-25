@@ -13,22 +13,24 @@ namespace Galaga.Galaga
 {
     class Formation
     {
-        int x, y;
+        double x, y;
 
         List<List<Enemy>> formation;
         GameInfo gameInfo;
 
         int wave;
-
         float spacing;
-
         int formationWidth;
+        bool growing;
+        float speed;
 
         int[] waveOne = { 4, 8, 10 };
         int enemyWidthCount = 10;
 
         Random rand;
         List<Particle> particles;
+
+        TimeSpan timer;
 
         public Formation(GameInfo gameInfo, int wave)
         {
@@ -39,20 +41,12 @@ namespace Galaga.Galaga
             this.spacing = gameInfo.enemyScale;
             this.formationWidth = (gameInfo.enemyScale + (int)spacing - gameInfo.enemyScale) * enemyWidthCount;
             this.x = gameInfo.WIDTH / 2 - formationWidth / 2;
-            this.y = gameInfo.WIDTH / 4; ;
+            this.y = gameInfo.WIDTH / 4;
+            this.speed = 0.2f;
 
             this.formation = new List<List<Enemy>>();
-            /*
-            for (int i = 0; i < 3; i++)
-            {
-                formation.Add(new List<Enemy>());
-                for (int j = 0; j < enemyWidthCount; j++)
-                {
-                    formation[i].Add(new Bee(gameInfo, 0, i * 10 + j));
-                    formation[i][j].formationPosition(j * (spacing) + x, i * (spacing) + y);
-                }
-            }
-            */
+            timer = new TimeSpan(0);
+
             generateFirstWave();
 
             rand = new Random();
@@ -60,49 +54,10 @@ namespace Galaga.Galaga
         }
 
 
-        public void generateFirstWave()
+        public void update(GameTime gameTime, List<Bullet> projectiles)
         {
-            for (int row = 0; row < 5; row++)
-            {
-                formation.Add(new List<Enemy>());
-                if (row == 0)
-                {
-                    for (int col = 0; col < waveOne[2]; col++)
-                    {
-                        if (col < waveOne[2] / 2 - waveOne[0] / 2 || col >= waveOne[2] / 2 + waveOne[0] / 2)
-                        {
-                            formation[row].Add(new EmptyEnemy(gameInfo)); //4000 4 seconds for entry + 200*Entry Order
-                        } else
-                        {
-                            formation[row].Add(new Boss(gameInfo, 0, 4000 + 200 * col));
-                        }
-                        formation[row][col].formationPosition(col * (spacing) + x, row * (spacing) + y);
-                    }
-                }
-                else if (row == 1 || row == 2)
-                {
-                    for (int col = 0; col < waveOne[2]; col++)
-                    {
-                        if (col < waveOne[2] / 2 - waveOne[1] / 2 || col >= waveOne[2] / 2 + waveOne[1] / 2)
-                        {
-                            formation[row].Add(new EmptyEnemy(gameInfo)); //4000 4 seconds for entry + 200*Entry Order
-                        }
-                        else
-                        {
-                            formation[row].Add(new Butterfly(gameInfo, 0, 2000 + 200 * col));
-                        }
-                        formation[row][col].formationPosition(col * (spacing) + x, row * (spacing) + y);
-                    }
-                }
-                else
-                {
-                    for (int col = 0; col < waveOne[2]; col++)
-                    {
-                        formation[row].Add(new Bee(gameInfo, 0, col * 200)); //4000 4 seconds for entry + 200*Entry Order
-                        formation[row][col].formationPosition(col * (spacing) + x, row * (spacing) + y);
-                    }
-                }
-            }
+            updateFormation();
+            updateEnemies(gameTime, projectiles);
         }
 
 
@@ -122,9 +77,94 @@ namespace Galaga.Galaga
             }
         }
 
-        public void update(GameTime gameTime, List<Bullet> projectiles)
+
+
+        private void explode(int x, int y)
         {
-            for(int i = 0; i < particles.Count; i++)
+
+            for(int i = 0; i < 150; i++)
+            {
+                particles.Add(new Particle(gameInfo, x, y, rand.Next(200, 350)));
+            }
+        }
+
+        public Tuple<float, float> GetRandomEnemyLocation()
+        {
+            List<Enemy> tempList = new List<Enemy>();
+            foreach(List<Enemy> row in formation)
+            {
+                foreach(Enemy enemy in row)
+                {
+                    tempList.Add(enemy);
+                }
+            }
+
+            Random random = new Random();
+            int index = random.Next(tempList.Count);
+            return Tuple.Create(tempList[index].x, tempList[index].y);
+        }
+
+
+
+
+
+
+
+        public void generateFirstWave()
+        {
+            for (int row = 0; row < 5; row++)
+            {
+                formation.Add(new List<Enemy>());
+                if (row == 0)
+                {
+                    for (int col = 0; col < enemyWidthCount; col++)
+                    {
+                        if (col < enemyWidthCount / 2 - waveOne[0] / 2 || col >= enemyWidthCount / 2 + waveOne[0] / 2)
+                        {
+                            formation[row].Add(new EmptyEnemy(gameInfo)); //4000 4 seconds for entry + 200*Entry Order
+                        }
+                        else
+                        {
+                            formation[row].Add(new Boss(gameInfo, 0, 4000 + 200 * col));
+                        }
+                    }
+                }
+                else if (row == 1 || row == 2)
+                {
+                    for (int col = 0; col < enemyWidthCount; col++)
+                    {
+                        if (col < enemyWidthCount / 2 - waveOne[1] / 2 || col >= enemyWidthCount / 2 + waveOne[1] / 2)
+                        {
+                            formation[row].Add(new EmptyEnemy(gameInfo)); //4000 4 seconds for entry + 200*Entry Order
+                        }
+                        else
+                        {
+                            formation[row].Add(new Butterfly(gameInfo, 1, 2000 + 200 * col));
+                        }
+                    }
+                }
+                else
+                {
+                    for (int col = 0; col < enemyWidthCount; col++)
+                    {
+                        if (col < enemyWidthCount / 2 - waveOne[2] / 2 || col >= enemyWidthCount / 2 + waveOne[2] / 2)
+                        {
+                            formation[row].Add(new EmptyEnemy(gameInfo)); //4000 4 seconds for entry + 200*Entry Order
+                        }
+                        else
+                        {
+                            formation[row].Add(new Bee(gameInfo, 0, col * 200 + (row - 3) * enemyWidthCount * 200)); //4000 4 seconds for entry + 200*Entry Order
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //Placed in own function far away so my eyes dont have a stroke
+        void updateEnemies(GameTime gameTime, List<Bullet> projectiles)
+        {
+            for (int i = 0; i < particles.Count; i++)
             {
                 particles[i].update(gameTime);
                 if (particles[i].dead)
@@ -139,6 +179,7 @@ namespace Galaga.Galaga
                 for (int enemyIndex = formation[rowIndex].Count - 1; enemyIndex >= 0; enemyIndex--)
                 {
                     Enemy enemy = formation[rowIndex][enemyIndex];
+                    enemy.formationPosition(enemyIndex * (spacing) + (int)x, rowIndex * (spacing) + (int)y);
                     for (int bulletIndex = projectiles.Count - 1; bulletIndex >= 0; bulletIndex--)
                     {
                         Bullet bullet = projectiles[bulletIndex];
@@ -171,12 +212,12 @@ namespace Galaga.Galaga
                             }
                             if (formation[rowIndex][enemyIndex].damaged)
                             {
-                                explode((int)bullet.x + 9/2, (int)bullet.y);
+                                explode((int)bullet.x + 9 / 2, (int)bullet.y);
                                 formation[rowIndex][enemyIndex] = new EmptyEnemy(gameInfo);
                             }
                             else
                             {
-                                formation[rowIndex][enemyIndex].damaged= true;
+                                formation[rowIndex][enemyIndex].damaged = true;
                             }
                             projectiles.RemoveAt(bulletIndex);
                         }
@@ -184,32 +225,31 @@ namespace Galaga.Galaga
                     enemy.update(gameTime);
                 }
             }
-
         }
 
-        private void explode(int x, int y)
+        void updateFormation()
         {
-
-            for(int i = 0; i < 150; i++)
+            if (timer.TotalSeconds < 10)
             {
-                particles.Add(new Particle(gameInfo, x, y, rand.Next(200, 350)));
-            }
-        }
-
-        public Tuple<float, float> GetRandomEnemyLocation()
-        {
-            List<Enemy> tempList = new List<Enemy>();
-            foreach(List<Enemy> row in formation)
-            {
-                foreach(Enemy enemy in row)
+                if (growing)
                 {
-                    tempList.Add(enemy);
+                    spacing += speed;
+                    x -= speed * enemyWidthCount/ 2;
+                    if (spacing > 40+gameInfo.enemyScale)
+                    {
+                        growing = false;
+                    }
+                }
+                else
+                {
+                    spacing -= speed;
+                    x += speed * enemyWidthCount / 2;
+                    if (spacing < 1 + gameInfo.enemyScale)
+                    {
+                        growing = true;
+                    }
                 }
             }
-
-            Random random = new Random();
-            int index = random.Next(tempList.Count);
-            return Tuple.Create(tempList[index].x, tempList[index].y);
         }
     }
 }

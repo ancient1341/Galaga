@@ -12,7 +12,6 @@ namespace Galaga.Galaga.Enemies
     abstract class Enemy
     {
         public Vector2 position;
-        public Vector2 origin;
 
         public float x, y;
         public float formationX, formationY;
@@ -130,6 +129,90 @@ namespace Galaga.Galaga.Enemies
             double angleRadians = Math.Atan2(y, x);
             float angleDegrees = (float)(angleRadians * (180 / Math.PI));
             return angleDegrees-180;
+        }
+
+        protected void initialize()
+        {
+            this.formationX = 0;
+            this.formationY = 0;
+
+            this.xSize = gameInfo.enemyScale;
+            this.ySize = gameInfo.enemyScale;
+
+            this.x = gameInfo.WIDTH / 2;
+
+            if (entrance == 0)
+            {
+                this.x = gameInfo.WIDTH * 2 / 3;
+            }
+            else if (entrance == 1)
+            {
+                this.x = gameInfo.WIDTH / 3;
+            }
+
+
+
+            this.y = -gameInfo.enemyScale;
+
+            this.speed = 15;
+
+
+            position = new Vector2(x, y);
+        }
+
+        //Function to be run when enemies first enter in order to path.
+        protected void enter()
+        {
+            Tuple<double, double> dir;
+
+            if (entrance == 0)
+            {
+                if (time.TotalMilliseconds < 1000)
+                {
+                    this.rotation = 240;
+                }
+                else if (time.TotalMilliseconds < 1400)
+                {
+                    this.rotation += 7;
+                }
+                else if (time.TotalMilliseconds < 1600)
+                {
+                    //
+                }
+                else
+                {
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+            if (entrance == 1)
+            {
+                if (time.TotalMilliseconds < 1000)
+                {
+                    this.rotation = 300;
+                }
+                else if (time.TotalMilliseconds < 1400)
+                {
+                    this.rotation -= 7;
+                }
+                else if (time.TotalMilliseconds < 1600)
+                {
+                    //
+                }
+                else
+                {
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+
+
+            dir = getVector(this.rotation);
+            if (time.TotalMilliseconds > 0)
+            {
+                this.x += (int)(dir.Item1 * speed);
+                this.y -= (int)(dir.Item2 * speed);
+            }
         }
 
         public void Shoot()
