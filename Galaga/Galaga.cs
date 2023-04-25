@@ -112,13 +112,6 @@ namespace Galaga.Galaga
             }
             else
             {
-                timeSinceFire += gameTime.ElapsedGameTime;
-                if (TimeSpan.Compare(timeSinceFire, new TimeSpan(0, 0, 2)) == 1)
-                {
-                    Tuple<float, float> location = formation.GetRandomEnemyLocation();
-                    enemyProjectiles.Add(new EnemyBullet((int)location.Item1 + gameInfo.enemyScale / 2, (int)location.Item2, gameInfo.m_spriteBatch, gameInfo.spriteDict["bullet"]));
-                    timeSinceFire = new TimeSpan(0);
-                }
                 foreach (Bullet bullet in projectiles)
                 {
                     bullet.update(gameTime);
@@ -126,6 +119,23 @@ namespace Galaga.Galaga
                 foreach (Bullet bullet in enemyProjectiles)
                 {
                     bullet.update(gameTime);
+                }
+                for (int row = formation.formation.Count - 1; row >= 0; row--)
+                {
+                    for (int col = formation.formation[row].Count - 1; col >= 0; col--)
+                    {
+                        Enemy enemy = formation.formation[row][col];
+                        if (enemy.x < player.x + 9 &&
+                            enemy.x + enemy.xSize > player.x &&
+                            enemy.y < player.y + 24 &&
+                            enemy.y + enemy.ySize > player.y)
+                        {
+                            formation.formation[row].RemoveAt(col);
+                            player.Destroy();
+                            destructTriggered = true;
+                            destroyTimer = new TimeSpan(0);
+                        }
+                    }
                 }
                 for (int i = enemyProjectiles.Count - 1; i >= 0; i--)
                 {
