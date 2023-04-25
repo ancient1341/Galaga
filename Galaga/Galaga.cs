@@ -152,6 +152,7 @@ namespace Galaga.Galaga
             if (this.player.isActive)
             {
                 projectiles.Add(new PlayerBullet(player.getX() + (player.getSize() / 2) - ((3 * 3) / 2), player.getY(), gameInfo.m_spriteBatch, gameInfo.spriteDict["bullet"]));
+                gameInfo.shot.Play();
             }
         }
 

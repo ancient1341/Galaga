@@ -102,6 +102,7 @@ namespace Galaga.Galaga
         {
             isActive = false;
             isExploding = true;
+            gameinfo.explosion.Play();
             Random rand = new Random();
             for (int i = 0; i < 150; i++)
             {
