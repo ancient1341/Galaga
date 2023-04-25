@@ -17,7 +17,7 @@ namespace Galaga.Galaga
 
         double x, y;
 
-        List<List<Enemy>> formation;
+        public List<List<Enemy>> formation;
         GameInfo gameInfo;
 
         int wave;
@@ -81,9 +81,9 @@ namespace Galaga.Galaga
 
         public void draw()
         {
-            if(timer.TotalMilliseconds < START_TIME/2)
+            if (timer.TotalMilliseconds < START_TIME / 2)
             {
-                gameInfo.m_spriteBatch.DrawString(gameInfo.ELNATH, "Wave " + (wave+1) + " Start", new Vector2(gameInfo.WIDTH / 2 - gameInfo.WIDTH/6, gameInfo.HEIGHT / 2), Color.OrangeRed);
+                gameInfo.m_spriteBatch.DrawString(gameInfo.ELNATH, "Wave " + (wave + 1) + " Start", new Vector2(gameInfo.WIDTH / 2 - gameInfo.WIDTH / 6, gameInfo.HEIGHT / 2), Color.OrangeRed);
             }
             else if (timer.TotalMilliseconds <= START_TIME)
             {
@@ -91,7 +91,7 @@ namespace Galaga.Galaga
             }
             foreach (List<Enemy> enemies in formation)
             {
-                foreach(Enemy enemy in enemies)
+                foreach (Enemy enemy in enemies)
                 {
                     enemy.draw();
                 }
@@ -108,7 +108,7 @@ namespace Galaga.Galaga
         private void explode(int x, int y)
         {
 
-            for(int i = 0; i < 150; i++)
+            for (int i = 0; i < 150; i++)
             {
                 particles.Add(new Particle(gameInfo, x, y, rand.Next(200, 350)));
             }
@@ -117,9 +117,9 @@ namespace Galaga.Galaga
         public Tuple<float, float> GetRandomEnemyLocation()
         {
             List<Enemy> tempList = new List<Enemy>();
-            foreach(List<Enemy> row in formation)
+            foreach (List<Enemy> row in formation)
             {
-                foreach(Enemy enemy in row)
+                foreach (Enemy enemy in row)
                 {
                     tempList.Add(enemy);
                 }
@@ -204,8 +204,8 @@ namespace Galaga.Galaga
                 if (growing)
                 {
                     spacing += speed;
-                    x -= speed * enemyWidthCount/ 2;
-                    if (spacing > 40+gameInfo.enemyScale)
+                    x -= speed * enemyWidthCount / 2;
+                    if (spacing > 40 + gameInfo.enemyScale)
                     {
                         growing = false;
                     }
@@ -220,6 +220,11 @@ namespace Galaga.Galaga
                     }
                 }
             }
+        }
+
+        public List<List<Enemy>> GetFormationLocations()
+        {
+            return this.formation;
         }
 
         private void generateFirstWave()
