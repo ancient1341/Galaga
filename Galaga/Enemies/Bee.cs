@@ -41,8 +41,15 @@ namespace Galaga.Galaga.Enemies
             this.xSize = gameInfo.enemyScale;
             this.ySize = gameInfo.enemyScale;
 
-            this.x = gameInfo.WIDTH/2;
-            //this.x = 0;
+            this.x = gameInfo.WIDTH / 2;
+
+            if (entrance == 0)
+            {
+                this.x = gameInfo.WIDTH*2 / 3; 
+            }
+            
+
+
             this.y = -gameInfo.enemyScale;
 
             this.speed = 15;
@@ -95,17 +102,13 @@ namespace Galaga.Galaga.Enemies
 
             if(entrance == 0)
             {
-                if(time.TotalMilliseconds < 500)
+                if(time.TotalMilliseconds < 1000)
                 {
-                    this.rotation = 270;
+                    this.rotation = 250;
                 }
-                else if(time.TotalMilliseconds < 700)
+                else if(time.TotalMilliseconds < 1100)
                 {
                     this.rotation += 7;
-                }
-                else if (time.TotalMilliseconds < 1000)
-                {
-                    //this.rotation += 5;
                 }
                 else
                 {

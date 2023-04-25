@@ -83,7 +83,7 @@ namespace Galaga.Galaga
                 {
                     for (int col = 0; col < waveOne[2]; col++)
                     {
-                        if (col < waveOne[2] / 2 - waveOne[0] / 2 || col >= waveOne[2] / 2 + waveOne[0] / 2)
+                        if (col < waveOne[2] / 2 - waveOne[1] / 2 || col >= waveOne[2] / 2 + waveOne[1] / 2)
                         {
                             formation[row].Add(new EmptyEnemy(gameInfo)); //4000 4 seconds for entry + 200*Entry Order
                         }

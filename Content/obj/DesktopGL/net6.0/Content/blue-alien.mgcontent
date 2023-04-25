@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/unay4/Documents/CS5410/Galaga/Content/blue-alien.png</SourceFile>
-  <SourceTime>2023-04-17T16:32:45.7680008-06:00</SourceTime>
-  <DestFile>C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/blue-alien.xnb</DestFile>
-  <DestTime>2023-04-23T17:17:10.7942637-06:00</DestTime>
+  <SourceFile>K:/Programming/C#/Game Design/Galaga/Content/blue-alien.png</SourceFile>
+  <SourceTime>2023-04-24T19:57:05.3920389-06:00</SourceTime>
+  <DestFile>K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/blue-alien.xnb</DestFile>
+  <DestTime>2023-04-24T19:57:27.19235-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T05:44:56-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

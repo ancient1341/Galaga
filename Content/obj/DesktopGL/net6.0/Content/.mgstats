@@ -1,8 +1,9 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/bee-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/bee-alien.xnb","TextureProcessor","Texture2DContent",294,1437,0.3166256
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/blue-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/blue-alien.xnb","TextureProcessor","Texture2DContent",549,5085,0.0053141
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/Font/ELNATH.spritefont","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/Font/ELNATH.xnb","FontDescriptionProcessor","SpriteFontContent",2069,136223,0.2498742
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/green-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/green-alien.xnb","TextureProcessor","Texture2DContent",548,5085,0.0042262
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/player.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/player.xnb","TextureProcessor","Texture2DContent",292,1241,0.0059738
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/red-alien.xnb","TextureProcessor","Texture2DContent",270,1437,0.0025375
-"C:/Users/unay4/Documents/CS5410/Galaga/Content/ship-explosion.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/ship-explosion.xnb","TextureProcessor","Texture2DContent",861,21785,0.159211
+"K:/Programming/C#/Game Design/Galaga/Content/bee-alien.png","K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/bee-alien.xnb","TextureProcessor","Texture2DContent",294,1437,0.1161319
+"K:/Programming/C#/Game Design/Galaga/Content/blue-alien.png","K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/blue-alien.xnb","TextureProcessor","Texture2DContent",549,5085,0.0037115
+"K:/Programming/C#/Game Design/Galaga/Content/bullet.png","K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/bullet.xnb","TextureProcessor","Texture2DContent",124,181,0.0035748
+"K:/Programming/C#/Game Design/Galaga/Content/Font/ELNATH.spritefont","K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/Font/ELNATH.xnb","FontDescriptionProcessor","SpriteFontContent",2069,136223,0.0951289
+"K:/Programming/C#/Game Design/Galaga/Content/green-alien.png","K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/green-alien.xnb","TextureProcessor","Texture2DContent",548,5085,0.0036945
+"K:/Programming/C#/Game Design/Galaga/Content/player.png","K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/player.xnb","TextureProcessor","Texture2DContent",292,1241,0.003386
+"K:/Programming/C#/Game Design/Galaga/Content/red-alien.png","K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/red-alien.xnb","TextureProcessor","Texture2DContent",270,1437,0.0032422
+"K:/Programming/C#/Game Design/Galaga/Content/ship-explosion.png","K:/Programming/C#/Game Design/Galaga/Content/bin/DesktopGL/Content/ship-explosion.xnb","TextureProcessor","Texture2DContent",861,21785,0.0037891
