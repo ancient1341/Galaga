@@ -57,7 +57,7 @@ namespace Galaga.Galaga
         {
             if (isExploding)
             {
-                gameinfo.spriteRenderers["playerExplosion"].draw(gameinfo.m_spriteBatch, 0, new Rectangle(x, y, xSize, ySize));
+                gameinfo.spriteRenderers["playerExplosion"].draw(gameinfo.m_spriteBatch, 0, new Rectangle(x + (int)(xSize * 0.5), y + (int)(xSize * 0.5), (int)(xSize*2), (int)(ySize*2)));
             }
             else
             {

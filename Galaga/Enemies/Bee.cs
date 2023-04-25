@@ -52,7 +52,7 @@ namespace Galaga.Galaga.Enemies
             {
                 enter();
             }
-            position = new Vector2(x, y);
+            position = new Vector2((float)x, (float)y);
 
         }
 

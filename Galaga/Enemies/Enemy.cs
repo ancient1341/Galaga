@@ -13,7 +13,7 @@ namespace Galaga.Galaga.Enemies
     {
         public Vector2 position;
 
-        public float x, y;
+        public double x, y;
         public float formationX, formationY;
         public int xSize, ySize;
         public int Scale;
@@ -28,7 +28,8 @@ namespace Galaga.Galaga.Enemies
         protected Texture2D rectangle;
         protected TimeSpan time;
 
-        public bool damaged = true; //For boss
+        public bool damaged = true; //only matters for boss
+        protected bool dead = false;
 
         public void formationPosition(float formationX, float formationY)
         {
@@ -61,11 +62,11 @@ namespace Galaga.Galaga.Enemies
 
             if (this.x != formationX)
             {
-                this.x += (int)(dir.Item1 * speed);
+                this.x += (dir.Item1 * speed);
             }
             if (this.y != formationY)
             {
-                this.y += (int)(dir.Item2 * speed);
+                this.y += (dir.Item2 * speed);
             }
         }
 
@@ -140,6 +141,7 @@ namespace Galaga.Galaga.Enemies
             this.ySize = gameInfo.enemyScale;
 
             this.x = gameInfo.WIDTH / 2;
+            this.y = -gameInfo.enemyScale;
 
             if (entrance == 0)
             {
@@ -149,15 +151,25 @@ namespace Galaga.Galaga.Enemies
             {
                 this.x = gameInfo.WIDTH / 3;
             }
+            else if (entrance == 2)
+            {
+                this.x = -gameInfo.enemyScale;
+                this.y = gameInfo.HEIGHT*3 / 4;
+            }
+            else if (entrance == 3)
+            {
+                this.x = gameInfo.WIDTH + gameInfo.enemyScale;
+                this.y = gameInfo.HEIGHT * 3 / 4;
+            }
 
 
 
-            this.y = -gameInfo.enemyScale;
+
 
             this.speed = 15;
 
 
-            position = new Vector2(x, y);
+            position = new Vector2((float)x, (float)y);
         }
 
         //Function to be run when enemies first enter in order to path.
@@ -165,7 +177,7 @@ namespace Galaga.Galaga.Enemies
         {
             Tuple<double, double> dir;
 
-            if (entrance == 0)
+            if (entrance == 0) // fly in from top right
             {
                 if (time.TotalMilliseconds < 1000)
                 {
@@ -175,7 +187,7 @@ namespace Galaga.Galaga.Enemies
                 {
                     this.rotation += 7;
                 }
-                else if (time.TotalMilliseconds < 1600)
+                else if (time.TotalMilliseconds < 1700)
                 {
                     //
                 }
@@ -185,17 +197,57 @@ namespace Galaga.Galaga.Enemies
                     rotation = 0;
                 }
             }
-            if (entrance == 1)
+            else if (entrance == 1) // fly in from top left
             {
                 if (time.TotalMilliseconds < 1000)
                 {
                     this.rotation = 300;
                 }
-                else if (time.TotalMilliseconds < 1400)
+                else if (time.TotalMilliseconds < 1500)
                 {
                     this.rotation -= 7;
                 }
-                else if (time.TotalMilliseconds < 1600)
+                else if (time.TotalMilliseconds < 1700)
+                {
+                    //
+                }
+                else
+                {
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+            else if (entrance == 2) // fly in from bottom left
+            {
+                if (time.TotalMilliseconds < 500)
+                {
+                    this.rotation = 55;
+                }
+                else if (time.TotalMilliseconds < 1350)
+                {
+                    this.rotation -= 7;
+                }
+                else if (time.TotalMilliseconds < 1500)
+                {
+                    //
+                }
+                else
+                {
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+            else if (entrance == 3) // fly in from bottom left
+            {
+                if (time.TotalMilliseconds < 500)
+                {
+                    this.rotation = 125;
+                }
+                else if (time.TotalMilliseconds < 1350)
+                {
+                    this.rotation += 7;
+                }
+                else if (time.TotalMilliseconds < 1500)
                 {
                     //
                 }

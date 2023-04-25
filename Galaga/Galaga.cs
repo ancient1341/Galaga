@@ -30,6 +30,8 @@ namespace Galaga.Galaga
         TimeSpan timeSinceFire;
         TimeSpan destroyTimer;
 
+        int wave = 0;
+
         public Galaga(GameInfo gameInfo) 
         {
             this.gameInfo= gameInfo;
@@ -53,6 +55,7 @@ namespace Galaga.Galaga
                 extraLife.x = 0 + (i * extraLife.getSize());
                 extraLives.Add(extraLife);
             }
+            gameInfo.score = 0;
             destructTriggered = false;
             projectiles = new List<Bullet>();
             enemyProjectiles = new List<Bullet>();
