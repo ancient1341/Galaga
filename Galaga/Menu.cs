@@ -307,7 +307,7 @@ namespace Galaga.Galaga
         private void showControlsMenu()
         {
 
-            m_spriteBatch.Draw(selector, new Rectangle(WIDTH * 3 / 5, HEIGHT * (2 + (controlSelected)) / 12, 30, 30), Color.Blue);
+            m_spriteBatch.Draw(selector, new Rectangle((WIDTH * 3 / 5) - (5), HEIGHT * (2 + (controlSelected)) / 12, WIDTH * 1/5, 30), Color.Blue);
 
             m_spriteBatch.DrawString(smallEl, gameInfo.keys["left"].ToString(), new Vector2(WIDTH * 3 / 5, HEIGHT * 2 / 12), Color.White);
             m_spriteBatch.DrawString(smallEl, gameInfo.keys["right"].ToString(), new Vector2(WIDTH * 3 / 5, HEIGHT * 3 / 12), Color.White);
@@ -317,6 +317,8 @@ namespace Galaga.Galaga
             m_spriteBatch.DrawString(smallEl, "Move Left: ", new Vector2(WIDTH / 8, HEIGHT * 2 / 12), Color.White);
             m_spriteBatch.DrawString(smallEl, "Move Right: ", new Vector2(WIDTH / 8, HEIGHT * 3 / 12), Color.White);
             m_spriteBatch.DrawString(smallEl, "Shoot", new Vector2(WIDTH / 8, HEIGHT * 4 / 12), Color.White);
+
+            m_spriteBatch.DrawString(smallEl, "Use up and down keys to navigate and Space to select", new Vector2(WIDTH / 20, HEIGHT * 6 / 12), Color.White);
             m_spriteBatch.DrawString(smallEl, "Press escape to return", new Vector2(WIDTH / 20, HEIGHT * 8 / 12), Color.White);
 
             if (isChangingControl)
