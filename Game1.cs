@@ -1,5 +1,6 @@
 ﻿using Galaga.Galaga;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -25,6 +26,8 @@ namespace Galaga
         private Galaga.AnimatedSprite m_blueAlienRenderer;
         private Galaga.AnimatedSprite m_beeAlienRenderer;
         private Galaga.AnimatedSprite m_playerExplosionRenderer;
+        private SoundEffect explosion;
+        private SoundEffect shot;
 
         private Objects.EnemyModel m_greenEnemy;
         private Objects.EnemyModel m_blueEnemy;
@@ -56,8 +59,9 @@ namespace Galaga
         {
             base.Initialize();
             m_keyboardInput = new KeyboardInput();
-
-            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, smallEl, spriteRenderers, spriteDict, m_keyboardInput);
+            explosion = Content.Load<SoundEffect>("sounds/explosion");
+            shot = Content.Load<SoundEffect>("sounds/missile");
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, smallEl, spriteRenderers, spriteDict, m_keyboardInput, explosion, shot);
             gameMenu = new Galaga.Menu(gameInfo);
             GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
 

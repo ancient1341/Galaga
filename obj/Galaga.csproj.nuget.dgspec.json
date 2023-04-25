@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\Galaga.csproj": {}
+    "C:\\Game Development\\Galaga\\Galaga.csproj": {}
   },
   "projects": {
-    "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\Galaga.csproj": {
+    "C:\\Game Development\\Galaga\\Galaga.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\Galaga.csproj",
+        "projectUniqueName": "C:\\Game Development\\Galaga\\Galaga.csproj",
         "projectName": "Galaga",
-        "projectPath": "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\Galaga.csproj",
-        "packagesPath": "C:\\Users\\unay4\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\unay4\\Documents\\CS5410\\Galaga\\obj\\",
+        "projectPath": "C:\\Game Development\\Galaga\\Galaga.csproj",
+        "packagesPath": "C:\\Users\\mb548\\.nuget\\packages\\",
+        "outputPath": "C:\\Game Development\\Galaga\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\unay4\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mb548\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
