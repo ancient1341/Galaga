@@ -370,7 +370,7 @@ namespace Galaga.Galaga
 
             for (int i = 0; i < 8; i++)
             {
-                list.Add(new Bee(gameInfo, 12, i * 100 + 14000));
+                list.Add(new Bee(gameInfo, 11, i * 100 + 14000));
             }
         }
     }
