@@ -95,6 +95,7 @@ namespace Galaga.Galaga
                 life.draw();
             }
             player.draw();
+            gameInfo.particleSystem.draw();
             gameInfo.m_spriteBatch.DrawString(gameInfo.ELNATH, gameInfo.score.ToString(), new Vector2(5, 5), Color.White);
             //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(0, 0, gameInfo.HEIGHT*4/9, gameInfo.HEIGHT), Color.White);
             //gameInfo.m_spriteBatch.Draw(rectangle, new Rectangle(gameInfo.WIDTH-gameInfo.HEIGHT*4/9, 0, gameInfo.HEIGHT * 4 /9, gameInfo.HEIGHT), Color.White);
@@ -149,11 +150,12 @@ namespace Galaga.Galaga
                     for (int col = formation.formation[row].Count - 1; col >= 0; col--)
                     {
                         Enemy enemy = formation.formation[row][col];
-                        if (enemy.x < player.x + 9 &&
+                        if (enemy.x < player.x + player.getSize() &&
                             enemy.x + enemy.xSize > player.x &&
-                            enemy.y < player.y + 24 &&
+                            enemy.y < player.y + player.getSize() &&
                             enemy.y + enemy.ySize > player.y)
                         {
+                            gameInfo.particleSystem.PlayerDeath(gameInfo, (int)enemy.x, (int)enemy.y);
                             formation.formation[row].RemoveAt(col);
                             player.Destroy();
                             destructTriggered = true;
@@ -170,6 +172,7 @@ namespace Galaga.Galaga
                         player.getY() + player.getSize() > bullet.y &&
                         player.isActive)
                     {
+                        gameInfo.particleSystem.PlayerDeath(gameInfo, bullet.x, bullet.y);
                         enemyProjectiles.RemoveAt(i);
                         player.Destroy();
                         destructTriggered = true;
@@ -183,6 +186,7 @@ namespace Galaga.Galaga
                     formation.update(gameTime, projectiles);
                 player.update(gameTime);
             }
+            gameInfo.particleSystem.update(gameTime);
         }
 
         public void Shoot(GameTime gameTime, float value)
@@ -193,6 +197,8 @@ namespace Galaga.Galaga
                 gameInfo.shot.Play();
             }
             attractTimer = new TimeSpan(0);
+
+            //this is a little change to test git 
         }
 
         public void OnLeftKey(GameTime gameTime, float value)
