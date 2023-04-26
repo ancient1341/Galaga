@@ -303,7 +303,7 @@ namespace Galaga.Galaga
                 m_spriteBatch.DrawString(smallEl, "Accuracy: " + (float)gameInfo.shotsFired / (float)gameInfo.hits, new Vector2(WIDTH / 4, HEIGHT * 10 / 16), Color.White);
             }else
             {
-                m_spriteBatch.DrawString(smallEl, "N/A: ", new Vector2(WIDTH / 4, HEIGHT * 10 / 16), Color.White);
+                m_spriteBatch.DrawString(smallEl, "Accuracy: N/A", new Vector2(WIDTH / 4, HEIGHT * 10 / 16), Color.White);
             }
             m_spriteBatch.DrawString(smallEl, "Press Space to return to menu", new Vector2(WIDTH / 4, HEIGHT * 3 / 4), Color.White);
 
