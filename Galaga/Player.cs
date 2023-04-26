@@ -86,7 +86,7 @@ namespace Galaga.Galaga
         }*/
 
         
-        public void attractMode(List<List<Enemy>> formation, GameTime gameTime, List<Bullet> projectiles)
+        public void attractMode(List<List<Enemy>> formation, GameTime gameTime, List<Bullet> projectiles, List<Bullet> enemyProjectiles)
         {
             double closestX = gameinfo.WIDTH;
             foreach (List<Enemy> row in formation) 
@@ -94,20 +94,46 @@ namespace Galaga.Galaga
                 List<Enemy> enemies = row.OrderBy(e => Math.Abs(e.x - this.x)).ToList();
                 foreach (Enemy enemy in enemies)
                 {
-                    if (enemy is not EmptyEnemy && (Math.Abs(enemy.x - this.x) < closestX))
+                    if (enemy is not EmptyEnemy)
                     {
                         closestX = enemy.x;
+                        break;
                     }
                 }
                 Debug.WriteLine(enemies[0].x);
             }
-            if (closestX > this.x + (xSize / 2) && this.x > 0)
+            List<Bullet> dangerBullets = new List<Bullet>();
+            foreach (Bullet bullet in enemyProjectiles)
             {
-                this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                if (bullet.y < y)
+                {
+                    dangerBullets.Add(bullet);
+                }
             }
-            else if (closestX < this.x + (xSize / 2) && this.x < gameinfo.WIDTH)
+            if (dangerBullets.Count > 0)
             {
-                this.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                dangerBullets = dangerBullets.OrderBy(b => b.y).ToList();
+                dangerBullets.Reverse();
+                if (dangerBullets[0].x > x && x > 0 && Math.Abs(dangerBullets[0].x - x) < 100)
+                {
+                    this.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                }
+                else if (dangerBullets[0].x < x && x < gameinfo.WIDTH && Math.Abs(dangerBullets[0].x - x) < 100)
+                {
+                    this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                }
+            }
+            else
+            {
+                if (closestX > this.x + (xSize / 2) && this.x < gameinfo.WIDTH)
+                {
+                    this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                }
+                else if (closestX < this.x + (xSize / 2) && this.x > 0)
+                {
+                    this.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                }
+                
             }
             if (timeSinceFire > new TimeSpan(0, 0, 0, 0, 500))
             {
@@ -115,6 +141,7 @@ namespace Galaga.Galaga
                 gameinfo.shot.Play();
                 timeSinceFire = new TimeSpan(0);
             }
+
         }
         public int getX()
         {

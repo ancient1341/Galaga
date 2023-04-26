@@ -56,7 +56,9 @@ namespace Galaga.Galaga
             gameInfo.score = 0;
             destructTriggered = false;
             projectiles = new List<Bullet>();
+            gameInfo.enemyProjectiles = new List<Bullet>();
             enemyProjectiles = gameInfo.enemyProjectiles;
+
             this.player= new Player(gameInfo);
             this.player.isActive = true;
             this.formation = new Formation(gameInfo, 0);
@@ -91,7 +93,7 @@ namespace Galaga.Galaga
             attractTimer += gameTime.ElapsedGameTime;
             if (attractTimer > new TimeSpan(0, 0, 10))
             {
-                player.attractMode(formation.formation, gameTime, projectiles);
+                player.attractMode(formation.formation, gameTime, projectiles, gameInfo.enemyProjectiles);
             }
             if (destructTriggered)
             {
@@ -117,6 +119,11 @@ namespace Galaga.Galaga
             }
             else
             {
+                attractTimer += gameTime.ElapsedGameTime;
+                if (attractTimer > new TimeSpan(0, 0, 10))
+                {
+                    player.attractMode(formation.formation, gameTime, projectiles, enemyProjectiles);
+                }
                 foreach (Bullet bullet in projectiles)
                 {
                     bullet.update(gameTime);
