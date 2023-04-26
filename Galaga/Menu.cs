@@ -298,7 +298,10 @@ namespace Galaga.Galaga
             m_spriteBatch.DrawString(ELNATH, "Game Over", new Vector2(WIDTH / 4, HEIGHT / 4), Color.White);
             m_spriteBatch.DrawString(smallEl, "Shots Fired: " + gameInfo.shotsFired, new Vector2(WIDTH / 4, HEIGHT * 4 / 8), Color.White);
             m_spriteBatch.DrawString(smallEl, "Shots Hit: " + gameInfo.hits, new Vector2(WIDTH / 4, HEIGHT * 9 / 16), Color.White);
-            m_spriteBatch.DrawString(smallEl, "Accuracy: " + (float)gameInfo.shotsFired/(float)gameInfo.hits, new Vector2(WIDTH / 4, HEIGHT * 10 / 16), Color.White);
+            if (gameInfo.hits != 0)
+            {
+                m_spriteBatch.DrawString(smallEl, "Accuracy: " + (float)gameInfo.shotsFired / (float)gameInfo.hits, new Vector2(WIDTH / 4, HEIGHT * 10 / 16), Color.White);
+            }
             m_spriteBatch.DrawString(smallEl, "Press Space to return to menu", new Vector2(WIDTH / 4, HEIGHT * 3 / 4), Color.White);
 
             if (state.IsKeyDown(Keys.Space))
