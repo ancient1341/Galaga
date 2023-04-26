@@ -57,7 +57,7 @@ namespace Galaga.Galaga
             gameInfo.score = 0;
             destructTriggered = false;
             projectiles = new List<Bullet>();
-            enemyProjectiles = new List<Bullet>();
+            enemyProjectiles = gameInfo.enemyProjectiles;
             this.player= new Player(gameInfo);
             this.player.isActive = true;
             this.formation = new Formation(gameInfo, 0);
@@ -117,7 +117,7 @@ namespace Galaga.Galaga
                 {
                     bullet.update(gameTime);
                 }
-                foreach (Bullet bullet in enemyProjectiles)
+                foreach (Bullet bullet in gameInfo.enemyProjectiles)
                 {
                     bullet.update(gameTime);
                 }

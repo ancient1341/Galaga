@@ -40,6 +40,7 @@ namespace Galaga.Galaga.Enemies
 
         public override void update(GameTime gameTime)
         {
+            this.timeSinceShot += gameTime.ElapsedGameTime;
             Tuple<double, double> dir;
             this.time += gameTime.ElapsedGameTime;
 
