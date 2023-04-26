@@ -40,6 +40,8 @@ namespace Galaga.Galaga
         public int playerScale;
         public int enemyScale;
 
+        public ParticleSystem particleSystem;
+
         public int score;
         public int mode;
 
@@ -60,6 +62,7 @@ namespace Galaga.Galaga
             this.keyboardInput = keyboardInput;
 
             this.keys = ReadKeys();
+            this.particleSystem = new ParticleSystem();
 
             this.playerScale = HEIGHT / 20;
             this.enemyScale = playerScale * 13 / 17; 
