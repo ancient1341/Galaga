@@ -195,6 +195,8 @@ namespace Galaga.Galaga
                 gameInfo.shot.Play();
             }
             attractTimer = new TimeSpan(0);
+
+            //this is a little change to test git 
         }
 
         public void OnLeftKey(GameTime gameTime, float value)
