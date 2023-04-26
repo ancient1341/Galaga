@@ -138,3 +138,5 @@ C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\Space-Background
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\sounds\futuristic.ogg
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\sounds\futuristic.xnb
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\Space-Background.xnb
+C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\sounds\futuristic.ogg
+C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\sounds\futuristic.xnb
