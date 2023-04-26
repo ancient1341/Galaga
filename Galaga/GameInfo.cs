@@ -47,8 +47,14 @@ namespace Galaga.Galaga
         public int score;
         public int mode;
 
+        public int shotsFired;
+        public int hits;
+
         public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, SpriteFont smallEl, Dictionary<string, AnimatedSprite> spriteRenderers, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput, SoundEffect explosion, SoundEffect shot, Song spaceMusic) 
         {
+            shotsFired= 0;
+            hits= 0;
+
             this.m_spriteBatch = m_spriteBatch;
             this.graphicsDevice = graphicsDevice;
 

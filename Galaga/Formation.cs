@@ -187,6 +187,7 @@ namespace Galaga.Galaga
                                 explode((int)bullet.x + 9 / 2, (int)bullet.y);
                                 formation[rowIndex][enemyIndex] = new EmptyEnemy();
                                 gameInfo.explosion.Play();
+                                gameInfo.hits++;
                             }
                             else
                             {

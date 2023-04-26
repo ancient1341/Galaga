@@ -1,6 +1,7 @@
 ﻿using Galaga.Galaga.Enemies;
 using Galaga.Objects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -41,6 +42,7 @@ namespace Galaga.Galaga
             rectangle = new Texture2D(gameInfo.graphicsDevice, 1, 1);
             rectangle.SetData(new[] { Color.White });
             attractTimer = new TimeSpan(0);
+            
 
         }
 
@@ -195,6 +197,7 @@ namespace Galaga.Galaga
             {
                 projectiles.Add(new PlayerBullet(player.getX() + (player.getSize() / 2) - ((3 * 3) / 2), player.getY(), gameInfo.m_spriteBatch, gameInfo.spriteDict["bullet"]));
                 gameInfo.shot.Play();
+                gameInfo.shotsFired++;
             }
             attractTimer = new TimeSpan(0);
 
