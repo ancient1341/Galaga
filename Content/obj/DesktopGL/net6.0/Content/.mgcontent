@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Game Development/Galaga/Content/bee-alien.png</File>
+    <File>C:/Game Development/Galaga/Content/blue-alien.png</File>
+    <File>C:/Game Development/Galaga/Content/bullet.png</File>
+    <File>C:/Game Development/Galaga/Content/ELNATH-smaller.spritefont</File>
+    <File>C:/Game Development/Galaga/Content/Font/ELNATH.spritefont</File>
+    <File>C:/Game Development/Galaga/Content/green-alien.png</File>
+    <File>C:/Game Development/Galaga/Content/player.png</File>
+    <File>C:/Game Development/Galaga/Content/red-alien.png</File>
+    <File>C:/Game Development/Galaga/Content/ship-explosion.png</File>
+    <File>C:/Game Development/Galaga/Content/sounds/explosion.wav</File>
+    <File>C:/Game Development/Galaga/Content/sounds/futuristic.mp3</File>
+    <File>C:/Game Development/Galaga/Content/sounds/missile.wav</File>
+    <File>C:/Game Development/Galaga/Content/Space-Background.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

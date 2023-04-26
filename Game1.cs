@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,7 @@ namespace Galaga
         private Galaga.AnimatedSprite m_playerExplosionRenderer;
         private SoundEffect explosion;
         private SoundEffect shot;
+        private Song spaceMusic;
 
         private Objects.EnemyModel m_greenEnemy;
         private Objects.EnemyModel m_blueEnemy;
@@ -62,7 +64,8 @@ namespace Galaga
             m_keyboardInput = new KeyboardInput();
             explosion = Content.Load<SoundEffect>("sounds/explosion");
             shot = Content.Load<SoundEffect>("sounds/missile");
-            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, smallEl, spriteRenderers, spriteDict, m_keyboardInput, explosion, shot);
+            spaceMusic = Content.Load<Song>("sounds/futuristic");
+            gameInfo = new GameInfo(m_spriteBatch, GraphicsDevice, WIDTH, HEIGHT, ELNATH, smallEl, spriteRenderers, spriteDict, m_keyboardInput, explosion, shot, spaceMusic);
             gameMenu = new Galaga.Menu(gameInfo);
             GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
 

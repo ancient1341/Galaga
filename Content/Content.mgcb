@@ -117,6 +117,12 @@
 /processorParam:Quality=Best
 /build:sounds/explosion.wav
 
+#begin sounds/futuristic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sounds/futuristic.mp3
+
 #begin sounds/missile.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

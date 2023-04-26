@@ -1,0 +1,14 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Game Development/Galaga/Content/bee-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/bee-alien.xnb","TextureProcessor","Texture2DContent",294,1437,0.1850262
+"C:/Game Development/Galaga/Content/blue-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/blue-alien.xnb","TextureProcessor","Texture2DContent",324,1885,0.0087502
+"C:/Game Development/Galaga/Content/bullet.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/bullet.xnb","TextureProcessor","Texture2DContent",124,181,0.0036578
+"C:/Game Development/Galaga/Content/ELNATH-smaller.spritefont","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/ELNATH-smaller.xnb","FontDescriptionProcessor","SpriteFontContent",2068,37919,0.1828449
+"C:/Game Development/Galaga/Content/Font/ELNATH.spritefont","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/Font/ELNATH.xnb","FontDescriptionProcessor","SpriteFontContent",2069,136223,0.0500163
+"C:/Game Development/Galaga/Content/green-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/green-alien.xnb","TextureProcessor","Texture2DContent",330,1885,0.0124192
+"C:/Game Development/Galaga/Content/player.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/player.xnb","TextureProcessor","Texture2DContent",267,1241,0.0038641
+"C:/Game Development/Galaga/Content/red-alien.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/red-alien.xnb","TextureProcessor","Texture2DContent",270,1437,0.0114038
+"C:/Game Development/Galaga/Content/ship-explosion.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/ship-explosion.xnb","TextureProcessor","Texture2DContent",1350,21785,0.0070881
+"C:/Game Development/Galaga/Content/sounds/explosion.wav","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/sounds/explosion.xnb","SoundEffectProcessor","SoundEffectContent",195984,196045,0.2837299
+"C:/Game Development/Galaga/Content/sounds/futuristic.mp3","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/sounds/futuristic.xnb","SongProcessor","SongContent",3883676,128,3.4360268
+"C:/Game Development/Galaga/Content/sounds/missile.wav","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/sounds/missile.xnb","SoundEffectProcessor","SoundEffectContent",53162,53223,0.2177369
+"C:/Game Development/Galaga/Content/Space-Background.png","C:/Game Development/Galaga/Content/bin/DesktopGL/Content/Space-Background.xnb","TextureProcessor","Texture2DContent",834929,2351365,0.162852
