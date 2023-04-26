@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/bee-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/blue-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/bullet.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/ELNATH-smaller.spritefont</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/Font/ELNATH.spritefont</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/green-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/player.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/ship-explosion.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/explosion.wav</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/missile.wav</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/Space-Background.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

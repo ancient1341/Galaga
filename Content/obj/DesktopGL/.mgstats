@@ -1,0 +1,13 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/bee-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/bee-alien.xnb","TextureProcessor","Texture2DContent",294,1437,0.160193
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/blue-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/blue-alien.xnb","TextureProcessor","Texture2DContent",324,1885,0.0033419
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/bullet.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/bullet.xnb","TextureProcessor","Texture2DContent",124,181,0.0024856
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/ELNATH-smaller.spritefont","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/ELNATH-smaller.xnb","FontDescriptionProcessor","SpriteFontContent",2068,37919,0.1452989
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/Font/ELNATH.spritefont","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Font/ELNATH.xnb","FontDescriptionProcessor","SpriteFontContent",2069,136223,0.0304394
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/green-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/green-alien.xnb","TextureProcessor","Texture2DContent",330,1885,0.0051796
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/player.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/player.xnb","TextureProcessor","Texture2DContent",267,1241,0.007274
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/red-alien.xnb","TextureProcessor","Texture2DContent",270,1437,0.0039483
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/ship-explosion.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/ship-explosion.xnb","TextureProcessor","Texture2DContent",1350,21785,0.0104913
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/explosion.wav","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/sounds/explosion.xnb","SoundEffectProcessor","SoundEffectContent",195984,196045,0.1984559
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/missile.wav","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/sounds/missile.xnb","SoundEffectProcessor","SoundEffectContent",53162,53223,0.1726575
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/Space-Background.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Space-Background.xnb","TextureProcessor","Texture2DContent",834929,2351365,0.1004146
