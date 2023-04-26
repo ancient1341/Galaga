@@ -84,7 +84,14 @@ namespace Galaga.Galaga
         {
             if (timer.TotalMilliseconds < START_TIME / 2)
             {
-                gameInfo.m_spriteBatch.DrawString(gameInfo.ELNATH, "Wave " + (wave + 1) + " Start", new Vector2(gameInfo.WIDTH / 2 - gameInfo.WIDTH / 6, gameInfo.HEIGHT / 2), Color.OrangeRed);
+                if (wave != 2)
+                {
+                    gameInfo.m_spriteBatch.DrawString(gameInfo.ELNATH, "Wave " + (wave + 1) + " Start", new Vector2(gameInfo.WIDTH / 2 - gameInfo.WIDTH / 6, gameInfo.HEIGHT / 2), Color.OrangeRed);
+                }
+                else
+                {
+                    gameInfo.m_spriteBatch.DrawString(gameInfo.ELNATH, "Challenge Wave", new Vector2(gameInfo.WIDTH / 2 - gameInfo.WIDTH / 6, gameInfo.HEIGHT / 2), Color.OrangeRed);
+                }
             }
             else if (timer.TotalMilliseconds <= START_TIME)
             {
@@ -356,48 +363,8 @@ namespace Galaga.Galaga
             List<Enemy> list;
             formation.Add(new List<Enemy>());
             list = formation[0];
-            list.Add(new EmptyEnemy());
-            list.Add(new EmptyEnemy());
-            list.Add(new EmptyEnemy());
-            list.Add(new Boss(gameInfo, 2, 3000));
-            list.Add(new Boss(gameInfo, 2, 3400));
-            list.Add(new Boss(gameInfo, 2, 3600));
-            list.Add(new Boss(gameInfo, 2, 3200));
-            list.Add(new EmptyEnemy());
-            list.Add(new EmptyEnemy());
-            list.Add(new EmptyEnemy());
+            list.Add(new Bee(gameInfo, 1, 69));
 
-            for (int i = 0; i < 2; i++)
-            {
-                formation.Add(new List<Enemy>());
-                list = formation[i + 1];
-                list.Add(new EmptyEnemy());
-                list.Add(new Butterfly(gameInfo, 3, 5000 + i * 400));
-                list.Add(new Butterfly(gameInfo, 3, 5200 + i * 400));
-                list.Add(new Butterfly(gameInfo, 2, 3100 + i * 400));
-                list.Add(new Butterfly(gameInfo, 1, 0 + i * 200));
-                list.Add(new Butterfly(gameInfo, 1, 100 + i * 200));
-                list.Add(new Butterfly(gameInfo, 2, 3300 + i * 400));
-                list.Add(new Butterfly(gameInfo, 3, 5300 + i * 400));
-                list.Add(new Butterfly(gameInfo, 3, 5100 + i * 400));
-                list.Add(new EmptyEnemy());
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                formation.Add(new List<Enemy>());
-                list = formation[i + 3];
-                list.Add(new Bee(gameInfo, 1, 9000 + i * 400));
-                list.Add(new Bee(gameInfo, 1, 9200 + i * 400));
-                list.Add(new Bee(gameInfo, 0, 7000 + i * 400));
-                list.Add(new Bee(gameInfo, 0, 7200 + i * 400));
-                list.Add(new Bee(gameInfo, 0, 0 + i * 200));
-                list.Add(new Bee(gameInfo, 0, 100 + i * 200));
-                list.Add(new Bee(gameInfo, 0, 7300 + i * 400));
-                list.Add(new Bee(gameInfo, 0, 7100 + i * 400));
-                list.Add(new Bee(gameInfo, 1, 9300 + i * 400));
-                list.Add(new Bee(gameInfo, 1, 9100 + i * 400));
-            }
         }
     }
 }

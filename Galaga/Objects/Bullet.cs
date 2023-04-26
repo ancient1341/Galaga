@@ -16,6 +16,7 @@ namespace Galaga.Objects
 
         public SpriteBatch m_spriteBatch;
         public Texture2D bulletTexture;
+        protected float speed;
 
         public abstract void update(GameTime gameTime);
         public abstract void draw();
@@ -30,11 +31,12 @@ namespace Galaga.Objects
             this.y = y;
             this.m_spriteBatch = spriteBatch;
             this.bulletTexture = bulletTexture;
+            speed = 0.5f;
         }
 
         public override void update(GameTime gameTime)
         {
-            this.y += (int)(1 * gameTime.ElapsedGameTime.TotalMilliseconds);
+            this.y += (int)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
         }
 
         public override void draw()
@@ -52,11 +54,12 @@ namespace Galaga.Objects
             this.y = y;
             this.m_spriteBatch = spriteBatch;
             this.bulletTexture = bulletTexture;
+            speed = 1;
         }
 
         public override void update(GameTime gameTime)
         {
-            this.y -= (int)(1 * gameTime.ElapsedGameTime.TotalMilliseconds);
+            this.y -= (int)(speed * gameTime.ElapsedGameTime.TotalMilliseconds);
         }
 
         public override void draw()
