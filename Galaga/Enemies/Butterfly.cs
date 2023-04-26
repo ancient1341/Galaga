@@ -47,6 +47,7 @@ namespace Galaga.Galaga.Enemies
             if (inFormation)
             {
                 gravitate();
+                handleBail(gameTime);
             }
             else
             {

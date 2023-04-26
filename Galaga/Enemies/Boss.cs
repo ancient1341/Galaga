@@ -47,6 +47,7 @@ namespace Galaga.Galaga.Enemies
 
         public override void update(GameTime gameTime)
         {
+
             Tuple<double, double> dir;
             this.time += gameTime.ElapsedGameTime;
 
@@ -54,6 +55,7 @@ namespace Galaga.Galaga.Enemies
             if (inFormation)
             {
                 gravitate();
+                handleBail(gameTime);
             }
             else
             {

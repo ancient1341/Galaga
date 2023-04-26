@@ -13,11 +13,13 @@ namespace Galaga.Galaga.Enemies
     {
         public Vector2 position;
 
+        Random rand;
+
         public double x, y;
         public float formationX, formationY;
         public int xSize, ySize;
         public int Scale;
-        public int speed;
+        public double speed;
         public float rotation;
         public bool inFormation;
 
@@ -27,6 +29,7 @@ namespace Galaga.Galaga.Enemies
 
         protected Texture2D rectangle;
         protected TimeSpan time;
+        protected int bailTime; // when the ship leaves formation and attacks
 
         public bool damaged = true; //only matters for boss
         public bool dead = false;
@@ -143,6 +146,10 @@ namespace Galaga.Galaga.Enemies
             this.x = gameInfo.WIDTH / 2;
             this.y = -gameInfo.enemyScale;
 
+            rand = new Random();
+            bailTime = rand.Next(40000);
+
+
             if (entrance == 0)
             {
                 this.x = gameInfo.WIDTH * 2 / 3;
@@ -161,10 +168,6 @@ namespace Galaga.Galaga.Enemies
                 this.x = gameInfo.WIDTH + gameInfo.enemyScale;
                 this.y = gameInfo.HEIGHT * 3 / 4;
             }
-
-
-
-
 
             this.speed = gameInfo.HEIGHT/80;
 
@@ -259,11 +262,101 @@ namespace Galaga.Galaga.Enemies
             }
 
 
+            //Breakouts
+            if (entrance == -1)
+            {
+                if (time.TotalMilliseconds < 400)
+                {
+                    this.rotation += 10;
+                }
+                else if (time.TotalMilliseconds < 1400)
+                {
+                    //
+                }
+                else if (time.TotalMilliseconds < 1600)
+                {
+                    this.rotation -= 10;
+                }
+                else if (time.TotalMilliseconds < 2600)
+                {
+                    //
+                }
+                else if (time.TotalMilliseconds < 2700)
+                {
+                    this.rotation += 10;
+                }
+                else if (time.TotalMilliseconds < 4000)
+                {
+                    //
+                }
+                else
+                {
+                    speed *= 2;
+                    this.x = gameInfo.WIDTH / 2;
+                    this.y = gameInfo.enemyScale * -1;
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+            else if (entrance == -2)
+            {
+                if (time.TotalMilliseconds < 400)
+                {
+                    this.rotation -= 10;
+                }
+                else if (time.TotalMilliseconds < 1400)
+                {
+                    //
+                }
+                else if (time.TotalMilliseconds < 1600)
+                {
+                    this.rotation += 10;
+                }
+                else if (time.TotalMilliseconds < 2600)
+                {
+                    //
+                }
+                else if (time.TotalMilliseconds < 2700)
+                {
+                    this.rotation -= 10;
+                }
+                else if (time.TotalMilliseconds < 4000)
+                {
+                    //
+                }
+                else
+                {
+                    speed *= 2;
+                    this.x = gameInfo.WIDTH / 2;
+                    this.y = gameInfo.enemyScale * -1;
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+
+
             dir = getVector(this.rotation);
             if (time.TotalMilliseconds > 0)
             {
                 this.x += (int)(dir.Item1 * speed);
                 this.y -= (int)(dir.Item2 * speed);
+            }
+        }
+
+        protected void handleBail(GameTime gameTime)
+        {
+            if (!inFormation)
+            {
+                return;
+            }
+            bailTime -= (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if(bailTime <= 0)
+            {
+                speed /= 2;
+                entrance = rand.Next(2)*-1 -1;
+                inFormation= false;
+                time = new TimeSpan(0);
+                bailTime = rand.Next(10000, 30000);
             }
         }
 
