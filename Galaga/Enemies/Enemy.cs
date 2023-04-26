@@ -163,11 +163,11 @@ namespace Galaga.Galaga.Enemies
 
         void setupEntrances()
         {
-            if (entrance == 0 || entrance == 4)
+            if (entrance == 0 || entrance == 4 || entrance == 10)
             {
                 this.x = gameInfo.WIDTH * 2 / 3;
             }
-            else if (entrance == 1 || entrance == 5)
+            else if (entrance == 1 || entrance == 5 || entrance == 11)
             {
                 this.x = gameInfo.WIDTH / 3;
             }
@@ -198,6 +198,16 @@ namespace Galaga.Galaga.Enemies
             else if (entrance == 9)
             {
                 this.x = gameInfo.WIDTH / 3 + gameInfo.playerScale;
+            }
+            else if (entrance == 12)
+            {
+                this.x = -gameInfo.enemyScale;
+                this.y = gameInfo.HEIGHT - 3 * gameInfo.playerScale;
+            }
+            else if (entrance == 13)
+            {
+                this.x = gameInfo.WIDTH + gameInfo.enemyScale;
+                this.y = gameInfo.HEIGHT - 3 * gameInfo.playerScale;
             }
         }
 
@@ -283,6 +293,9 @@ namespace Galaga.Galaga.Enemies
                 if (time.TotalMilliseconds < 500)
                 {
                     this.rotation = 35;
+                }else if (time.TotalMilliseconds < 1550)
+                {
+                    //
                 }
                 else if (time.TotalMilliseconds < 1400)
                 {
@@ -322,6 +335,139 @@ namespace Galaga.Galaga.Enemies
                 }
                 else
                 {
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+            //CHALLENGING WAVE
+            else if (entrance == 10) // Fly in from top right
+            {
+                if (time.TotalMilliseconds < 400)
+                {
+                    this.rotation = 270;
+                }
+                else if (time.TotalMilliseconds < 1000)
+                {
+                    this.rotation -= 1;
+                }
+                else if (time.TotalMilliseconds < 1900)
+                {
+                    this.rotation -= 4;
+                }
+                else if (time.TotalMilliseconds < 3200)
+                {
+                    //
+                }
+                else
+                {
+                    dead = true;
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+            else if (entrance == 11) // Fly in from top right
+            {
+                if (time.TotalMilliseconds < 400)
+                {
+                    this.rotation = 270;
+                }
+                else if (time.TotalMilliseconds < 1000)
+                {
+                    this.rotation += 1;
+                }
+                else if (time.TotalMilliseconds < 1900)
+                {
+                    this.rotation += 4;
+                }
+                else if (time.TotalMilliseconds < 3200)
+                {
+                    //
+                }
+                else
+                {
+                    dead = true;
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+            else if (entrance == 12) // Fly in from bottom left and exit right
+            {
+                if (time.TotalMilliseconds < 400)
+                {
+                    this.rotation = 15;
+                }
+                else if (time.TotalMilliseconds < 1000)
+                {
+                    this.rotation += 1;
+                }
+                else if (time.TotalMilliseconds < 1300)
+                {
+                    this.rotation += 5;
+                    if(rotation > 90)
+                    {
+                        rotation = 90;
+                    }
+                }
+                else if (time.TotalMilliseconds < 1800)
+                {
+                    this.rotation += 13;
+                    if (rotation > 270)
+                    {
+                        rotation = 270;
+                    }
+                }
+                else if (time.TotalMilliseconds < 1950)
+                {
+                    this.rotation += 13;
+                }
+                else if (time.TotalMilliseconds < 3200)
+                {
+                    //
+                }
+                else
+                {
+                    dead = true;
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
+            else if (entrance == 13) // Fly in from bottom right and exit left
+            {
+                if (time.TotalMilliseconds < 400)
+                {
+                    this.rotation = 165;
+                }
+                else if (time.TotalMilliseconds < 1000)
+                {
+                    this.rotation -= 1;
+                }
+                else if (time.TotalMilliseconds < 1300)
+                {
+                    this.rotation -= 5;
+                    if (rotation < 90)
+                    {
+                        rotation = 90;
+                    }
+                }
+                else if (time.TotalMilliseconds < 1800)
+                {
+                    this.rotation -= 13;
+                    if (rotation < -90)
+                    {
+                        rotation = -90;
+                    }
+                }
+                else if (time.TotalMilliseconds < 1950)
+                {
+                    this.rotation -= 13;
+                }
+                else if (time.TotalMilliseconds < 3200)
+                {
+                    //
+                }
+                else
+                {
+                    dead = true;
                     inFormation = true;
                     rotation = 0;
                 }

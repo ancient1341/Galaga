@@ -59,6 +59,7 @@ namespace Galaga.Galaga
             }
             else if (wave == 2)
             {
+                this.y = -5000;
                 generateThirdWave();
             }
 
@@ -363,8 +364,31 @@ namespace Galaga.Galaga
             List<Enemy> list;
             formation.Add(new List<Enemy>());
             list = formation[0];
-            list.Add(new Bee(gameInfo, 1, 69));
+            for (int i = 0; i < 4; i++)
+            {
+                list.Add(new Bee(gameInfo, 10, i * 100));
+                list.Add(new Bee(gameInfo, 11, i * 100));
+            }
 
+            for (int i = 0; i < 4; i++)
+            {
+                list.Add(new Boss(gameInfo, 12, i * 200 + 3000));
+                list.Add(new Bee(gameInfo, 12, i * 200 + 3100));
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                list.Add(new Bee(gameInfo, 13, i * 100 + 6000));
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                list.Add(new Bee(gameInfo, 10, i * 100 + 10000));
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                list.Add(new Bee(gameInfo, 12, i * 100 + 14000));
+            }
         }
     }
 }
