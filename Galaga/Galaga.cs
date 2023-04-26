@@ -28,8 +28,8 @@ namespace Galaga.Galaga
         List<Bullet> enemyProjectiles;
         List<Player> extraLives;
 
-        TimeSpan timeSinceFire;
         TimeSpan destroyTimer;
+        TimeSpan attractTimer;
 
         int wave = 0;
 
@@ -39,8 +39,7 @@ namespace Galaga.Galaga
 
             rectangle = new Texture2D(gameInfo.graphicsDevice, 1, 1);
             rectangle.SetData(new[] { Color.White });
-
-            timeSinceFire = new TimeSpan(0);
+            attractTimer = new TimeSpan(0);
 
         }
 
@@ -89,6 +88,11 @@ namespace Galaga.Galaga
 
         public void update(GameTime gameTime) 
         {
+            attractTimer += gameTime.ElapsedGameTime;
+            if (attractTimer > new TimeSpan(0, 0, 10))
+            {
+                player.attractMode(formation.formation, gameTime, projectiles);
+            }
             if (destructTriggered)
             {
                 destroyTimer += gameTime.ElapsedGameTime;
@@ -169,6 +173,7 @@ namespace Galaga.Galaga
                 projectiles.Add(new PlayerBullet(player.getX() + (player.getSize() / 2) - ((3 * 3) / 2), player.getY(), gameInfo.m_spriteBatch, gameInfo.spriteDict["bullet"]));
                 gameInfo.shot.Play();
             }
+            attractTimer = new TimeSpan(0);
         }
 
         public void OnLeftKey(GameTime gameTime, float value)
@@ -177,13 +182,15 @@ namespace Galaga.Galaga
             {
                 this.player.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
+            attractTimer = new TimeSpan(0);
         }
         public void OnRightKey(GameTime gameTime, float value)
         {
             if (this.player.isActive && this.player.x + this.player.getSize() < this.gameInfo.WIDTH)
             {
                 this.player.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
-            }    
+            }
+            attractTimer = new TimeSpan(0);
         }
 
         private void nextWave()
