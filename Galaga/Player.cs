@@ -15,7 +15,7 @@ namespace Galaga.Galaga
 {
     class Player
     {
-        GameInfo gameinfo;
+        GameInfo gameInfo;
         Texture2D selector;
         List<Particle> particles;
         public int x, y;
@@ -31,7 +31,7 @@ namespace Galaga.Galaga
         public Player(GameInfo gameinfo)
         {
             this.particles = new List<Particle>();
-            this.gameinfo = gameinfo;
+            this.gameInfo = gameinfo;
             selector = new Texture2D(gameinfo.graphicsDevice, 1, 1);
             selector.SetData(new[] { Color.White });
             x = gameinfo.WIDTH / 2;
@@ -46,7 +46,7 @@ namespace Galaga.Galaga
         public void update(GameTime gametime)
         {
             timeSinceFire += gametime.ElapsedGameTime;
-            gameinfo.keyboardInput.Update(gametime);
+            gameInfo.keyboardInput.Update(gametime);
             for (int i = 0; i < particles.Count; i++)
             {
                 particles[i].update(gametime);
@@ -62,11 +62,11 @@ namespace Galaga.Galaga
         {
             if (isExploding)
             {
-                gameinfo.spriteRenderers["playerExplosion"].draw(gameinfo.m_spriteBatch, 0, new Rectangle(x + (int)(xSize * 0.5), y + (int)(xSize * 0.5), (int)(xSize * 2), (int)(ySize * 2)));
+                gameInfo.spriteRenderers["playerExplosion"].draw(gameInfo.m_spriteBatch, 0, new Rectangle(x + (int)(xSize * 0.5), y + (int)(xSize * 0.5), (int)(xSize * 2), (int)(ySize * 2)));
             }
             else
             {
-                gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["player"], new Rectangle(x, y, xSize, ySize), Color.White);
+                gameInfo.m_spriteBatch.Draw(gameInfo.spriteDict["player"], new Rectangle(x, y, xSize, ySize), Color.White);
             }
 
         }
@@ -88,7 +88,7 @@ namespace Galaga.Galaga
 
         public void attractMode(List<List<Enemy>> formation, GameTime gameTime, List<Bullet> projectiles, List<Bullet> enemyProjectiles)
         {
-            double closestX = gameinfo.WIDTH;
+            double closestX = gameInfo.WIDTH;
             double closestY = 0;
             foreach (List<Enemy> row in formation)
             {
@@ -118,27 +118,27 @@ namespace Galaga.Galaga
                 {
                     this.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
                 }
-                else if (dangerBullets[0].x < x && x < gameinfo.WIDTH && Math.Abs(dangerBullets[0].x - x) < 100)
+                else if (dangerBullets[0].x < x && x < gameInfo.WIDTH && Math.Abs(dangerBullets[0].x - x) < 100)
                 {
                     this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
                 }
             }
             else
             {
-                if ((gameinfo.HEIGHT - closestY) < 200)
+                if ((gameInfo.HEIGHT - closestY) < 200)
                 {
                     if (closestX > this.x + (xSize / 2) && this.x > 0 && Math.Abs(closestX - x) < 100)
                     {
                         this.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
                     }
-                    else if (closestX < this.x + (xSize / 2) && this.x < gameinfo.WIDTH && Math.Abs(closestX - x) < 100)
+                    else if (closestX < this.x + (xSize / 2) && this.x < gameInfo.WIDTH && Math.Abs(closestX - x) < 100)
                     {
                         this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
                     }
                 }
                 else
                 {
-                    if (closestX > this.x + (xSize / 2) && this.x < gameinfo.WIDTH)
+                    if (closestX > this.x + (xSize / 2) && this.x < gameInfo.WIDTH)
                     {
                         this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
                     }
@@ -152,8 +152,8 @@ namespace Galaga.Galaga
             }
             if (timeSinceFire > new TimeSpan(0, 0, 0, 0, 500))
             {
-                projectiles.Add(new PlayerBullet(x + (xSize / 2) - ((3 * 3) / 2), y, gameinfo.m_spriteBatch, gameinfo.spriteDict["bullet"]));
-                gameinfo.shot.Play();
+                projectiles.Add(new PlayerBullet(x + (xSize / 2) - ((3 * 3) / 2), y, gameInfo.m_spriteBatch, gameInfo.spriteDict["bullet"]));
+                gameInfo.shot.Play();
                 timeSinceFire = new TimeSpan(0);
             }
 
@@ -176,11 +176,11 @@ namespace Galaga.Galaga
         {
             isActive = false;
             isExploding = true;
-            gameinfo.explosion.Play();
+            gameInfo.explosion.Play();
             Random rand = new Random();
             for (int i = 0; i < 150; i++)
             {
-                particles.Add(new Particle(gameinfo, x, y, rand.Next(200, 350)));
+                particles.Add(new Particle(gameInfo, x, y, rand.Next(200, 350)));
             }
         }
 

@@ -31,7 +31,7 @@ namespace Galaga.Galaga
         TimeSpan destroyTimer;
         TimeSpan attractTimer;
 
-        int wave = 0;
+        int wave;
 
         public Galaga(GameInfo gameInfo) 
         {
@@ -58,10 +58,11 @@ namespace Galaga.Galaga
             projectiles = new List<Bullet>();
             gameInfo.enemyProjectiles = new List<Bullet>();
             enemyProjectiles = gameInfo.enemyProjectiles;
+            wave = 0;
 
             this.player= new Player(gameInfo);
             this.player.isActive = true;
-            this.formation = new Formation(gameInfo, 0);
+            this.formation = new Formation(gameInfo, wave);
             gameInfo.keyboardInput.registerCommand(gameInfo.keys["shoot"], true, new InputDeviceHelper.CommandDelegate(Shoot));
             gameInfo.keyboardInput.registerCommand(gameInfo.keys["left"], false, new InputDeviceHelper.CommandDelegate(OnLeftKey));
             gameInfo.keyboardInput.registerCommand(gameInfo.keys["right"], false, new InputDeviceHelper.CommandDelegate(OnRightKey));
