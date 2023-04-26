@@ -10,6 +10,7 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Audio;
+using Galaga.Objects;
 
 namespace Galaga.Galaga
 {
@@ -25,6 +26,7 @@ namespace Galaga.Galaga
         public SpriteFont smallEl;
         public SoundEffect explosion;
         public SoundEffect shot;
+        public List<Bullet> enemyProjectiles;
 
         public TimeSpan gameTime;
         public Dictionary<string, Texture2D> spriteDict;
@@ -69,6 +71,7 @@ namespace Galaga.Galaga
 
             this.explosion = explosion;
             this.shot = shot;
+            this.enemyProjectiles = new List<Bullet>();
         }
         public void update(TimeSpan elapsed)
         {

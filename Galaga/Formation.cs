@@ -181,6 +181,17 @@ namespace Galaga.Galaga
                                     gameInfo.score += 160;
                                 }
                             }
+                            if (enemy is Boss)
+                            {
+                                if (enemy.inFormation)
+                                {
+                                    gameInfo.score += 150;
+                                }
+                                else
+                                {
+                                    gameInfo.score += 400;
+                                }
+                            }
                             if (formation[rowIndex][enemyIndex].damaged)
                             {
                                 explode((int)bullet.x + 9 / 2, (int)bullet.y);

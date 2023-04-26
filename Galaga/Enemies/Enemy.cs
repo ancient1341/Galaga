@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Galaga.Objects;
 
 namespace Galaga.Galaga.Enemies
 {
@@ -22,6 +23,7 @@ namespace Galaga.Galaga.Enemies
         public double speed;
         public float rotation;
         public bool inFormation;
+        public TimeSpan timeSinceShot;
 
         public GameInfo gameInfo;
 
@@ -145,6 +147,7 @@ namespace Galaga.Galaga.Enemies
 
             this.x = gameInfo.WIDTH / 2;
             this.y = -gameInfo.enemyScale;
+            this.timeSinceShot = new TimeSpan(0);
 
             rand = new Random();
             bailTime = rand.Next(40000);
@@ -378,7 +381,12 @@ namespace Galaga.Galaga.Enemies
 
         public void Shoot()
         {
-
+            if (this.timeSinceShot > new TimeSpan(0, 0, 0, 0, 22))
+            {
+                gameInfo.enemyProjectiles.Add(new EnemyBullet((int)this.x, (int)this.y, gameInfo.m_spriteBatch, gameInfo.spriteDict["bullet"]));
+                this.timeSinceShot = new TimeSpan(0);
+            }
+            
         }
     }
 }

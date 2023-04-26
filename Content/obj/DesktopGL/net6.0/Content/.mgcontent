@@ -4,17 +4,17 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Game Development/Galaga/Content/bee-alien.png</File>
-    <File>C:/Game Development/Galaga/Content/blue-alien.png</File>
-    <File>C:/Game Development/Galaga/Content/bullet.png</File>
-    <File>C:/Game Development/Galaga/Content/ELNATH-smaller.spritefont</File>
-    <File>C:/Game Development/Galaga/Content/Font/ELNATH.spritefont</File>
-    <File>C:/Game Development/Galaga/Content/green-alien.png</File>
-    <File>C:/Game Development/Galaga/Content/player.png</File>
-    <File>C:/Game Development/Galaga/Content/red-alien.png</File>
-    <File>C:/Game Development/Galaga/Content/ship-explosion.png</File>
-    <File>C:/Game Development/Galaga/Content/sounds/explosion.wav</File>
-    <File>C:/Game Development/Galaga/Content/sounds/missile.wav</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/bee-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/blue-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/bullet.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/ELNATH-smaller.spritefont</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/Font/ELNATH.spritefont</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/green-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/player.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/ship-explosion.png</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/explosion.wav</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/missile.wav</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
