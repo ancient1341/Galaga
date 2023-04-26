@@ -130,10 +130,11 @@ C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\ELNATH-smaller.x
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\bullet.xnb
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\ELNATH-smaller.xnb
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\ship-explosion.xnb
-C:\Game Development\Galaga\bin\Debug\net6.0\Content\explosion.xnb
-C:\Game Development\Galaga\bin\Debug\net6.0\Content\missile.xnb
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\sounds\explosion.xnb
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\sounds\missile.xnb
 C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\sounds\explosion.xnb
 C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\sounds\missile.xnb
 C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\Space-Background.xnb
+C:\Game Development\Galaga\bin\Debug\net6.0\Content\sounds\futuristic.ogg
+C:\Game Development\Galaga\bin\Debug\net6.0\Content\sounds\futuristic.xnb
+C:\Game Development\Galaga\bin\Debug\net6.0\Content\Space-Background.xnb

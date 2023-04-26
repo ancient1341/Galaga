@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Audio;
 using Galaga.Objects;
+using Microsoft.Xna.Framework.Media;
 
 namespace Galaga.Galaga
 {
@@ -26,6 +27,7 @@ namespace Galaga.Galaga
         public SpriteFont smallEl;
         public SoundEffect explosion;
         public SoundEffect shot;
+        public Song spaceMusic;
         public List<Bullet> enemyProjectiles;
 
         public TimeSpan gameTime;
@@ -43,7 +45,7 @@ namespace Galaga.Galaga
         public int score;
         public int mode;
 
-        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, SpriteFont smallEl, Dictionary<string, AnimatedSprite> spriteRenderers, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput, SoundEffect explosion, SoundEffect shot) 
+        public GameInfo(SpriteBatch m_spriteBatch, GraphicsDevice graphicsDevice, int WIDTH, int HEIGHT, SpriteFont ELNATH, SpriteFont smallEl, Dictionary<string, AnimatedSprite> spriteRenderers, Dictionary<string, Texture2D> spriteDict, KeyboardInput keyboardInput, SoundEffect explosion, SoundEffect shot, Song spaceMusic) 
         {
             this.m_spriteBatch = m_spriteBatch;
             this.graphicsDevice = graphicsDevice;
@@ -71,6 +73,7 @@ namespace Galaga.Galaga
 
             this.explosion = explosion;
             this.shot = shot;
+            this.spaceMusic = spaceMusic;
             this.enemyProjectiles = new List<Bullet>();
         }
         public void update(TimeSpan elapsed)

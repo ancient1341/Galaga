@@ -3,6 +3,7 @@ using Galaga.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -63,6 +64,7 @@ namespace Galaga.Galaga
             this.player= new Player(gameInfo);
             this.player.isActive = true;
             this.formation = new Formation(gameInfo, wave);
+            MediaPlayer.Play(gameInfo.spaceMusic);
             gameInfo.keyboardInput.registerCommand(gameInfo.keys["shoot"], true, new InputDeviceHelper.CommandDelegate(Shoot));
             gameInfo.keyboardInput.registerCommand(gameInfo.keys["left"], false, new InputDeviceHelper.CommandDelegate(OnLeftKey));
             gameInfo.keyboardInput.registerCommand(gameInfo.keys["right"], false, new InputDeviceHelper.CommandDelegate(OnRightKey));
