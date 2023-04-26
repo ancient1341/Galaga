@@ -70,6 +70,15 @@ namespace Galaga.Galaga
 
         public void draw()
         {
+            gameInfo.m_spriteBatch.Draw(
+                gameInfo.spriteDict["background"],
+                new Rectangle(0, 0, gameInfo.WIDTH, gameInfo.HEIGHT), // Destination rectangle
+                //new Rectangle(0, 0, gameInfo.WIDTH, gameInfo.HEIGHT), // Source sub-texture
+                Color.White
+                //0, // Angular rotation
+                //new Vector2(0, 0),  // Center point of rotation
+                //SpriteEffects.None, 0
+                );
             formation.draw();
             foreach (Bullet bullet in projectiles)
             {

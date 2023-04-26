@@ -21,6 +21,7 @@ namespace Galaga
 
         private Texture2D m_playerSprite;
         private Texture2D m_bulletSprite;
+        private Texture2D m_backgroundTexture;
         private Galaga.AnimatedSprite m_greenAlienRenderer;
         private Galaga.AnimatedSprite m_redAlienRenderer;
         private Galaga.AnimatedSprite m_blueAlienRenderer;
@@ -99,11 +100,13 @@ namespace Galaga
 
             m_playerSprite = this.Content.Load<Texture2D>("player");
             m_bulletSprite = this.Content.Load<Texture2D>("bullet");
+            m_backgroundTexture = this.Content.Load<Texture2D>("Space-background");
 
             spriteDict = new Dictionary<string, Texture2D>
             {
                 { "player", m_playerSprite },
-                { "bullet", m_bulletSprite }
+                { "bullet", m_bulletSprite },
+                { "background", m_backgroundTexture }
             };
 
             spriteRenderers = new Dictionary<string, AnimatedSprite>();
