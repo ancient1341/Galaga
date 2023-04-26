@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -293,9 +293,6 @@ namespace Galaga.Galaga.Enemies
                 if (time.TotalMilliseconds < 500)
                 {
                     this.rotation = 35;
-                }else if (time.TotalMilliseconds < 1550)
-                {
-                    //
                 }
                 else if (time.TotalMilliseconds < 1400)
                 {
