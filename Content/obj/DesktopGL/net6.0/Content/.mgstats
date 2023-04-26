@@ -7,3 +7,4 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/unay4/Documents/CS5410/Galaga/Content/red-alien.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/red-alien.xnb","TextureProcessor","Texture2DContent",270,1437,0.0022094
 "C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/explosion.wav","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/sounds/explosion.xnb","SoundEffectProcessor","SoundEffectContent",195984,196045,0.352906
 "C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/missile.wav","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/sounds/missile.xnb","SoundEffectProcessor","SoundEffectContent",53162,53223,0.1735726
+"C:/Users/unay4/Documents/CS5410/Galaga/Content/Space-Background.png","C:/Users/unay4/Documents/CS5410/Galaga/Content/bin/DesktopGL/Content/Space-Background.xnb","TextureProcessor","Texture2DContent",834929,2351365,0.2473493

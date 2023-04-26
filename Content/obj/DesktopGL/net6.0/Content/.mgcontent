@@ -15,8 +15,10 @@
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/ship-explosion.png</File>
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/explosion.wav</File>
     <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/sounds/missile.wav</File>
+    <File>C:/Users/unay4/Documents/CS5410/Galaga/Content/Space-Background.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
