@@ -269,6 +269,14 @@ namespace Galaga.Galaga.Enemies
                 {
                     this.rotation += 10;
                 }
+                else if (time.TotalMilliseconds < 450)
+                {
+                    Shoot();
+                }
+                else if (time.TotalMilliseconds < 500)
+                {
+                    Shoot();
+                }
                 else if (time.TotalMilliseconds < 1400)
                 {
                     //
@@ -303,6 +311,14 @@ namespace Galaga.Galaga.Enemies
                 if (time.TotalMilliseconds < 400)
                 {
                     this.rotation -= 10;
+                }
+                else if (time.TotalMilliseconds < 450)
+                {
+                    Shoot();
+                }
+                else if (time.TotalMilliseconds < 500)
+                {
+                    Shoot();
                 }
                 else if (time.TotalMilliseconds < 1400)
                 {
