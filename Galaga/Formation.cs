@@ -108,11 +108,8 @@ namespace Galaga.Galaga
 
         private void explode(int x, int y)
         {
-
-            for (int i = 0; i < 150; i++)
-            {
-                particles.Add(new Particle(gameInfo, x, y, rand.Next(200, 350)));
-            }
+            gameInfo.particleSystem.EnemyDeath(gameInfo, x, y);
+            
         }
 
         public Tuple<float, float> GetRandomEnemyLocation()
@@ -135,15 +132,7 @@ namespace Galaga.Galaga
         //Placed in own function far away so my eyes dont have a stroke
         void updateEnemies(GameTime gameTime, List<Bullet> projectiles)
         {
-            for (int i = 0; i < particles.Count; i++)
-            {
-                particles[i].update(gameTime);
-                if (particles[i].dead)
-                {
-                    particles.RemoveAt(i);
-                    i--;
-                }
-            }
+            
 
             for (int rowIndex = formation.Count - 1; rowIndex >= 0; rowIndex--)
             {

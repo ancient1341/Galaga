@@ -296,7 +296,7 @@ namespace Galaga.Galaga
             KeyboardState state = Keyboard.GetState();
 
             m_spriteBatch.DrawString(ELNATH, "Game Over", new Vector2(WIDTH / 4, HEIGHT / 4), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "Press Space to return to menu", new Vector2(WIDTH / 4, HEIGHT * 3 / 4), Color.White);
+            m_spriteBatch.DrawString(smallEl, "Press Space to return to menu", new Vector2(WIDTH / 4, HEIGHT * 3 / 4), Color.White);
 
             if (state.IsKeyDown(Keys.Space))
             {
