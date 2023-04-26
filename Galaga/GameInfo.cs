@@ -139,6 +139,12 @@ namespace Galaga.Galaga
                     sw.WriteLine((string)converter.ConvertToString(Keys.Right));
                     sw.WriteLine((string)converter.ConvertToString(Keys.Space));
                 }
+                using (StreamReader sr = new StreamReader("Keys.txt"))
+                {
+                    keys.Add("left", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                    keys.Add("right", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                    keys.Add("shoot", (Keys)converter.ConvertFromString(sr.ReadLine()));
+                }
             }
 
             return keys;
