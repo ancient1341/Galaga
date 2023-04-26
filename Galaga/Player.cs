@@ -62,13 +62,13 @@ namespace Galaga.Galaga
         {
             if (isExploding)
             {
-                gameinfo.spriteRenderers["playerExplosion"].draw(gameinfo.m_spriteBatch, 0, new Rectangle(x + (int)(xSize * 0.5), y + (int)(xSize * 0.5), (int)(xSize*2), (int)(ySize*2)));
+                gameinfo.spriteRenderers["playerExplosion"].draw(gameinfo.m_spriteBatch, 0, new Rectangle(x + (int)(xSize * 0.5), y + (int)(xSize * 0.5), (int)(xSize * 2), (int)(ySize * 2)));
             }
             else
             {
                 gameinfo.m_spriteBatch.Draw(gameinfo.spriteDict["player"], new Rectangle(x, y, xSize, ySize), Color.White);
             }
-            
+
         }
 
         /*public void movement(GameTime gametime) 
@@ -85,22 +85,22 @@ namespace Galaga.Galaga
             }
         }*/
 
-        
+
         public void attractMode(List<List<Enemy>> formation, GameTime gameTime, List<Bullet> projectiles, List<Bullet> enemyProjectiles)
         {
             double closestX = gameinfo.WIDTH;
-            foreach (List<Enemy> row in formation) 
+            double closestY = 0;
+            foreach (List<Enemy> row in formation)
             {
-                List<Enemy> enemies = row.OrderBy(e => Math.Abs(e.x - this.x)).ToList();
-                foreach (Enemy enemy in enemies)
+                foreach (Enemy enemy in row)
                 {
                     if (enemy is not EmptyEnemy)
                     {
                         closestX = enemy.x;
+                        closestY = enemy.y;
                         break;
                     }
                 }
-                Debug.WriteLine(enemies[0].x);
             }
             List<Bullet> dangerBullets = new List<Bullet>();
             foreach (Bullet bullet in enemyProjectiles)
@@ -125,15 +125,30 @@ namespace Galaga.Galaga
             }
             else
             {
-                if (closestX > this.x + (xSize / 2) && this.x < gameinfo.WIDTH)
+                if ((gameinfo.HEIGHT - closestY) < 200)
                 {
-                    this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                    if (closestX > this.x + (xSize / 2) && this.x > 0 && Math.Abs(closestX - x) < 100)
+                    {
+                        this.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                    }
+                    else if (closestX < this.x + (xSize / 2) && this.x < gameinfo.WIDTH && Math.Abs(closestX - x) < 100)
+                    {
+                        this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                    }
                 }
-                else if (closestX < this.x + (xSize / 2) && this.x > 0)
+                else
                 {
-                    this.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                    if (closestX > this.x + (xSize / 2) && this.x < gameinfo.WIDTH)
+                    {
+                        this.x += (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                    }
+                    else if (closestX < this.x + (xSize / 2) && this.x > 0)
+                    {
+                        this.x -= (int)(0.25 * gameTime.ElapsedGameTime.TotalMilliseconds);
+                    }
                 }
-                
+
+
             }
             if (timeSinceFire > new TimeSpan(0, 0, 0, 0, 500))
             {
