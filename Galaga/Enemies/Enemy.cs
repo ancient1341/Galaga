@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Galaga.Objects;
+using System.Runtime.Intrinsics.X86;
 
 namespace Galaga.Galaga.Enemies
 {
@@ -38,7 +39,7 @@ namespace Galaga.Galaga.Enemies
 
         public void formationPosition(float formationX, float formationY)
         {
-            this.formationX= formationX;
+            this.formationX = formationX;
             this.formationY = formationY;
         }
 
@@ -134,7 +135,7 @@ namespace Galaga.Galaga.Enemies
         {
             double angleRadians = Math.Atan2(y, x);
             float angleDegrees = (float)(angleRadians * (180 / Math.PI));
-            return angleDegrees-180;
+            return angleDegrees - 180;
         }
 
         protected void initialize()
@@ -150,48 +151,87 @@ namespace Galaga.Galaga.Enemies
             this.timeSinceShot = new TimeSpan(0);
 
             rand = new Random();
-            bailTime = rand.Next(40000);
+            bailTime = rand.Next(8000, 30000);
 
+            setupEntrances();
 
-            if (entrance == 0)
-            {
-                this.x = gameInfo.WIDTH * 2 / 3;
-            }
-            else if (entrance == 1)
-            {
-                this.x = gameInfo.WIDTH / 3;
-            }
-            else if (entrance == 2)
-            {
-                this.x = -gameInfo.enemyScale;
-                this.y = gameInfo.HEIGHT*3 / 4;
-            }
-            else if (entrance == 3)
-            {
-                this.x = gameInfo.WIDTH + gameInfo.enemyScale;
-                this.y = gameInfo.HEIGHT * 3 / 4;
-            }
-
-            this.speed = gameInfo.HEIGHT/80;
+            this.speed = gameInfo.HEIGHT / 80;
 
 
             position = new Vector2((float)x, (float)y);
         }
 
+        void setupEntrances()
+        {
+            if (entrance == 0 || entrance == 4)
+            {
+                this.x = gameInfo.WIDTH * 2 / 3;
+            }
+            else if (entrance == 1 || entrance == 5)
+            {
+                this.x = gameInfo.WIDTH / 3;
+            }
+            else if (entrance == 2)
+            {
+                this.x = -gameInfo.enemyScale * 1.7;
+                this.y = gameInfo.HEIGHT * 3 / 4;
+            }
+            else if (entrance == 3)
+            {
+                this.x = gameInfo.WIDTH + gameInfo.enemyScale * 1.7;
+                this.y = gameInfo.HEIGHT * 3 / 4;
+            }
+            else if (entrance == 6)
+            {
+                this.x = -gameInfo.enemyScale;
+                this.y = gameInfo.HEIGHT * 3 / 4 + gameInfo.playerScale;
+            }
+            else if (entrance == 7)
+            {
+                this.x = gameInfo.WIDTH + gameInfo.enemyScale;
+                this.y = gameInfo.HEIGHT * 3 / 4 + gameInfo.playerScale;
+            }
+            else if (entrance == 8)
+            {
+                this.x = gameInfo.WIDTH * 2 / 3 - gameInfo.playerScale;
+            }
+            else if (entrance == 9)
+            {
+                this.x = gameInfo.WIDTH / 3 + gameInfo.playerScale;
+            }
+        }
+
+
         //Function to be run when enemies first enter in order to path.
         protected void enter()
         {
             Tuple<double, double> dir;
+            double varSpeed = speed;
 
-            if (entrance == 0) // fly in from top right
+            if (entrance == 0 || entrance == 4 || entrance == 8) // fly in from top right
             {
-                if (time.TotalMilliseconds < 1000)
+                if (time.TotalMilliseconds < 300)
                 {
                     this.rotation = 240;
                 }
+                else if (time.TotalMilliseconds < 325)
+                {
+                    if (entrance == 4)
+                    {
+                        Shoot();
+                    }
+                }
+                else if (time.TotalMilliseconds < 1000)
+                {
+                    //
+                }
                 else if (time.TotalMilliseconds < 1500)
                 {
                     this.rotation += 7;
+                    if (entrance == 8)
+                    {
+                        varSpeed = speed * 1.5;
+                    }
                 }
                 else if (time.TotalMilliseconds < 1700)
                 {
@@ -203,15 +243,30 @@ namespace Galaga.Galaga.Enemies
                     rotation = 0;
                 }
             }
-            else if (entrance == 1) // fly in from top left
+            else if (entrance == 1 || entrance == 5 || entrance == 9) // fly in from top left
             {
-                if (time.TotalMilliseconds < 1000)
+                if (time.TotalMilliseconds < 400)
                 {
                     this.rotation = 300;
                 }
+                else if (time.TotalMilliseconds < 425)
+                {
+                    if (entrance == 5)
+                    {
+                        Shoot();
+                    }
+                }
+                else if (time.TotalMilliseconds < 1000)
+                {
+                    //
+                }
                 else if (time.TotalMilliseconds < 1500)
                 {
                     this.rotation -= 7;
+                    if (entrance == 9)
+                    {
+                        varSpeed = speed * 1.5;
+                    }
                 }
                 else if (time.TotalMilliseconds < 1700)
                 {
@@ -223,37 +278,21 @@ namespace Galaga.Galaga.Enemies
                     rotation = 0;
                 }
             }
-            else if (entrance == 2) // fly in from bottom left
+            else if (entrance == 2 || entrance == 6) // fly in from bottom left
             {
                 if (time.TotalMilliseconds < 500)
                 {
-                    this.rotation = 55;
+                    this.rotation = 35;
                 }
-                else if (time.TotalMilliseconds < 1350)
-                {
-                    this.rotation -= 7;
-                }
-                else if (time.TotalMilliseconds < 1500)
-                {
-                    //
-                }
-                else
-                {
-                    inFormation = true;
-                    rotation = 0;
-                }
-            }
-            else if (entrance == 3) // fly in from bottom left
-            {
-                if (time.TotalMilliseconds < 500)
-                {
-                    this.rotation = 125;
-                }
-                else if (time.TotalMilliseconds < 1350)
+                else if (time.TotalMilliseconds < 1400)
                 {
                     this.rotation += 7;
+                    if (entrance == 6)
+                    {
+                        varSpeed = speed * 1.5;
+                    }
                 }
-                else if (time.TotalMilliseconds < 1500)
+                else if (time.TotalMilliseconds < 1550)
                 {
                     //
                 }
@@ -263,7 +302,30 @@ namespace Galaga.Galaga.Enemies
                     rotation = 0;
                 }
             }
-
+            else if (entrance == 3 || entrance == 7) // fly in from bottom right
+            {
+                if (time.TotalMilliseconds < 500)
+                {
+                    this.rotation = 145;
+                }
+                else if (time.TotalMilliseconds < 1400)
+                {
+                    this.rotation -= 7;
+                    if (entrance == 7)
+                    {
+                        varSpeed = speed * 1.5;
+                    }
+                }
+                else if (time.TotalMilliseconds < 1550)
+                {
+                    //
+                }
+                else
+                {
+                    inFormation = true;
+                    rotation = 0;
+                }
+            }
 
             //Breakouts
             if (entrance == -1)
@@ -272,11 +334,19 @@ namespace Galaga.Galaga.Enemies
                 {
                     this.rotation += 10;
                 }
-                else if (time.TotalMilliseconds < 450)
+                else if (time.TotalMilliseconds < 475)
+                {
+                    //
+                }
+                else if (time.TotalMilliseconds < 500)
                 {
                     Shoot();
                 }
-                else if (time.TotalMilliseconds < 500)
+                else if (time.TotalMilliseconds < 875)
+                {
+                    //
+                }
+                else if (time.TotalMilliseconds < 900)
                 {
                     Shoot();
                 }
@@ -315,11 +385,19 @@ namespace Galaga.Galaga.Enemies
                 {
                     this.rotation -= 10;
                 }
-                else if (time.TotalMilliseconds < 450)
+                else if (time.TotalMilliseconds < 475)
+                {
+                    //
+                }
+                else if (time.TotalMilliseconds < 500)
                 {
                     Shoot();
                 }
-                else if (time.TotalMilliseconds < 500)
+                else if (time.TotalMilliseconds < 1075)
+                {
+                    //
+                }
+                else if (time.TotalMilliseconds < 1100)
                 {
                     Shoot();
                 }
@@ -357,8 +435,8 @@ namespace Galaga.Galaga.Enemies
             dir = getVector(this.rotation);
             if (time.TotalMilliseconds > 0)
             {
-                this.x += (int)(dir.Item1 * speed);
-                this.y -= (int)(dir.Item2 * speed);
+                this.x += (int)(dir.Item1 * varSpeed);
+                this.y -= (int)(dir.Item2 * varSpeed);
             }
         }
 
@@ -369,13 +447,13 @@ namespace Galaga.Galaga.Enemies
                 return;
             }
             bailTime -= (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if(bailTime <= 0)
+            if (bailTime <= 0)
             {
                 speed /= 2;
-                entrance = rand.Next(2)*-1 -1;
-                inFormation= false;
+                entrance = rand.Next(2) * -1 - 1;
+                inFormation = false;
                 time = new TimeSpan(0);
-                bailTime = rand.Next(10000, 30000);
+                bailTime = rand.Next(5000, 30000);
             }
         }
 
@@ -386,7 +464,7 @@ namespace Galaga.Galaga.Enemies
                 gameInfo.enemyProjectiles.Add(new EnemyBullet((int)this.x, (int)this.y, gameInfo.m_spriteBatch, gameInfo.spriteDict["bullet"]));
                 this.timeSinceShot = new TimeSpan(0);
             }
-            
+
         }
     }
 }

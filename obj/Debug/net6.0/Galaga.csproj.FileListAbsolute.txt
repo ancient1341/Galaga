@@ -136,3 +136,6 @@ C:\Game Development\Galaga\bin\Debug\net6.0\Content\sounds\explosion.xnb
 C:\Game Development\Galaga\bin\Debug\net6.0\Content\sounds\missile.xnb
 C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\sounds\explosion.xnb
 C:\Users\unay4\Documents\CS5410\Galaga\bin\Debug\net6.0\Content\sounds\missile.xnb
+K:\Programming\C#\Game Design\Galaga\bin\Debug\net6.0\Content\ELNATH-smaller.xnb
+K:\Programming\C#\Game Design\Galaga\bin\Debug\net6.0\Content\sounds\explosion.xnb
+K:\Programming\C#\Game Design\Galaga\bin\Debug\net6.0\Content\sounds\missile.xnb

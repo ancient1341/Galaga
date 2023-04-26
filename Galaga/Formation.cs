@@ -44,7 +44,7 @@ namespace Galaga.Galaga
             this.formationWidth = (gameInfo.enemyScale + (int)spacing - gameInfo.enemyScale) * enemyWidthCount;
             this.x = gameInfo.WIDTH / 2 - formationWidth / 2;
             this.y = gameInfo.HEIGHT / 8;
-            this.speed = (float)gameInfo.WIDTH/8000;
+            this.speed = (float)gameInfo.WIDTH / 8000;
 
             this.formation = new List<List<Enemy>>();
             timer = new TimeSpan(0);
@@ -196,6 +196,7 @@ namespace Galaga.Galaga
                             {
                                 explode((int)bullet.x + 9 / 2, (int)bullet.y);
                                 formation[rowIndex][enemyIndex] = new EmptyEnemy();
+                                gameInfo.explosion.Play();
                             }
                             else
                             {
@@ -209,9 +210,9 @@ namespace Galaga.Galaga
             }
 
             //check if wave Cleared Write no code after this.
-            foreach(List<Enemy> enemyList in formation)
+            foreach (List<Enemy> enemyList in formation)
             {
-                foreach(Enemy enemy in enemyList)
+                foreach (Enemy enemy in enemyList)
                 {
                     if (!enemy.dead)
                     {
@@ -230,7 +231,7 @@ namespace Galaga.Galaga
                 {
                     spacing += speed;
                     x -= speed * enemyWidthCount / 2;
-                    if (spacing > gameInfo.WIDTH/30 + gameInfo.enemyScale)
+                    if (spacing > gameInfo.WIDTH / 30 + gameInfo.enemyScale)
                     {
                         growing = false;
                     }
@@ -309,10 +310,10 @@ namespace Galaga.Galaga
             list.Add(new EmptyEnemy());
             list.Add(new EmptyEnemy());
             list.Add(new EmptyEnemy());
-            list.Add(new Boss(gameInfo, 2, 3000));
-            list.Add(new Boss(gameInfo, 2, 3400));
-            list.Add(new Boss(gameInfo, 2, 3600));
-            list.Add(new Boss(gameInfo, 2, 3200));
+            list.Add(new Boss(gameInfo, 6, 3000));
+            list.Add(new Boss(gameInfo, 6, 3100));
+            list.Add(new Boss(gameInfo, 6, 3300));
+            list.Add(new Boss(gameInfo, 6, 3200));
             list.Add(new EmptyEnemy());
             list.Add(new EmptyEnemy());
             list.Add(new EmptyEnemy());
@@ -322,31 +323,31 @@ namespace Galaga.Galaga
                 formation.Add(new List<Enemy>());
                 list = formation[i + 1];
                 list.Add(new EmptyEnemy());
-                list.Add(new Butterfly(gameInfo, 3, 5000 + i * 400));
-                list.Add(new Butterfly(gameInfo, 3, 5200 + i * 400));
-                list.Add(new Butterfly(gameInfo, 2, 3100 + i * 400));
+                list.Add(new Butterfly(gameInfo, 3, 5000 + i * 200));
+                list.Add(new Butterfly(gameInfo, 3, 5100 + i * 200));
+                list.Add(new Butterfly(gameInfo, 2, 3000 + i * 200));
                 list.Add(new Butterfly(gameInfo, 1, 0 + i * 200));
-                list.Add(new Butterfly(gameInfo, 1, 100 + i * 200));
-                list.Add(new Butterfly(gameInfo, 2, 3300 + i * 400));
-                list.Add(new Butterfly(gameInfo, 3, 5300 + i * 400));
-                list.Add(new Butterfly(gameInfo, 3, 5100 + i * 400));
+                list.Add(new Butterfly(gameInfo, 5, 100 + i * 200));
+                list.Add(new Butterfly(gameInfo, 2, 3100 + i * 200));
+                list.Add(new Butterfly(gameInfo, 7, 5000 + i * 200));
+                list.Add(new Butterfly(gameInfo, 7, 5100 + i * 200));
                 list.Add(new EmptyEnemy());
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 formation.Add(new List<Enemy>());
                 list = formation[i + 3];
-                list.Add(new Bee(gameInfo, 1, 9000 + i * 400));
-                list.Add(new Bee(gameInfo, 1, 9200 + i * 400));
-                list.Add(new Bee(gameInfo, 0, 7000 + i * 400));
-                list.Add(new Bee(gameInfo, 0, 7200 + i * 400));
+                list.Add(new Bee(gameInfo, 1, 9000 + i * 200));
+                list.Add(new Bee(gameInfo, 1, 9100 + i * 200));
+                list.Add(new Bee(gameInfo, 0, 7000 + i * 200));
+                list.Add(new Bee(gameInfo, 0, 7100 + i * 200));
                 list.Add(new Bee(gameInfo, 0, 0 + i * 200));
-                list.Add(new Bee(gameInfo, 0, 100 + i * 200));
-                list.Add(new Bee(gameInfo, 0, 7300 + i * 400));
-                list.Add(new Bee(gameInfo, 0, 7100 + i * 400));
-                list.Add(new Bee(gameInfo, 1, 9300 + i * 400));
-                list.Add(new Bee(gameInfo, 1, 9100 + i * 400));
+                list.Add(new Bee(gameInfo, 4, 100 + i * 200));
+                list.Add(new Bee(gameInfo, 8, 7000 + i * 200));
+                list.Add(new Bee(gameInfo, 8, 7100 + i * 200));
+                list.Add(new Bee(gameInfo, 9, 9100 + i * 200));
+                list.Add(new Bee(gameInfo, 9, 9000 + i * 200));
             }
         }
 

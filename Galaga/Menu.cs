@@ -196,10 +196,10 @@ namespace Galaga.Galaga
 
         void showAboutMenu()
         {
-            m_spriteBatch.DrawString(ELNATH, "-ABOUT-", new Vector2(WIDTH / 10, HEIGHT / 10), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "Menu By Kelton Chenworth", new Vector2(WIDTH / 8, HEIGHT*2 / 8), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "Thing", new Vector2(WIDTH / 8, HEIGHT*3 / 8), Color.White);
-            m_spriteBatch.DrawString(ELNATH, "Bugs By Kelton Chenworth", new Vector2(WIDTH / 8, HEIGHT*4 / 8), Color.White);
+            m_spriteBatch.DrawString(ELNATH, "Created By:", new Vector2(WIDTH / 10, HEIGHT / 10), Color.White);
+            m_spriteBatch.DrawString(ELNATH, "Matt Scribner", new Vector2(WIDTH / 8, HEIGHT*2 / 8), Color.White);
+            m_spriteBatch.DrawString(ELNATH, "Matthew Bingham", new Vector2(WIDTH / 8, HEIGHT*3 / 8), Color.White);
+            m_spriteBatch.DrawString(ELNATH, "Kelton Chenworth", new Vector2(WIDTH / 8, HEIGHT*4 / 8), Color.White);
             m_spriteBatch.DrawString(ELNATH, "Click to return", new Vector2(WIDTH / 20, HEIGHT * 7 / 8), Color.White);
         }
 
